@@ -18,19 +18,16 @@
 Durch COVID-19 hat auch bei mir die Zahl der Tele- und Videokonferenzen stark
 zugenommen. Insbesondere dann, wenn viele Personen gleichzeitig teilnehmen,
 finde ich es wichtig, wenn alle, die gerade nicht sprechen, ihr Mikrofon
-stummstellen. So reduzieren sich störende Hintergrundgeräusche doch deutlich
+stummstellen. So reduzieren sich störende Hintergrundgeräusche doch deutlich,
 und man versteht diejenige Person, die gerade spricht, viel besser.
 
 Leider klappt das mit dem Stummschalten, und auch das Wiederaktivieren des
 Mikros nicht immer. Jemand vergisst das Stummschalten und alle anderen
 Konferenz-Teilnehmer werden unfreiwillig Zeuge von Geklapper, dem Schlürfen
-an einer Tasse oder einem anderem, parallelem Gespräch am Handy (mir
-tatsächlich schon passiert!). Jemand anderes beteiligt sich an der
+an einer Tasse oder einem anderem, parallelem Gespräch am Handy
+tatsächlich schon erlebt!). Jemand anderes beteiligt sich an er
 eigentlichen Diskussion und wundert sich, dass ein Feedback ausbleibt, bis
-sie oder er feststellt, dass das eigene Mikrofon noch gemutet ist. Nicht,
-dass mir das schon passiert wäre ... |smile|.
-
-.. |smile| image:: /files/fatcow_icons/16x16/emotion_smile.png
+sie oder er feststellt, dass das eigene Mikrofon noch gemutet ist. 
 
 Um da ein wenig Abhilfe zu schaffen, habe ich deshalb ein Gerät gebastelt,
 welches ich in diesem Artikel vorstellen möchte.
@@ -40,7 +37,7 @@ welches ich in diesem Artikel vorstellen möchte.
 Herzstück dieses Geräts ist ein
 `PRJC Teensy 2.0 Board <https://www.pjrc.com/store/teensy.html>`_.
 Dieses Board besitzt einen
-`Atmel MEGA32U4 Miktrocontroller <http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Summary.pdf>`_
+`Atmel MEGA32U4 Mikrocontroller <http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Summary.pdf>`_
 mit einem USB 2.0 Device Module On-Chip, so dass man dieses Board bspw. als
 `USB Human Interface Device (HID) <https://de.wikipedia.org/wiki/Human_Interface_Device>`_
 einsetzen kann. Dieses Board kann also als USB-Maus oder -Tastatur fungieren.
