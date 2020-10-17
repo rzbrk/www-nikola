@@ -20,6 +20,11 @@ Urheberrecht
 If not explicitly specified otherwise, this work is licensed under a
 `Creative Commons Attribution 2.0 Generic License <https://creativecommons.org/licenses/by/2.0/>`_.
 
+Die Icons, welche auf diesen Seiten verwendet werden, entstammen dem Free Web
+Icons Set von FatCow Web Hosting. Sie stehen unter einer
+`Creative Commons Attribution 3.0 Lizenz <https://creativecommons.org/licenses/by/3.0/>`_ und können
+`hier <http://www.fatcow.com/free-icons>`_ heruntergeladen werden.
+
 Datenschutz
 -----------
 
