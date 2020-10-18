@@ -141,7 +141,7 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/index.html", "Home"),
 #        ("/archive.html", "Archiv"),
-        ("/categories/", "Tags"),
+        ("/categories/", "Stöbern"),
         ("/rss.xml", "RSS-Feed"),
         ("/pages/impressum/index.html", "Impressum/Datenschutz"),
     ),
