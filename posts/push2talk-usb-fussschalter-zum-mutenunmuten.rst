@@ -7,8 +7,7 @@
 .. description: Muten/Unmuten per Fußschalter 
 .. type: text
 
-.. figure:: /images/p2t_final.jpg
-   :width: 500px
+.. figure:: /images/p2t_final.thumbnail.jpg
    :align: center
    :alt: Fertiges push2talk Gerät mit Fußschalter zum Anschluss via USB
 
