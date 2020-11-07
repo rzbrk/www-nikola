@@ -3,3 +3,4 @@ cache/
 .doit.db.db
 __pycache__/
 state_data.json
+*.pyc
