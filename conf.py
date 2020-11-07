@@ -142,6 +142,7 @@ NAVIGATION_LINKS = {
         ("/index.html", "Home"),
 #        ("/archive.html", "Archiv"),
         ("/categories/", "Stöbern"),
+        ("https://github.com/rzbrk", "GitHub"),
         ("/rss.xml", "RSS-Feed"),
         ("/pages/impressum/index.html", "Impressum/Datenschutz"),
     ),
