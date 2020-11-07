@@ -14,6 +14,12 @@ Verantwortlich für den Inhalt dieser Webseite:
 :Email: webmaster(at)jan-grosser.de
 :Phone: +49-2224-9896887
 
+Hinweis
+-------
+
+Die Inhalte dieser Seite stellen ausschließlich meine persönliche Meinung
+und nicht die meines Arbeitgebers dar.
+
 Urheberrecht
 ------------
 
