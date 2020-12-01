@@ -1,0 +1,39 @@
+<!--
+.. title: Import der alten Artikel
+.. slug: import-der-alten-artikel
+.. date: 2020-11-29 21:26:21 UTC+01:00
+.. tags: blog, nikola, website
+.. category: aktuell 
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>Es hat einige Zeit gedauert, aber nun sind viele der Artikel meines alten
+Blogs in Nikola importiert. Mein alter Blog basierte auf einer selbst-
+geschriebenen Software
+<a href="https://github.com/rzbrk/PerlPress">PerlPress</a>,
+die Artikel selbst liegen in einer SQLite-Datenbank. Die weitere Pflege von
+PerlPress ist mir allerdings zu aufwändig geworden, weshalb ich mich
+entschieden habe, auf Nikola zu wechseln. Mit Hilfe eines
+<a href="https://github.com/rzbrk/convert_articles">Python Skripts</a>
+habe ich eine Auswahl der Artikel in HTML Dateien für Nikola umgewandelt. In
+der Datenbank sind die Artikel zwar bereits in einer Art Quasi-HTML vorhanden,
+aber es finden sich einige spezielle Shortcodes (bspw. für Bilder und
+eingebettete YouTube- Videos), die Nikola nicht verstehen würde.</p>
+
+<p>Ein
+<a href="https://github.com/rzbrk/redirect_articles">weiteres Skript</a>
+war erforderlich, um Umleitungen für die Artikel zu
+generieren, da sich in Nikola die Links zu den Artikeln geändert haben. Für
+jeden alten Artikel, welchen ich nicht in die neue Webseite übernommen habe,
+wird es eine Umleitung auf eine entsprechende &quot;Sorry-Seite&quot; geben.
+Für die übernommenen Artikel leite ich dann entsprechend auf die Nikola-
+Seiten um. Für die Umleitungen nutze ich die
+<a href="https://www.getnikola.com/handbook.html#redirections">Variable REDIRECTIONS in Nikolas conf.py</a>.
+Das Skript erzeugt mir letztlich einen Textblock, welchen ich an die geeignete
+Stelle in conf.py einfügen kann.</p>
+
+<p>Einiges funktioniert noch nicht richtig, Links laufen ins Leere, einige
+Bilder werden nicht angezeigt usw. Das wid die Aufgabe der kommenden Zeit
+sein, das zu händisch in den Artikeln zu reparieren ...</p>
