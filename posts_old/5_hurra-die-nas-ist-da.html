@@ -1,0 +1,188 @@
+<!--
+.. title: Hurra: Die NAS ist da!
+.. slug: 5_hurra-die-nas-ist-da
+.. date: 2009-02-25 21:33:58
+.. tags: nas, netzwerk, opennas, linux, festplatte
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<b>
+ Ein Paket, ein Paket ...
+</b>
+<p>
+ Ich habe mir bei eBay ein gebrauchtes NAS (Network Attached Storage) 
+besorgt, um zuhause gemeinsam genutzte Dateien (Bilder, Musikdateien, 
+etc.) zentral im Netzwerk bereitzustellen. Wir haben zuhause zwei 
+Notebooks, die nun nicht gerade mit den allergrößten Festplatten 
+gesegnet ist (das eine Notebook ist ein Asus EeePC der ersten Generation 
+...). Die Idee war, über das Netzwerk auf unsere inzwischen ganz 
+ansehnliche Bildersammlung zugreifen zu können, ohne dafür die 
+USB-Festplatte oder Backup-DVDs aus dem Schrank kramen zu müssen.
+</p>
+<!-- TEASER_END -->
+<p>
+ Meine Wahl fiel auf das Gerät
+ <a href="http://212.18.29.151/all6600nasraid-systemmit5sa.html?&amp;tx_mmallnetproductplugin_pi1[showUid]=40573&amp;cHash=7bf60924b6" title="Allnet ALL6250">
+  ALL6250 von Allnet
+ </a>
+ . Von hause aus glänzt das 
+Gerät nun nicht gerade durch Schnelligkeit und Funktionalität. Jedoch 
+ist interessant, daß sich dieses NAS auf das Betriebssystem
+ <a href="http://opennas.info/" title="OpenNAS">
+  OpenNAS
+ </a>
+ umrüsten läßt, 
+womit sich der Funktionsumfang erheblich steigern läßt. Etwas Geduld und 
+bei eBay war ein ALL6250 für einen akzeptablen Preis erstanden.
+</p>
+<b>
+ Erste Versuche und erste Ernüchterung
+</b>
+<p>
+ Hurra, das Paket ist da! Als ich jedoch das Paket 
+öffnete, merkte ich, daß das Gerät beim Vorbesitzer wohl als Luftfilter 
+im Raucherhaushalt diente. Egal: Für den Wechsel des Betriebssystems ist 
+eh ein kleiner Umbau des Geräts notwendig, und wenn ich es schon mal 
+zerlegt habe, kann ich es auch gleich reinigen.
+</p>
+<p>
+ Zuerst wollte ich 
+natürlich schauen, ob es funktioniert. Hier traten schon einmal die 
+ersten Probleme auf. Welche IP-Einstellungen hat das Gerät? Nach einigen 
+erfolglosen Versuchen unter Linux habe ich dann doch Windows gebootet, 
+die
+ <a href="http://212.18.29.49/ftp/pub/allnet/nas/all6250/ALL6250_cd.zip" title="Software-CD für ALL6250">
+  Software-CD
+ </a>
+ von der Allnet-Seite 
+gesaugt, das Konfigurations-Tool installiert und laufen gelassen. Damit 
+konnte ich die IP-Adresse des NAS in Erfahrung bringen und auf meine 
+Bedürfnisse anpassen - prima! Zu früh gefreut: Die so parametrisierte 
+NAS habe ich nun an meinen Router angeschlossen, aber offenbar kommt 
+keine Netzwerkverbindung zustande. Ratlos habe ich das Netzwerkkabel 
+ausgetauscht (nichts), ein Notebook am gleichen Netzwerkport des Routers 
+mit einem Kabel angeschlossen (funktionierte), aber die NAS war nicht 
+dazu zu bringen, eine Netzwerkverbindung aufzubauen. Zuletzt habe ich 
+noch die aktuellste Firmware aufgespielt und testweise den DHCP-Client 
+des NAS aktiviert, aber das führte auch zu keiner Verbesserung. Warum 
+das nicht funktioniert, ist mir derzeit schleierhaft. Allerdings möchte 
+ich einen Hardware-Defekt am NAS ausschließen, da ja die direkte 
+Verbindung zum Windows-Rechner über ein Cross-Netzwerkkabel wunderbar 
+funktioniert hat.
+</p>
+<b>
+ Innenleben
+</b>
+<p>
+ Nun ja, bleibt zu hoffen, daß 
+der Wechsel auf OpenNAS das Netzwerk-Problem beseitigt! Nun also erst 
+einmal einen Blick auf das Innenleben werfen. Das kommt zum Vorschein, 
+wenn man die Abdeckung entfernt:
+</p>
+<figure>
+ <img alt="NAS ohne Abdeckung ... die Platte kommt zum Vorschein" src="/images/img_5280.jpg" width="500"/>
+ <figcaption>
+  NAS ohne Abdeckung ... die Platte kommt zum Vorschein
+ </figcaption>
+</figure>
+<p>
+ Aha: Jede Menge Dreck, Gestank und eine 250GB-Platte von Samsung. 
+Letztere wird nun auch abgeschraubt und dann entdeckt man eine wichtige 
+Steckleiste, die später für das Aufspielen von OpenNAS noch eine 
+wichtige Rolle spielen wird:
+</p>
+<figure>
+ <img alt="Stiftleiste für RS232" src="/images/jumper6.jpg"/>
+ <figcaption>
+  Stiftleiste für RS232
+ </figcaption>
+</figure>
+<p>
+ Die Stiftleiste (Jumper J6) ist mit einer seriellen 
+RS232-Schnittstelle (COM-Port im Windows-Sprech) belegt, die aber nicht 
+an die Außenseite geführt ist. Über diese Schnittstelle läßt sich die 
+Firmware flashen und das Betriebssystem OpenNAS aufspielen. Nach meine 
+Erfahrungen ist die Pinbelegung die folgende (Pin 1 ist im obigen Bild 
+der mit dem weißen Pfeil markierte Pin):
+</p>
+<p>
+ <table align="center" border="1">
+  <tbody>
+   <tr>
+    <td>
+     Pin
+     <br/>
+    </td>
+    <td>
+     1
+    </td>
+    <td>
+     2
+     <br/>
+    </td>
+    <td>
+     3
+    </td>
+    <td>
+     4
+     <br/>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     Belegung
+    </td>
+    <td>
+     +3.3V
+     <br/>
+    </td>
+    <td>
+     Tx (TTL)
+     <br/>
+    </td>
+    <td>
+     Rx (TTL)
+     <br/>
+    </td>
+    <td>
+     GND
+     <br/>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+</p>
+<p>
+ Diese Schnittstelle arbeitet 
+mit TTL-Pegeln (0 bis 5V), und deshalb kann man die Pins nicht direkt 
+mit der seriellen Schnittstelle des Computers verbinden. Hierzu ist ein 
+Pegelwandler notwendig, der zwischen NAS und Computer geschaltet wird. 
+Ich habe mich dazu entschlossen, eine eigene kleine Platine auf Basis 
+des Bausteins
+ <a href="http://www.datasheetcatalog.org/datasheet/maxim/MAX3222-MAX3241.pdf" title="Datenblatt des MAX3232-Pegelwandlers">
+  MAX3232
+ </a>
+ aufzubauen und 
+diese in der NAS unterzubringen. In das Gehäuse werde ich eine 9-polige 
+SUB-D-Buchse einbauen, wo dann die Computer-kompatiblen RS232-Signale 
+abgegriffen werden können. Die Platine mit dem MAX3232 kann prima im 
+Gehäuse der NAS untergebracht werden, nämlich am besten unter dem Blech, 
+das die Platte aufnimmt - genau zwischen diesem Blech und der 
+Hauptplatine der NAS - da befindet sich ein ausreichend großer Luftspalt 
+für die kleine Zusatzplatine:
+</p>
+<figure>
+ <img alt="Wo ist Platz für die Pegelwandler-Platine? Aaah hier zwischen!" src="/images/img_5290.jpg"/>
+ <figcaption>
+  Wo ist Platz für die Pegelwandler-Platine? Aaah hier zwischen!"
+ </figcaption>
+</figure>
+<p>
+ So, für heute ist jedoch erst einmal Schluß! Alles weitere lest Ihr 
+im nächsten Artikel.
+</p>
+
+

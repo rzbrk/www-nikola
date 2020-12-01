@@ -1,0 +1,100 @@
+<!--
+.. title: USB in der Virtual Machine unter VirtualBox
+.. slug: 12_usb-in-der-virtual-machine-unt
+.. date: 2009-04-20 18:50:07
+.. tags: 
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ <img align="right" alt="USB" border="0" src="images/stories/computer/usblogo.jpeg"/>
+ In
+ <a href="computer/34-linux/56-windows-eingesperrt">
+  diesem Artikel
+ </a>
+ habe ich beschrieben, wie man unter Linux einen virtuellen Computer mit Windows XP installiert. In meinem Fall war es Sinn der Operation, Hardware zu verwenden, die nun mal nicht mit Linux klar kommt, ohne jedes Mal booten zu müssen. Beim Thema Hardware geht nichts ohne USB, also müssen die angeschlossenen USB-Geräte auch in der VM funktionieren. Blöderweise macht genau das viele Probleme! So auch in meinem Fall.
+</p>
+<p>
+</p>
+<!-- TEASER_END -->
+Zunächst einmal muß gewährleistet werden, daß das Programm VirtualBox grundsätzlich Zugriff auf USB hat. Das wird durch eine Erweiterung der Datei /etc/fstab gewährleistet:
+<p>
+</p>
+<p>
+ <font face="andale mono,times">
+  none /proc/bus/usb usbfs devgid=
+  <strong>
+   xxx
+  </strong>
+  ,devmode=664 0 0
+ </font>
+</p>
+<p>
+ Anstelle xxx muß die Gruppen-ID derjenigen Gruppe angegeben werden, in der sich die VB-User befinden. Bei mir heißt diese Gruppe vboxusers. Die Nummer bekommt man mit folgendem Kommandozeilen-Befehl heraus:
+</p>
+<p>
+ <font face="andale mono,times">
+  cat /etc/group | grep vbox
+ </font>
+</p>
+<p>
+ Nach einem Reboot werden die angeschlossenen USB-Devices bei mir immerhin schon einmal in VBox angezeigt:
+</p>
+<p>
+</p>
+<div style="text-align: center">
+ <img alt="Problem mit USB unter VBox" border="0" class="joomslide" src="images/stories/computer/vbox_winxp_usb2.png"/>
+</div>
+<p>
+</p>
+<p>
+ Die USB-Geräte werden nach dem Einstecken nicht sofort auch für die VM sichtbar. In der Auswahlliste, die in der obigen Abbildung zu sehen ist, muß das Gerät erst ausgewählt und damit "freigegeben" werden. Das funktioniert in meinem Fall auch super mit meinem USB-Drucker Samsung SCX-4200, leider nicht mit USB-Speicher oder meinem Tomtom-Navi. Für letzteres Gerät habe ich aber eigentlich den ganzen Zirkus gemacht! Auf dem Bild oben sieht man zwar, daß das Navi in der Auswahl angezeigt wird, jedoch kann ich es nicht "freigeben". Zeigt man mit der Maus auf das Gerät, öffnet sich eine Info-Box mit dem Hinweis, das Gerät sei nicht verfügbar.
+</p>
+<p>
+ Ich habe mal die Hinweise
+ <a href="http://www.linuxforen.de/forums/showthread.php?t=258941" title="USB unter VBox">
+  auf dieser Seite
+ </a>
+ abgearbeitet, was allerdings noch nicht zum erwünschten Ziel gebracht hat ...
+</p>
+<p>
+ <strong>
+  *** 2009/04/24 UPDATE: Es funktioniert!! ***
+ </strong>
+</p>
+<p>
+ Sehr aufschlußreich war
+ <a href="http://www.linuxforen.de/forums/showthread.php?t=236444" title="USB in der Virtual Machine unter VirtualBox">
+  der Artikel von Stefan Becker auf linuxforen.de
+ </a>
+ . Weiter unten im längeren Artikel unter 4.1.4.1 stehen die interessanten Sachen. Ich fasse kurz zusammen, was bei mir letztlich zum Ziel geführt hat:
+</p>
+<p>
+ 1) Die /etc/fstab mit folgender Zeile erweitern :
+</p>
+<p>
+ <font face="andale mono,times">
+  none /proc/bus/usb usbfs auto,busgid=1000,busmode=0775,devgid=1000,devmode=0664 0 0
+ </font>
+</p>
+<p>
+ Hinter busgid und devgid muß die Gruppen-ID der Gruppe vboxusers (o.ä.) eingetragen werden, in der sich die User von VirtualBox befinden (siehe weiter oben).
+</p>
+<p>
+ 2) Unter OpenSuse 11.1 wird obiger Eintrag in der fstab nicht automatisch aktiv - warum auch immer. Um das Mounten aller Dateisysteme in der fstab beim Booten zu erzwingen, führt man einfach den Befehl mount -a  beim Systemstart aus. Hierzu erweitert man die Datei /etc/rc.d/boot.local um folgende Zeile:
+</p>
+<p>
+ <font face="andale mono,times">
+  mount -a
+ </font>
+</p>
+<p>
+ 3) Neu starten - das wars! Jetzt klappt es auch mit USB unter VirtualBox!
+</p>
+<p>
+</p>
+
+

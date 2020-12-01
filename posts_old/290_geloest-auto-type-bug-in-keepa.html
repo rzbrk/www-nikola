@@ -1,0 +1,44 @@
+<!--
+.. title: Gelöst: Auto-Type Bug in KeePassX
+.. slug: 290_geloest-auto-type-bug-in-keepa
+.. date: 2012-02-18 21:36:30
+.. tags: kennwort, auto_type
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+</p>
+<p style="text-align: center;">
+ <img alt="KeePassX Logo" src="http://www.keepassx.org/images/kp_logo_main.png"/>
+</p>
+<p>
+</p>
+<p>
+ Seit einigen Jahren verwende ich zur Verwaltung meiner dutzenden Kennwörter das Tool
+ <a href="http://www.keepassx.org/" title="KeePassX">
+  KeePassX
+ </a>
+ . Ein nettes Feature dieses Programms ist die
+ <a href="link://slug/97_auto-type-bei-keepassx">
+  Auto-Type-Funktion
+ </a>
+ . Muß man sich bspw. auf einer Webseite anmelden, klickt man in das erste Eingabefeld und drückt eine Tastenkombination wie STRG+ALT+A. Wie von Zauberhand werden die Eingabefelder ausgefüllt! Leider hatte ich in der Vergangenheit Probleme mit dem Feature, nämlich immer dann, wenn der Username eine Mail-Adresse ist und somit das Zeichen @ enthält. KeePassX hat hier immer das falsche Zeichen eingesetzt. Schuld ist offenbar das Tool
+ <a href="https://wiki.archlinux.de/title/Xdotool" title="Xdotool">
+  xdotool
+ </a>
+ , welches KeePassX für diese Arbeiten verwendet und welches anscheinend etwas buggy ist.
+</p>
+<p>
+ Unter Ubuntu ist die Lösung allerdings ganz einfach: Löscht in den Tastatur-Einstellungen einfach alle Tastatur-Layouts, welche Ihr nicht benötigt. Nachdem ich bei mir die standardmäßig vorhandenen Tastatur-Alternativen entfernt hatte, funktionierte es wieder (
+ <a href="http://sourceforge.net/projects/keepass/forums/forum/329221/topic/4845410" title="SourceForge -- Auto-type writes wrong characters">
+  via
+ </a>
+ ).
+</p>
+<p>
+</p>
+
+

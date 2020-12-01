@@ -1,0 +1,63 @@
+<!--
+.. title: Immer wieder nett: Samsung SCX-4200 Drucker unter Linux
+.. slug: 321_immer-wieder-nett-samsung-scx-
+.. date: 2012-11-06 19:45:34
+.. tags: opensuse, drucker, samsung_scx_4200, treiber
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<div>
+ Eines muß man ja wirklich sagen: Mit einem Samsung-Drucker wird die  Installation eines Linux-Systems zum Herzklopf-Erlebnis ("er druckt, er  druckt nicht, er scannt, er scannt nicht, er druckt, aber er scannt  nicht, ...).
+ <a href="link://slug/292_samsung-scx-4200-laeuft-unter-">
+  Unter Ubuntu 11.10 lief der Drucker ohne Mucken  out-of-the-box
+ </a>
+ . Nun bin ich wieder auf mein "altes" SuSE umgestiegen (in  der Version 12.1). Scannen lief ohne Probleme direkt nach dem  Anstöpseln. Der Samsung Unified Driver für Linux ist jedoch für die  Tonne: Das Installationsskript für den Drucker läßt sich nicht ausführen  - es gibt auch keine aussagekräftige Fehlermeldung.
+</div>
+<div>
+ Ich bin wie im folgenden beschrieben vorgagangen, und konnte den Drucker erfolgreich zum Laufen bringen:
+</div>
+<div>
+ <ol>
+  <li>
+   Lade die aktuelle Version des Samsung Unified Drivers
+   <a href="http://www.bchemnet.com/suldr/" shape="rect" target="_blank">
+    hier
+   </a>
+   herunter.
+  </li>
+  <li>
+   Entpacke  das Archiv: tar -xzvf .tar.gz. NUR entpacken, NICHT  installieren! In dem Verzeichnis, in dem das Archiv entpackt wurde,  befindet sich nun ein Unterverzeichnis "cdroot", daß die Dateien des  Treibers enthält.
+  </li>
+  <li>
+   Kopiere die Drucker-Filter-Dateien aus dem entpackten Archiv in das CUPS-Filterverzeichnis:
+   <br clear="none"/>
+   32Bit: cdroot/Linux/i386/at_root/usr/lib/cups/filter/* --&gt; /usr/lib/cups/filter/.
+   <br clear="none"/>
+   64Bit: cdroot/Linux/x86_64/at_root/usr/lib64/cups/filter/* --&gt; /usr/lib/cups/filter/.
+  </li>
+  <li>
+   Jetzt  ruft Ihr in YaST den Assistenten zum Installieren des Druckers auf. Ist  der Drucker richtig angeschlossen und eingeschaltet, sollte er schon  einmal am Anschluß erkannt werden. Normalerweiser findet YaST jetzt aber  keine PPD-Datei (Druckerbeschreibungsdatei) für den Drucker (
+   <a href="http://www.flickr.com/photos/rrrrrrrrrrakete/8159151110/in/photostream/" title="Screenshot 1">
+    Screenshot 1
+   </a>
+   ).
+  </li>
+  <li>
+   Öffnet  den Dialog "Treiber-Pakete:" und klickt Euch zu dem Eintrag "Eine  Druckerbeschreibungsdatei zur Verfügung stellen". Im Unterverzeichnis  "cdroot/Linux/noarch/at_opt/share/ppd" befinden sich die PPDs für eine  Reihe von Samsung-Modellen. Den Dateinamen und Pfad zu der richtigen PPD  (bei mir SCX-4200.ppd) tragt Ihr in das Eingabefeld in YaST ein und  beendet den Assistenten (
+   <a href="http://www.flickr.com/photos/rrrrrrrrrrakete/8159151110/in/photostream/" title="Screenshot 2">
+    Screenshot 2
+   </a>
+   ).
+  </li>
+ </ol>
+ <div>
+  Damit hat die Installation bei mir geklappt.
+ </div>
+ <p>
+ </p>
+</div>
+
+

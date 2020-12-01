@@ -1,0 +1,65 @@
+<!--
+.. title: PIO macht das Brennen langsam
+.. slug: 35_pio-macht-das-brennen-langsam
+.. date: 2009-07-07 18:30:30
+.. tags: windows, brennen, dvd, pio, dma
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ <img align="left" alt="CD DVD brennen" border="0" hspace="10" src="http://upload.wikimedia.org/wikipedia/commons/7/75/Nautilus-cd-burner.png" title="CD DVD brennen" vspace="10"/>
+ Kürzlich mußte ich unter Windows Daten-DVDs brennen. Das war alles andere als spaßig, da das Brennen einer 4 GByte-DVD eine ganze Stunde in Anspruch genommen hat. Eigentlich hätte es garnicht solange dauern dürfen, denn die Brenngeschwindigkeit war mit 8fach bzw. rund 11 MB/s angegeben. Damit wären die 4 GByte nach Adam Riese eigentlich in rund 6 Minuten auf den Rohling transferiert. Tatsächlich dauerte es aber fast 10 Mal länger - warum? Der Bösewicht war nach kurzem Googlen schnell ausgemacht: Programmed Input-Output oder kurz PIO.
+</p>
+<!-- TEASER_END -->
+<p>
+ Bei
+ <a href="http://de.wikipedia.org/wiki/Programmed_Input/Output" title="Wikipedia: PIO">
+  PIO
+ </a>
+ werden alle Daten zwischen Arbeitsspeicher und Laufwerken eines Computers über den Prozessor geleitet. Das bremst aber den Prozeß stark aus, was sich bspw. wie oben beschrieben beim Brennen in drastisch verlängerten Brennzeiten ausdrückt. Vermeiden kann man das durch Verwendung von Direct Memory Access (
+ <a href="http://de.wikipedia.org/wiki/Direct_Memory_Access" title="Wikipedia: DMA">
+  DMA
+ </a>
+ ). Hier wird der Prozessor schön aus der Datenschaufelei herausgehalten. Laufwerke moderner Rechner sollten mittlerweile alle DMA unterstützen.
+ <br/>
+ <br/>
+ Nun ist das unter Windows mit dem DMA nicht so einfach. Im Gerätemanager findet man das Gerät "IDE ATA/ATAPI Controller" und darunter i.d.R. den primären und sekundären IDE-Kanal. Für die Geräte der IDE-Kanäle kann man nun unter im Eigenschaften-Dialog unter Übertragungsmodus "DMA, wenn verfügbar" einstellen, wenn dies bislang auf "Nur PIO" eingestellt war (Bild). Blöderweise stellt Windows dies möglicherweise nach einem Reboot und/oder Zugriff auf das entsprechende Laufwerk wieder auf PIO zurück. Dieses Verhalten hängt mit
+ <a href="http://www.supernature-forum.de/hardware-forum/62630-dvd-laufwerk-brenner-nur-pio-mode-hilfe.html" title="Nur langsam Brennen mit PIO">
+  bestimmten Schlüsseln in der Windows-Registry zusammen
+ </a>
+ . Dort werden Informationen über Fehlzugriffe bei einem bestimmten Laufwerk gesammelt. Akkumulieren sich zuviele dieser Fehler, so wählt Windows für dieses Laufwerk fortan PIO, egal was der Benutzer will.
+</p>
+<p>
+</p>
+<div style="text-align: center">
+ <img alt="Eigenschaften IDE-Kanal" border="0" class="joomslide" src="images/stories/computer/winxp_eigensch_ide2_vorher.png" title="Eigenschaften IDE-Kanal"/>
+</div>
+<br/>
+<p>
+</p>
+<p>
+ Wenn man das beheben will, muß man somit in der Registry herumfingern, was aber auch nicht weiter dramatisch ist. Die Registry editiert man bspw. mit dem Windows-Tool REGEDIT (Start --&gt; Ausführen ... --&gt; regedit). Dort klickt man sich dann bis hierhin durch:
+ <br/>
+ <br/>
+ <font face="andale mono,times">
+  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E96A-E325-11CE-BFC1-08002BE10318}
+  <br/>
+ </font>
+ <br/>
+ Hierunter sind nun die Geräte der IDE-Kanäle als 0001, 0002, 0003, usw. aufgeführt. Die geht man einzeln durch und löscht alle Schlüssel mit dem Namen:
+ <br/>
+ <br/>
+ <font face="andale mono,times">
+  MasterIdDataChecksum
+  <br/>
+  SlaveIdDataChecksum
+  <br/>
+ </font>
+ <br/>
+ die man dort finden kann. Jetzt noch im Gerätemanager den Übertragungsmodus "DMA, wenn verfügbar" einstellen und rebooten. Jetzt sollte das Brennen deutlich schneller gehen.
+</p>
+
+

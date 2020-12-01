@@ -1,0 +1,245 @@
+<!--
+.. title: openNAS installieren
+.. slug: 9_opennas_installieren
+.. date: 2009-03-09 19:49:05
+.. tags: nas, netzwerk, opennas, linux, flashen
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="openNAS Logo" src="/images/opennas.png"/>
+ <figcaption>
+  openNAS Logo
+ </figcaption>
+</figure>
+<b>
+ Zeit zum Flashen ...
+</b>
+<p>
+ Alle Hardware-Arbeiten an meiner NAS ALL6250 sind 
+abgeschlossen und das Flashen kann losgehen. Vorher mußte ich mir einen 
+neuen Router zulegen. Mein alter wurde ziemlich heiß und die LAN-Ports 
+haben nicht mehr funktioniert. Schließlich habe ich mir eine
+ <a href="http://www.horstbox.biz/" title="D-Link Horstbox">
+  Horstbox
+ </a>
+ von 
+D-Link zugelegt. Jetzt kann ich endlich die NAS am Netzwerk 
+betreiben.
+</p>
+<!-- TEASER_END -->
+<p>
+ Das Flashen ist weniger kompliziert, als man meint. Eine prima 
+Anleitung gibt es
+ <a href="http://forum.opennas.info.www150.your-server.de/viewtopic.php?t=1754" title="HowTo All6250-Flashanleitung">
+  hier
+ </a>
+ . Allerdings muß man sich 
+für das Flashen von derselben Seite die Images herunterladen. Das geht 
+aber nur, wenn man eingeloggt ist! Ist man nur Gast in dem Forum, werden 
+die Download-Möglichkeiten nicht angezeigt! Bevor ich das geschnallt 
+habe, hat es einige Zeit gedauert!
+</p>
+<h4>
+ Gib mich Editor!
+</h4>
+<p>
+ Nach dem Flashen läßt man das Schnittstellen-Kabel ruhig noch dran 
+und bootet die NAS. Jetzt muß man noch ein paar Pakete einspielen. Im 
+Gegensatz zur Original-Firmware von Allnet besitzt openNAS 
+keineWeb-Oberfläche zur Konfiguration (wer jetzt aufstöhnt: Finger weg 
+von openNAS!). So ist man bei der Konfiguration auf fünf Knöpfchen 
+beschränkt, sondern hat die volle Bandbreite der 
+Konfigurationsmöglichkeiten über die Config-Dateien zur Verfügung. Um 
+Konfig-Dateien editieren zu können, benötigt man jedoch einen Editor, 
+den wir uns erst einmal installieren. Ich benutze gerne den 
+Kommandozeilen-Editor
+ <a href="http://www.nano-editor.org/">
+  nano
+ </a>
+ (auf anderen Systemen heißt der auch pico).
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ipkg-cl update
+  <br/>
+  ipkg-cl install nano
+ </div>
+</p>
+<p>
+ Der erste Befehl ist für das Update der Datenbank des 
+Paket-Managers
+ <a href="http://handhelds.org/moin/moin.cgi/Ipkg">
+  ipkg
+ </a>
+ . Mit dem zweiten 
+Befehl wird das Paket nano installiert.
+</p>
+<h4>
+ Feste IP-Adresse und SSH-Client
+</h4>
+<p>
+ Für folgenden Installations-Arbeiten ist es wenig 
+zweckmäßig, weiter mit der Konsole über die serielle Schnittstelle zu 
+arbeiten. Viel bequemer ist es, die NAS über das TCP/IP-Netzwerk zu 
+konfigurieren. Außerdem ist eine funktionierende Netzwerkverbindung 
+Voraussetzung dafür, die NAS weiter einrichten zu können, da sich der 
+Paketmanager ipkg die Pakete aus dem Internet besorgt. Zudem ist nach 
+dem Flashen automatisch der
+ <a href="http://de.wikipedia.org/wiki/DHCP">
+  DHCP
+ </a>
+ -Client der NAS aktiv. 
+Ich möchte der NAS aber eine feste IP-Adresse vergeben. Für Letzteres 
+muß die Datei /etc/network/interfaces angepaßt werden. Hier kommt zum 
+ersten Mal unser Editor nano zum Einsatz.
+</p>
+<p>
+ Als nächstes kommt der
+ <a href="http://de.wikipedia.org/wiki/Ssh">
+  SSH
+ </a>
+ -Daemon dran, der 
+zunächste einmal installiert werden muß:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ipkg-cl install openssl
+ </div>
+</p>
+<p>
+ Jetzt müssen 
+noch die Keys erzeugt werden (
+ <a href="http://forum.opennas.info/viewtopic.php?t=1620&amp;highlight=ssh">
+  siehe 
+auch diesen Forumsbeitrag auf opennas.info
+ </a>
+ ):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ./bin/dropbearkey -t rsa -f 
+/etc/dropbear/dropbear_rsa_host_key
+  <br/>
+  ./bin/dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
+ </div>
+</p>
+<p>
+ Wenn alles korrekt abgelaufen ist, kann man die NAS nach einem Reboot 
+über ssh erreichen, und das Schnittstellenkabel wird eigentlich nicht 
+mehr benötigt. Nach dem Einloggen wird es allerhöchste Eisenbahn, das 
+Paßwort des root-Users anzupassen:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  passwd root
+ </div>
+</p>
+<img align="right" alt="Samba" border="0" src="images/stories/bastelein/nas/samba_logo.gif" title="Samba"/>
+<h4>
+ Zeig, was Du kannst!
+</h4>
+<p>
+ Außer, daß man sich nun per SSH einloggen kann, kann die 
+NAS zum jetzigen Zeitpunkt herzlich wenig. In meinem Fall wollte ich auf 
+der NAS zunächst zwei Dienste zum Laufen bringen:
+ <a href="http://us1.samba.org/samba/">
+  Samba
+ </a>
+ für das Filesharing und
+ <a href="http://daap.sourceforge.net/">
+  DAAP
+ </a>
+ (Digital Audio Access 
+Protocol) für das Bereitstellen meiner MP3-Sammlung im 
+Netzwerk.
+</p>
+<p>
+ Unter Samba wollte ich gerne die Zugriffskoordinierung 
+von Freigaben auf User-Ebene verwenden. Hierzu müssen natürlich erst 
+einmal User angelegt werden, was zweistufig abläuft. Zunächst werden die 
+User auf Betriebssystem-Level angelegt, also unter Linux. Angenommen, 
+der User soll aaa heißen, dann lautet der Befehl:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  adduser -h /home/aaa -G users aaa
+ </div>
+</p>
+<p>
+ Mit -h /home/aaa wird zusätzlich auch gleich das Home-Verzeichnis angelegt, 
+-G users bedeutet, daß dieser User Mitglied der Gruppe users wird. 
+Weitere Benutzer können nach Belieben angelegt werden. Ist das erledigt, 
+kann Samba installiert werden:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ipkg-cl install samba
+ </div>
+</p>
+<p>
+ Nach der Installation machen wir Samba erst einmal mit den 
+Linux-Benutzern bekannt. Das braucht man natürlich nicht mit allen 
+Benutzern zu machen, sondern nur mit solchen, die man für die 
+Zugriffskoordinierung unter Samba benötigt. Bleiben wir bei unserem 
+Beispiel-User aaa:
+</p>
+<p>
+ <div ch09.html"="" class="terminal&gt;smbpasswd -a aaa&lt;/div&gt;&lt;/p&gt; &lt;p&gt;Die grundlegenden Samba-Einstellungen und Freigaben werden in der Samba-Konfigurationsdatei /usr/etc/smb.conf definiert. Hier bietet die Konfigurationsdatei schon vielfach anwendbare Beispiele, die man aktiviert, indem man die Kommentarsymbole vor den betreffenden Zeilen entfernt und etwaige Anpasungen vornimmt. Eine sehr anwendungsnah und kurze Anleitung findet man auch in diesem &lt;a href=" freebooks="" german="" http:="" samba2ger="" www.oreilly.de="">
+  Freebook
+  .
+ </div>
+</p>
+<img align="right" alt="Firefly Logo" border="0" src="images/stories/bastelein/nas/firefly_logo.jpg" title="Firefly Logo"/>
+<p>
+ Als nächstes 
+soll nun DAAP eingerichtet werden,wozu das entsprechend Paket erst 
+einmal installiert werde muß:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ipkg-cl install mt-daapd
+ </div>
+</p>
+<p>
+ Die Konfigurationsdatei befindet sich in 
+der Datei /usr/etc/mt-daapd.conf. Die Konfiguration ist nicht sonderlich 
+aufwendig, Hilfestellung liefert möglicherweise
+ <a href="http://wiki.mt-daapd.org/wiki/Quickstart_Ubuntu#Configure_mt-daapd">
+  dieses 
+Wiki
+ </a>
+ . Damit der Daemon korrekt aufgerufen werden kann, muß die 
+Konfigurationsdatei noch in das Verzeichnis /etc/ gelinkt 
+werden:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ln -s /usr/etc/mt-daapd.conf 
+/etc/mt-daapd.conf
+ </div>
+</p>
+<p>
+ Sicherlich möchte man diesen Dienst 
+nicht manuell starten, sondern er soll bei jedem Start der NAS 
+automatisch gestartet werden. Hierzu muß das Init-Skript 
+/usr/etc/init.d/S35mtdaapd editiert editiert werden, und der Wert 
+START_DEAMON auf "yes" gesetzt werden. Nach einem Reboot sollte läßt 
+sich der erfolgreiche Start von mt-daapd darüber kontrollieren, indem 
+man die Webseite des Dienstes auf der NAS 
+aufruft:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  http://[nas]:3689
+ </div>
+</p>
+<p>
+ Der Platzhalter [nas] muß an die jeweilige IP-Adresse bzw. den 
+jeweiligen Hostnamen der NAS angepaßt werden.
+</p>
+
+

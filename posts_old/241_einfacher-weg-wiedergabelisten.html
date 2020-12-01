@@ -1,0 +1,70 @@
+<!--
+.. title: Einfacher Weg, Wiedergabelisten für den MP3-Player (Sansa Clip) zu erstellen
+.. slug: 241_einfacher-weg-wiedergabelisten
+.. date: 2011-03-11 19:14:44
+.. tags: zwischenablage, mp3_player, sandisk_sansa_clip, m3u, playlist, copypath
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+</p>
+<p style="text-align: center;">
+ <img alt="Sansa Clip MP3-Player" src="http://www.sandisk.com/media/18974/black_130x89.jpg"/>
+</p>
+<p>
+ Mein MP3-Player ist ein
+ <a href="http://www.sandisk.com/products/sansa-music-and-video-players/sandisk-sansa-clip-mp3-players" title="SanDisk Sansa Clip MP3-Player">
+  Sansa Clip 8 GB von SanDisk
+ </a>
+ ,  den ich schon eine Weile habe und mit dem ich sehr zufrieden bin. Einzig die Verwaltung von Wiedergabelisten bzw. Playlists blieb mir bislang ein Rätsel. Wenn man bereits Musik auf dem Sansa Clip hat, kann man einzelne Musiktitel direkt über das Menü des Players in eine Wiedergabeliste einfügen. Leider kann man auf diese Weise nur eine Wiedergabeliste verwalten - was ich ein wenig schmal finde. Der Sansa Clip unterstützt jedoch auch Wiedergabelisten nach dem
+ <a href="http://de.wikipedia.org/wiki/M3U" title="Wikipedia -- M3U">
+  M3U-Format
+ </a>
+ . Das sind einfache Textdateien, die Zeile für Zeile die Titel enthalten. Auf
+ <a href="http://kb-de.sandisk.com/app/answers/detail/a_id/3191/~/erstellung-und-%E3%9Cbertragung-einer-m3u-playlist-auf-dem-sansa-spieler" title="SanDisk -- Erstellung und Übertragung einer M3U-Playlist auf dem Sansa-Spieler">
+  dieser SanDisk-Seite
+ </a>
+ habe ich eine Anleitung zum Erstellen der Wiedergabelisten gefunden. Allerdings verheimlicht diese Anleitung ein entscheidendes Detail.
+</p>
+<p>
+</p>
+<!-- TEASER_END -->
+<p>
+</p>
+<p>
+ Für jeden Titel der Wiedergabeliste muß in der M3U-Datei eine Zeile mit dem Pfad zur entsprechenden Datei angelegt werden. Die M3U-Datei muß, um vom Player als solche erkannt zu werden, im Verzeichnis MUSIC des Players abgelegt werden. Die Pfade der Dateien müssen nun relativ zu diesem Verzeichnis angegeben werden. Die erste Zeile der Datei muß #EXTM3U lauten.
+</p>
+<p>
+ Das Eintippen der Dateipfade in die Datei ist natürlich ziemlich dröge und fehlerträchtig - aber glücklicherweise auch nicht notwendig! Ganz einfach geht es wie folgt:
+</p>
+<p>
+ <span style="text-decoration: underline;">
+  <strong>
+   Linux:
+  </strong>
+ </span>
+ Schließt den Player via USB an den Rechner an. Bei mir wird der Player dann auf /media/SANSA CLIP/ gemountet. Öffnet einen Dateibrowser wie Nautilus und steigt in das Verzeichnis /media/SANSA CLIP/MUSIC/ ab. Dort öffnet oder erstellt Ihr zunächst die M3U-Wiedergabeliste in einem Texteditor wie gedit. Im Dateibrowser sucht Ihr nun die Musik-Datei, die Ihr der Wiedergabeliste hinzufügen wollt. Markiert die Datei und kopiert diese (STRG+C). Nun wechselt Ihr in den Texteditor und wählt einfügen (STRG+V) -tadaa!
+ <a href="http://ubuntuforums.org/showpost.php?s=87ae4da9b49147300322af9a59354804&amp;p=169429&amp;postcount=2" title="ubuntuforums.org -- Dateipfad kopieren">
+  Der Dateipfad wird in die Textdatei eingefügt
+ </a>
+ . Jetzt löscht Ihr noch den Anfang des Pfadnamens (hier: /media/SANSA CLIP/MUSIC/), damit der Pfad relativ zum Verzeichnis MUSIC ist. Es darf auch kein führendes / verbleiben! Das Verfahren wiederholt Ihr nun solange, bis die Wiedergabeliste fertig ist. Wiedergabeliste Abspeichern, Player dismounten - fertig!
+</p>
+<p>
+ <span style="text-decoration: underline;">
+  <strong>
+   Windows:
+  </strong>
+ </span>
+ Unter Windows ist das Verfahren ziemlich identisch zu dem unter Linux. Wird hier der MP3-Player via USB angeschlossen, wird er bspw. unter E:\ eingebunden. Den Datei-Explorer starten und die M3U-Datei z.B. in Notepad zum Editieren öffen. Leider gibt es unter Windows kein Bordmittel, um einfach den Pfad einer Datei in die Zwischenablage zu kopieren. Für ältere Windows-Versionen bis XP schafft das Freeware-Tool
+ <a href="http://download.cnet.com/CopyPath/3000-2248_4-10537174.html" title="CopyPath -- Pfad einer Datei in die Zwischenablage kopieren, bis Win XP">
+  CopyPath
+ </a>
+ Abhilfe. Für Vista und 7 sollte es vergleichbare Tools geben.
+</p>
+<p>
+</p>
+
+

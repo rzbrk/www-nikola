@@ -1,0 +1,210 @@
+<!--
+.. title: USBprog [Updated]
+.. slug: 14_usbprog
+.. date: 2009-05-13 18:40:36
+.. tags: elektronik, mikrocontroller, usb, programmer, atmel, usbprog
+.. category: elektronik
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Nun habe ich endlich wieder einen Programmer für meine 
+Mikrocontroller. Nach langem Suchen habe ich mich für den USBprog von 
+Benedikt Sauter (
+ <a href="http://shop.embedded-projects.net/Open-Source_Projekte/USBprog/USBprog_3.3_programmiert_mit_AVRISPmkII_Klon" title="Embedded Projects: USBprog">
+  Embedded Projects
+ </a>
+ ) entschieden. 
+Mit 39 Euro (12/2013: nur 29,90€) ist es sicherlich nicht der billigste 
+Programmer für die Atmel AVR-Familie, aber immer noch billiger als die 
+Programmer aus dem Hause Atmel.
+</p>
+<p>
+ Der Programmer kommt als Bausatz, wobei die schwierigen SMD-Bauteile 
+schon verlötet sind. Nur die Grobmotoriker-sicheren Bauteile, wie 
+Pfostenleisten und USB-Buchse müssen noch angelötet werden, was 
+allerdings schnell erledigt ist. Auf einer Seite steht groß "populate 
+everything from top side", was so viel bedeutet, wie: "Alle Bauteile auf 
+der Oberseite anbringen". Etwas genauer wäre jedoch gewesen, wenn man 
+"populate everything from opposite side" geschrieben hätte, dann hätte 
+ich auch nicht die Bauteile anfangs auf die falsche Seite gelötet :-(( 
+Die Auflösung des Rätsels, welche Seite denn wohl die obere ist, gibt es 
+im Internet. Nun ja, die insgesamt vielleicht etwa Feuerzeug-große 
+Platine hat das Auf- und Ablöten gut überlebt ...
+</p>
+<!-- TEASER_END -->
+<figure>
+ <img alt="USBprog" src="/images/usbprog.jpg"/>
+ <figcaption>
+  USBprog von Embedded Project
+ </figcaption>
+</figure>
+<p>
+ Ein nettes Feature des USBprogs ist, daß er weit mehr als ein reiner 
+Programmer ist. Über ein Software-Tool läßt sich die Firmware auf den 
+Mikrocontroller des USBprog austauschen, und der der USBprog verwandelt 
+sich auf diese Weise bspw. in einen Debugger, einen USB-RS232-Konverter 
+oder eine JTAG-Schnittstelle. das Projekt ist OpenSource, und es kommen 
+gelegentlich neue Firmwares dazu.
+</p>
+<p>
+ Das Software-Tool sollte man sich unbedingt installieren - für 
+OpenSUSE-Linux gibt es auch ein eigenes Software-Repository. Wie man das 
+installiert, erfährt man auf der Homepage von Embedded Projects.
+ <strike>
+  Mit dem graphischen Frontend unter Linux habe ich allerdings 
+schlechte Erfahrungen gemacht: Wenn es überhaupt läd, dann braucht es 
+schier eine Ewigkeit. Ich arbeite ausschließlich mit der 
+Kommandozeilen-Version.
+ </strike>
+ Zunächst habe ich ausschließlich mit 
+dem Kommandozeilen-Tool gearbeitet. Es gibt aber auch ein graphisches 
+Frontend USBprog, welches mittlerweile (Version 0.1.9) sehr gut 
+funktioniert.
+</p>
+<p>
+ Out-of-the-Box konnte ich den USBprog nur 
+als root ansprechen - auf die Dauer etwas nervig. Nach langer Puzzelei 
+habe ich herausgefunden, wie ich die Rechte so setzen kann, daß ich auch 
+als stinknormaler User an den Programmer drankomme. Dazu steckt man den 
+Programmer in den USB-Port. Wie der nun im System "aufgehangen" ist, 
+kann man mit dem Befehl "lsusb" ermitteln. Bei mir unter OpenSUSE sieht 
+die Ausgabeso aus:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  thinkpad:~ # lsusb
+  <br/>
+  Bus 004 Device 026: ID
+  <strong>
+   03eb:2104 Atmel Corp. AVR ISP mkII
+  </strong>
+  <br/>
+  Bus 004 Device 003: ID 05e3:0605 Genesys Logic, Inc. USB 2.0 Hub [ednet]
+  <br/>
+  Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+  <br/>
+  Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+  <br/>
+  Bus 002 Device 003: ID 04b3:3107 IBM Corp. ThinkPad 800dpi Optical Travel Mouse
+  <br/>
+  Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+  <br/>
+  Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+ </div>
+</p>
+<p>
+ <strike>
+  Damit weiß man schon mal, daß in diesem Fall der 
+Programmer mit /dev/bus/usb/004/026 erreichbar ist. Nun kann man die 
+Zugriffsrechte anpassen:
+ </strike>
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  chmod +rw /dev/bus/usb/004/026
+ </div>
+</p>
+<p>
+ Blöd nur, daß bei einem erneuten Einstecken sich die Device-Nummer 
+und ggf. auch die Bus-Nummer ändert. Dann ist das gleiche Spiel noch 
+einmal zu machen.
+</p>
+<p>
+ Wenn man jetzt wie
+ <a href="http://www.mikrocontroller.net/articles/AVRDUDE#Aufruf_unter_Linux_als_user_.28non-root.29" title="Mikrocontroller.net -- USBprog als User 
+verwenden">
+  hier
+ </a>
+ beschrieben eine Regel für die Linux Kernel Geräteverwaltung udev anlegt 
+und udev neu startet, dann kann man den USBprog auch als normaler User 
+ansprechen. Abweichend zur obigen Anleitung würde ich empfehlen, den 
+Dateinamen für die Regel zu
+ <strong>
+  80-usbprog.rules
+ </strong>
+ zu wählen 
+und die Rechte auf
+ <strong>
+  0666
+ </strong>
+ zu setzen - so hats bei mir 
+geklappt.
+</p>
+<p>
+ Zum Aufspielen einer neuen Firmware auf den USBprog mit 
+dem Kommandozeilen-Tool geht man nun wie folgt vor:
+</p>
+<ol>
+ <li>
+  Die mittleren beiden Pins von JP3 mit einem Jumper kurzschließen 
+(JP3 ist beim USBprog V3.0 die Stiftleiste direkt neben dem 
+Mikrocontroller).
+ </li>
+ <li>
+  Programmer als USB-Schnittstelle anschließen. Jetzt sollten sowohl 
+die grüne als auch die rote LED aufleuchten, um anzuzeigen, daß sich der 
+Programmer im Update-Modus befindet.
+ </li>
+ <li>
+  Programm "usbprog" starten.
+ </li>
+ <li>
+  Mit dem Befehl "devices" die erkannten Geräte anzeigen lassen. 
+Ausgabe bei mir:
+  <br/>
+  <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   (usbprog) devices
+   <br/>
+   [ 0]  *  Bus 004 Device 021: 1781:c620
+   <br/>
+   usbprog: USBprog in update mode
+  </div>
+ </li>
+ <br/>
+ <li>
+  Mit dem Befehl "device 0" ggf. den Programmer noch 
+auswählen. Im Beispiel oben wurde der Programmerwegen des eingestellten 
+Update-Modus wohl automatisch selektiert. Grundsätzlich kann das 
+Software-Tool nämlich mehrere Programmer parallel verwalten.
+ </li>
+ <li>
+  Mit "list" kann man sich die verfügbaren Firmwares anzeigen lassen. 
+Wenn in der Ausgabschon aus dem Internet auf den lokalen Rechner kopiert 
+wurde. Ggf. kann man mit "download xxx" den Download der Firmware xxx 
+nachholen.
+ </li>
+ <li>
+  Mit "upload xxx" kann man nun die Firmware xxx auf 
+den USBprog kopieren. Das geht üblicherweise rasent schnell. 
+Ausgabe:
+  <br/>
+  <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   (usbprog) upload xxx
+   <br/>
+   Opening device ...
+   <br/>
+   Writing firmware ...
+   <br/>
+   #############################################################
+   <br/>
+   Starting device ...
+   <br/>
+   Detecting new USB devices ...
+  </div>
+ </li>
+ <br/>
+ <li>
+  Nun den USBprog vom USB-Port entfernen.
+ </li>
+ <li>
+  Den Jumper abziehen.
+ </li>
+</ol>
+<p>
+ Jetzt ist der USBprog mit der Firmware verwendbar!
+</p>
+
+

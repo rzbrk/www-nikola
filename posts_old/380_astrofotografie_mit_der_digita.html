@@ -1,0 +1,289 @@
+<!--
+.. title: Astrofotografie mit der Digitalkamera - Etwas Theorie
+.. slug: 380_astrofotografie_mit_der_digita
+.. date: 2014-06-08 15:02:26
+.. tags: linux, astrofotografie, imagemagick
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="Sternfeldaufnahme" src="/images/20140608_cygnus-lyra_max_dark_small.jpg"/>
+ <figcaption>
+  Digitale Sternfeldaufnahme der Umgebung um die Leier, gerechnet aus 20 Einzelaufnahmen je 15 Sekunden.
+ </figcaption>
+</figure>
+<p>
+ Als Jugendlicher habe ich mich sehr für Astronomie interessiert. Ich hatte
+damals eine "geerbte" analoge Spiegelreflexkamera und habe eine
+ganze Reihe einfacher Sternfeldaufnahmen gemacht, in dem ich mit der nicht
+nachgeführten Kamera vom Stativ aus aufgenommen habe. Schon mit diesem
+vergleichsweise einfachen Setup ohne Teleskop kann man sehr beeindruckende
+Bilder schießen. Mit dem Studium und dem Umzug in eine lichtverschmutzte
+Stadt ist dieses Hobby eingeschlafen. Inzwischen habe ich eine digitale
+Spiegelreflexkamera und mal wieder Lust, die eine oder andere Aufnahme des
+Sternenhimmels zu machen - so wie früher. In diesem Artikel möchte ich ein
+paar hilfreiche Konzepte und Begriffe einführen. In späteren Artikeln
+sollen dann praktische Beispiel folgen.
+</p>
+<!-- TEASER_END -->
+<p>
+ <b>
+  Notwendige Ausrüstung und Standort
+ </b>
+</p>
+<p>
+ Zunächst benötigt man eine Kamera, in diesem Fall eine Digitalkamera. Dabei
+ist die Pixelanzahl eher Nebensache. Viel wichtiger ist, daß sie über einen
+manuellen Modus verfügt, bei dem man Empfindlichkeit, Belichtungszeit und 
+Blende einstellen kann.
+</p>
+<p>
+ Die Objektive sind sehr wichtig. Bei Astroaufnahmen offenbart sich die
+wahre Qualität eines Objektivs. Objektive mit geringen
+ <a href="https://de.wikipedia.org/wiki/Abbildungsfehler">
+  Abbildungsfehlern
+ </a>
+ und einer großen Blendenöffnung sind besonders geeignet, aber zumeist sehr
+teuer. Aber auch mit Objektiven, die den Consumer-Kameras beigegeben
+werden, lassen sich sehr stimmungsvolle Astroaufnahmen machen. Ohne
+Nachführung der Himmelsbewegung kann man bis in den unteren Telebereich
+(ca. 80 mm Brennweite Kleinbild-Äquivalent) gute Aufnahmen erzielen.
+</p>
+<p>
+ Unerläßlich ist ein stabiles Stativ, welches die Kamera in die gewünschte
+Orientierung bringen läßt und während der Aufnahme Verwacklungen
+verhindert.
+</p>
+<p>
+ Hilfreich kann auch ein Fernauslöser sein, damit Verwackelungen durch das
+Betätigen des Auslösers an der Kamera vermieden werden. Man kann sich aber
+auch so behelfen, daß man die Objektivöffnung bis nach dem Drücken des
+Auslösers bspw. mit einem Stück Pappe möglichst lichtdicht abdeckt und die
+Öffnung erst freigibt, wenn die Hand von der Kamera entfernt ist. Wenn das
+schnell geht, ist der Effekt auf die Belichtungszeit vernachlässigbar.
+</p>
+<p>
+ Üblicherweise bevorzugen Astronomen ja dunkle Beobachtungsorte -
+je dunkler, desto besser. Bei Sternfeldaufnahmen gilt das grundsätzlich
+auch. Allerdings kann die Bild-gestalterische Integration künstlicher
+Lichtquellen (Häuser, diffus beleuchtete Bäume oder Masten) in
+Sternfeldaufnahmen auch sehr reizvoll sein. Hier sollte man unbedingt
+experimentieren. Das folgende Beispiel zeigt eine Aufnahme des Kometen
+Hale-Bopp aus dem Jahre 1997, welches allerdings analog auf
+ <a href="https://de.wikipedia.org/wiki/Diafilm">
+  Diafilm
+ </a>
+ aufgenommen
+wurde.
+</p>
+<figure>
+ <img alt="Komet Hale-Bopp, aufgenommen 1997 (gescanntes Dia)" height="500px" src="/images/halebopp.jpg"/>
+ <figcaption>
+  Komet Hale-Bopp, aufgenommen 1997 (gescanntes Dia)
+ </figcaption>
+</figure>
+<p>
+ <b>
+  Sternstrichspuren
+ </b>
+</p>
+<p>
+ Bei Astroaufnahmen denken die meisten Menschen bestimmt unweigerlich an
+große Teleskope oder von Kameras mit extrem großbrennweitigen Objektiven.
+Sicherlich ermöglicht ein solches Equipment wunderschöne Astroaufnahmen,
+bspw. der Planeten oder von
+ <a href="https://de.wikipedia.org/wiki/Deep-Sky-Objekte">
+  Deep Sky Objekten
+ </a>
+ .
+Aber auch mit einfacherem Equipment und mit kleineren Brennweiten lassen sich
+beeindruckende Resultate erzielen. Kleine Brennweiten sind bei Aufnahmen
+größerer Himmelsareale (z.B. ganze Sternbilder), Aufnahmen von aktiven Kometen
+oder Satelliten-Strichspuren sehr gut geeignet.
+Große Brennweiten machen m.E. nur dann
+Sinn, wenn man die Himmelsbewegung während der Aufnahme bspw. mit einer
+astronomischen Teleskopmontierung nachführen kann. Zudem haben viele Objektive
+mit langer Brennweite eine kleine Blende, und man muß daher
+länger belichten. Große Brennweite und lange Belichtungszeit führen aber
+ohne Nachführung zu langen Sternstrichspuren durch die Bewegung des Himmels
+während der Aufnahmezeit. Das sieht m.E. nur in wenigen Fällen wirklich gut
+aus. Die Länge der Sternstrichspur
+ <i>
+  l
+ </i>
+ auf dem Sensor der Digitalkamera,
+für ein Beobachtungsobjekt am Himmelsäquator mit der
+ <a href="https://de.wikipedia.org/wiki/Deklination_%28Astronomie%29">
+  Deklination
+ </a>
+ 0°, bei einer Aufnahmezeit
+ <i>
+  t
+ </i>
+ ergibt sich aus einfachen
+geometrischen Überlegungen näherungsweise zu:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: white; border: 3px solid orange; color: black; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  l = 2 f tan (180° t / T_sid)
+ </div>
+</p>
+<p>
+ Dabei ist
+ <i>
+  f
+ </i>
+ die Brennweite des Objektivs und
+ <i>
+  T_sid
+ </i>
+ die Dauer
+eines
+ <a href="https://de.wikipedia.org/wiki/Siderischer_Tag">
+  siderischen Tages
+ </a>
+ (gut 86200 Sekunden).
+</p>
+<p>
+ Wenn man mit einer Digitalkamera fotografiert, ist
+immer dann die Bewegung der Himmelsobjekte als Strichspuren in der
+Aufnahme erkennbar, wenn
+ <i>
+  l
+ </i>
+ deutlich größer als die Pixelgröße ist. Die
+Pixel meiner Canon EOS D400 sind 5,7 µm groß. Mit 18 mm Brennweite
+und einer Aufnahmezeit von 15 Sekunden beträgt die Länge
+der Strichspuren etwa 19 µm, also ungefähr drei Pixellängen. In diesem Falle
+erscheinen die Sterne noch überwiegend punktförmig.
+</p>
+<p>
+ Das folgende Beispiel zeigt eine Sternstrichspuraufnahme, die gezielt über
+einen langen Zeitraum erstellt wurde. Hierbei wurden 612 Einzelaufnahmen von
+je 10 Sekunden Belichtungszeit zu einer Gesamtaufnahme zusammengestellt. Auf
+diesem Bild zeichnet sich die Sternbewegung über die rund 2 Stunden
+Aufnahmedauer deutlich ab.
+</p>
+<figure>
+ <img alt="Sternstrichspuren" height="500px" src="/images/20140615_strichspur_small.jpg"/>
+ <figcaption>
+  Sternstrichspuraufnahme der Region um den Polarstern mit dem 
+Sternbild Cassiopeia und Capella, zusammengerechnet aus 612 Einzelaufnahmen 
+je 10 Sekunden.
+ </figcaption>
+</figure>
+<p>
+ <b>
+  Streulicht
+ </b>
+</p>
+<p>
+ In der Nähe urbaner Gebiete sind die Nächte niemals dunkel. Viel Licht von
+der Oberfläche wird an Staub oder Wolken gestreut. Dies führt bei Aufnahmen
+mit langen Belichtungszeiten zu unnatürlich hellen Himmelshintergründen. Das
+kann soweit gehen, daß man einen scheinbar gleißend hellen Himmel in der
+Aufnahme hat, der die Sterne komplett überstrahlt. Die folgende Abbildung
+demonstriert den Effekt des Streulichts für Aufnahmen mit verschieden langer
+Belichtungszeit für einen urbanen Beobachtungsstandort.
+</p>
+<figure>
+ <img alt="Lichtverschmutzung" src="/images/lichtverschmutzung.jpg" width="500px"/>
+ <figcaption>
+  Einfluß der urbanen Lichtverschmutzung in Abhängigkeit der
+Belichtungszeit
+ </figcaption>
+</figure>
+<p>
+ Die einfachste Methode zur Unterdrückung des Streulichts ist die
+Begrenzung der Belichtungszeit. Grundsätzlich sollte eine möglichst große
+Blendenöffnung (= kleine Blendenzahl) gewählt werden. Die Sterne bewegen sich
+während der Belichtung quasi über die Pixel des Kamerasensors hinweg.
+Eine große Blendenöffnung läßt maximal viele Photonen des Sternenlichst in den
+lichtempfindlichen Pixel fallen, solange sich der Stern "über" dem
+Pixel befindet. Die maximale Belichtungszeit läßt sich nur sehr schwer
+berechnen. Besser geeignet sind Erfahrungswerte. Bei
+ <a href="https://de.wikipedia.org/wiki/Normalobjektiv">
+  Normalobjektiven
+ </a>
+ mit einer Blende von 2,8 bis 3,5 und einem Film bzw. Sensor der
+Empfindlichkeit von ISO 400 beträgt die maximal sinnvolle Belichtungszeit
+etwa 15 bis 20 Sekunden. Alles darüber führt dazu, daß der Himmelshintergund
+zu hell wird. An sehr dunklen Standorten kann mn ggf. länger belichten, wenn
+man längere Sternstrichspuren in Kauf nimmt. Wie das Bilderbeispiel aus dem
+letzten Abschnitt zeigt, eröffnet die digitale Astrofotografie eine
+Möglichkeit, die Sternbewegung auch über längere Zeiten abzubilden und an dem
+störendem Streulicht vorbeizukommen. Die Details hierzu behalte ich aber
+einem späteren Artikel vor.
+</p>
+<p>
+ <b>
+  Artefakte des Detektors
+ </b>
+</p>
+<p>
+ Wer das erste Mal Astroaufnahmen mit einer Digitalkamera macht, dem werden
+bunte und weiße "Flecken" auf den Bildern auffallen, die auf
+zeitlich benachbarten Aufnahmen sehr ähnlich oder nahezu identisch sind. Dies
+sind Fehler einzelner Pixel des Detektors der Kamera, die erst dann auffallen,
+wenn man stark unterbelichtete Aufnahmen (Astroaufnahmen) macht.
+Glücklicherweise kann man den Umstand ausnutzen, daß diese Artefakte für
+zeitlich benachbarte Aufnahmen mit gleichen Kameraeinstellungen und gleicher
+Temperatur nahezu konstant sind. Von Zeit zu Zeit, auf jeden Fall bei Wechsel
+der Kameraeinstellungen oder Temperaturveränderungen sollte man die
+Objektivöffnung lichtdicht abdecken und etwa ein Dutzend sog.
+"Dunkelaufnahmen" machen. In diesen Dunkelaufnahmen sind nur die
+Pixelfehler zu sehen, die man anschließend von den eigentlichen Astroaufnahmen
+subtrahieren kann.
+ <p>
+  <p>
+   Hat man nun also einen Satz von Dunkelaufnahmen in einem Verzeichnis, so
+werden diese zunächst einmal gemittelt. Unter Linux (und anderen
+Betriebssystemen)kann man das mit dem kostenlosen Programm
+   <a href="http://www.imagemagick.org/">
+    ImageMagick
+   </a>
+   machen:
+  </p>
+  <p>
+   <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+    $ convert *.jpg -evaluate-sequence mean dark_master.jpg
+   </div>
+  </p>
+  <p>
+   Ergebnis ist ein "Dark Master". Dieses läßt sich nun von der
+eigentlichen Astroaufnahme abziehen - auch wieder mit ImageMagick:
+  </p>
+  <p>
+   <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+    $ composite -compose minus rohbild.jpg dark_master.jpg final.jpg
+   </div>
+  </p>
+  <p>
+   Es gibt noch eine Reihe weiterer Korrekturen, die man anfügen kann,
+darunter die Korrektur von Lichtempfindlichkeits-Inhomogenitäten des Systems
+Objektiv-Kamera. Die lasse ich hier zunächst weg, da sie aufwändig und
+meines Erachtens/meiner Erfahrung nach nicht so entscheidend sind, wie die
+obige Korrektur mit dem Dunkelbild. Wer hier tiefer einsteigen möchte, dem
+sei
+   <a href="http://astrofloyd.wordpress.com/2013/10/27/astrophotography-with-imagemagick/">
+    diese Seite
+   </a>
+   empfohlen.
+  </p>
+  <p>
+   <b>
+    Zusammenfassung
+   </b>
+  </p>
+  Mit dem Equipment, das ein halbwegs ambitionierter Hobby-Fotograf zuhause 
+hat, kann man sehr beeindruckende Sternfeldaufnahmen machen. Die künstliche 
+Beleuchtung in urbanen Gebieten läßt sich gestalterisch in Aufnahmen 
+einbeziehen. Geeignete Objekte am Himmel sind die helleren Sterne und 
+prominenten Sternbilder, besondere Stellungen von Mond, Planeten und der 
+hellsten Sterne, Satelliten und die ISS.
+ </p>
+</p>
+

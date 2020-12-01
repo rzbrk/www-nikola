@@ -1,0 +1,77 @@
+<!--
+.. title: Neuer NAS-Server läuft (Network Attached Storage)
+.. slug: 226_neuer-nas-server-laeuft-networ
+.. date: 2011-01-10 21:21:33
+.. tags: nas, backup, ubuntu, server, network_attached_storage, via_epia_m10000, mini_itx, acpi, luefter, dns, dhcp, rsync, snapshot
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Seit zwei Jahren habe ich zuhause eine NAS, die ich vorwiegend zur zentralen Ablage von Bildern und Musik verwende. Bislang hat eine
+ <a href="link://slug/5_hurra-die-nas-ist-da">
+  Allnet ALL6250{/article} zuverlässig ihren Dienst verrichtet. Zuletzt lief das gute Stück 130 Tage ohne Unterbrechung! Die NAS habe ich seinerzeits mit dem {article id="9"}Betriebssystem OpenNAS
+ </a>
+ bespielt. OpenNAS ist allerdings auf die Geräte ALL62x0 und kompatible zugeschnitten. Diese Geräte sind nun nicht mehr sonderlich taufrisch. Obwohl die Entwickler hinter OpenNAS wirklich sehr engagiert sind und man im
+ <a href="http://forum.zaphot.net" title="OpenNAS Forum">
+  Forum
+ </a>
+ schnelle und kompetente Antworten bekommt hat OpenNAS für mich aufgrund meiner gestiegenden Anforderungen keine Zukunft mehr. Aufgrund meiner intensiveren Nutzung möchte ich ein stets aktuelles Betriebssystem, welches maximale Erweiterbarkeit ermöglicht.
+</p>
+<p>
+</p>
+<!-- TEASER_END -->
+<p>
+</p>
+<p>
+ Hinzu kam, daß ich aus Hardware-Spielereien noch ein MiniITX-Board
+ <a href="http://www.via.com.tw/en/products/embedded/ProductDetail.jsp?id=81" title="VIA.com -- VIA EPIA M10000 Produktseite">
+  VIA EPIA M10000
+ </a>
+ übrig hatte. Sicherlich kein ideales Server-Board und erst recht kein Number-Cruncher - aber eben da. Dann habe ich mir bei eBay halt noch ein Gehäuse und eine Platte besorgt und einen Home-Server zusammengeschraubt. Diesen habe ich mit Ubuntu-Server bespielt. Ein paar Konfigurations-Anregungen habe ich mir aus dem aktuellen
+ <a href="http://www.heise.de/ct/meldung/Linux-Sonderheft-Server-Praxis-1143153.html" title="heise.de - Linux Sonderheft Server Praxis">
+  c't Linux-Sonderheft "Server Praxis"
+ </a>
+ besorgt, welches ich an dieser Stelle sehr empfehlen kann.
+</p>
+<p>
+</p>
+<p>
+ Seit Weihnachten surrt der neue Server also bei mir zuhause, und man merkt schon einen gewissen Performance-Sprung. Leider hat das VIA-Board einen entscheidenden Nachteil: Die Lüfter lassen sich nicht via ACPI regulieren und laufen auf volle Pulle. Das geht ziemlich auf die Ohren und Nerven! Leider konnte ich das Problem bislang nicht software-seitig lösen, so daß ich auf eine brutale Methode zurückgegriffen habe. In die Versorgungsleitung des Lüfters habe ich kurzerhand ein 100-Ohm-Poti (Tip habe ich
+ <a href="http://www.viaarena.com/forums/showpost.php?p=55863&amp;postcount=5" title="Fan-Probleme mit VIA-Board">
+  hier
+ </a>
+ her) eingelötet und die Drehzahl so begrenzt, bis ein Optimum zwischen Lautstärke und Prozessortemperatur erreicht war. Nicht gerade optimal, aber bislang läuft die Kiste ohne erkennbaren Schaden.
+</p>
+<p>
+</p>
+<p>
+ Das Gehäuse der NAS ist kein Markengerät und der Lüfter des Netzteils auch sehr laut. Aus diesem Grunde werde ich auf eine lüfterlose PicoPSU umsteigen, die ich via eBay sehr günstig bei einem
+ <a href="http://shop.ebay.de/danieltheromanian/m.html" title="ebay-Shop von danieltheromanian">
+  US-Händler
+ </a>
+ erstanden habe.
+</p>
+<p>
+</p>
+<p>
+ Auf der NAS habe ich zudem DHCP und DNS laufen, wobei der DHCP dynamisch den DNS updated, wodurch ich meine Hosts im lokalen Netz nicht nur über die dynamisch zugewiesene und sich damit ändernde IP-Adresse ansteuern kann, sondern auch über die Hostnamen. Eine tolle Anleitung hierzu findet sich
+ <a href="http://lani78.wordpress.com/2008/08/12/dhcp-server-update-dns-records/" title="Lanis Weblog -- Make your DHCP server dynamically update your DNS records">
+  hier
+ </a>
+ .
+</p>
+<p>
+ <br/>
+ Aktuell arbeite ich daran, ein rsync-basiertes Backup-System für mein Linux-Notebook aufzusetzen, welches in definierten Abständen Snapshots meiner Daten auf der NAS ablegt. Eine tolle Webseite mit Beispiel-Skripten habe ich
+ <a href="http://linuxwiki.de/rsync/SnapshotBackups" title="LinuxWiki.org -- rsync Snapshot Backups ">
+  hier
+ </a>
+ gefunden. Allerdings feile ich noch an der Performance und der Integration in das OS. Wenn ich fertig bin, werde ich mein Skript hier im Blog vorstellen.
+</p>
+<p>
+</p>
+
+

@@ -1,0 +1,35 @@
+<!--
+.. title: Linux: Datei vor versehentlichen Löschen schützen
+.. slug: 369_linux_datei_vor_versehentliche
+.. date: 2013-12-16 20:54:25
+.. tags: linux, datei, ext, loeschen
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Auf der künftigen Linux-Kiste meiner Kinder wollte ich eine Datei (eine
+Verknüpfung auf dem Desktop) vor dem versehentlichen Löschen schützen. Die
+Suchmaschine meines geringsten Mißtrauens bot mir für das Dateisystem ext*
+das Tool
+ <a href="http://de.hscripts.com/tutorials/linux-commands/chattr.html">
+  chattr
+ </a>
+ an.
+Mit einem
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ sudo chattr +i test.txt
+ </div>
+</p>
+<p>
+ wird die Datei auf nur-lesen und unlöschbar gesetzt. Mit dem Schalter -i
+kann diese Aktion wieder rückgängig gemacht werden. Mit dem Befehl lsattr
+lassen sich die Attribute für Dateien und Ordner anzeigen. lsattr arbeitet
+hierbei ähnlich wie der ls-Befehl (Wildcards, etc.).
+</p>
+
+

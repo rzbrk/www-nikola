@@ -1,0 +1,57 @@
+<!--
+.. title: YouTube API: Überprüfen, ob Video existiert
+.. slug: 364_youtube_api_ueberpruefen_ob_vi
+.. date: 2013-12-04 19:31:59
+.. tags: youtube, api
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="YouTube Logo" src="/images/youtube_logo.jpg"/>
+ <figcaption>
+  YouTube Logo
+ </figcaption>
+</figure>
+<p>
+ In diesem Blog sind eine Reihe von YouTube Videos verlinkt. Aus verschiedenen
+Gründen sind einige Videos irgendwann nicht mehr aufrufbar. Ein Feature,
+welches ich noch in meine Blog Software PerlPress einbauen möchte, ist, die
+Links zu YouTube Videos daraufhin zu überprüfen, ob es das Video noch gibt.
+</p>
+<!-- TEASER_END -->
+<p>
+ Auf
+ <a href="http://stackoverflow.com/questions/1383073/how-do-i-check-if-a-video-exists-on-youtube-using-php/1383115#1383115">
+  stackoverflow.com
+ </a>
+ habe ich eine Lösung gefunden, welche auf die
+ <a href="https://developers.google.com/youtube/getting_started?hl=de">
+  YouTube 
+API
+ </a>
+ zurückgreift. Kennt man die Video ID, so muß man folgende URL 
+aufrufen (hier Aufruf mit curl in einer Linux Konsole, geht aber auch in jedem
+Browser):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ curl http://gdata.youtube.com/feeds/api/videos/KJV6ziVZYDk
+ </div>
+</p>
+<p>
+ Abhängig vom Status erhält man unterschiedliche Rückgabewerte. Das 
+obige Beispiel gibt den Rückgabewert "Private video". Im Falle 
+eines existierenden, öffentlich sichtbaren Videos gibt es einen 
+umfangreichen Atom-Feed zurück, aus den man alle relevanten Infos wie 
+Titel, Begleittext, Owner usw. auslesen kann. Eine falsche ID gibt den 
+Rückgabewert "Invalid id".
+</p>
+<p>
+ Manko ist, daß die API total langsam ist. Es dauert bei mir 
+reproduzierbar etwa 5 Sekunden, bis eine Antwort vom Server kommt.
+</p>
+
+

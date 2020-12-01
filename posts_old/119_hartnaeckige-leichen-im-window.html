@@ -1,0 +1,50 @@
+<!--
+.. title: Hartnäckige Leichen im Windows Drucker-Spooler löschen
+.. slug: 119_hartnaeckige-leichen-im-window
+.. date: 2010-03-03 20:07:52
+.. tags: windows, drucker, warteschlange, druckauftrag, spooler
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Manchmal hat man Druckaufträge, die unter Windows aus irgendwelchen 
+Gründen nicht mehr aus der Druckerwarteschlange (Printer Spooler) zu 
+löschen sind. Blöd ist, daß diese die Warteschlange auch noch 
+verstopfen, so daß auf dem betreffenden Drucker nicht mehr gedruckt 
+werden kann. Mit einem kleinen Trick, den ich
+ <a href="http://www.server-wissen.de/index.php?page=Thread&amp;threadID=33" title="server-wissen.de -- Druckaufträge löschen">
+  hier
+ </a>
+ gefunden 
+habe, kann man die Druckleichen doch löschen:
+</p>
+<ol>
+ <li>
+  Als Administrator anmelden.
+ </li>
+ <li>
+  Den Dienst Druckerwarteschlange oder Printer Spooler beenden (Bild). 
+Das macht man am besten in der Windows Diensteverwaltung, die man am 
+schnellsten mit Start --&gt; Ausführen --&gt; services.msc erreicht.
+ </li>
+ <li>
+  Im Datei-Explorer das Verzeichnis "C:\WINDOWS\system32\spool\PRINTERS" öffnen und dort alle Dateien 
+löschen, was dazu führt, daß alle verbleibenden Druckaufträge gelöscht 
+werden.
+ </li>
+ <li>
+  In der Windows Diensteverwaltung die beendeten Dienste 
+wieder starten - fertig!
+ </li>
+</ol>
+<figure>
+ <img alt="win_spooler_service" src="/images/win_spooler_service.jpg" width="500"/>
+ <figcaption>
+  Windows Spooler Service
+ </figcaption>
+</figure>
+
+

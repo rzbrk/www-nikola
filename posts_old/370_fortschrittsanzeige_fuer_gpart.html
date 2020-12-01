@@ -1,0 +1,104 @@
+<!--
+.. title: Fortschrittsanzeige für GParted
+.. slug: 370_fortschrittsanzeige_fuer_gpart
+.. date: 2014-01-07 10:58:08
+.. tags: gparted, strace, fortschritt, partition
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Den gestrigen Abend habe ich zusammen mit einem Freund verbracht, der 
+sich eine SSD für seinen Rechner besorgt hat. Aufgabe war es, die 
+Partitionen der alten Platte auf die neue SSD zu übertragen. Hierzu habe 
+ich die Software
+ <a href="http://gparted.sourceforge.net/">
+  GParted
+ </a>
+ auf einer
+ <a href="http://www.knoppix.org/">
+  Knoppix-CD
+ </a>
+ verwendet, 
+was auch sehr gut funktioniert hat. Wir mußten z.T. mehrere 100 GByte 
+Daten bearbeiten, was entsprechend lange dauert. Leider zeigt GParted 
+bei einigen der Aktionen keinen Fortschrittsbalken o.ä. an. So kann 
+leicht nach einiger Zeit des Wartens der Verdacht aufkommen, daß das 
+Programm möglicherweise nicht mehr richtig funktioniert.
+ <br/>
+ Über das 
+GParted Frontend gibt es z.B. konkret für das Verkleinern/Vergrößern 
+sowie das Kopieren von NTFS-Partitionen keine Möglichkeit zu überprüfen, 
+ob alles noch korrekt läuft und wie lange es noch dauert. Das läßt sich
+aber ändern, wie ich im Folgenden beschreiben will.
+</p>
+<!-- TEASER_END -->
+<p>
+ Im Allgemeinen sollte man beim Bearbeiten von Partitionen mit Größen 
+von mehreren 100 GByte viel Geduld mitbringen! Auf dem halbwegs 
+mordernen Rechner meines Freundes mit mechanischer SATA-Platte hat das 
+Verkleinern einer 700 GByte NTFS-Partition auf 200 GByte (vorher 
+defragmentiert) knapp eine Stunde gedauert. Anschließend haben wir die 
+Partition auf eine 256 GByte große SSD kopiert. Das hat noch einmaĺ rund 
+1,5 Stunden gedauert. Das Verschieben und Vergrößern einer 
+NTFS-Partition auf der mechanischen Platte war noch viel zeitaufwändiger, 
+lief unbeaufsichtigt über die zweite Nachthälfte und dauerte rund 5,5 
+Stunden.
+</p>
+<p>
+ Weil wir dann doch ein wenig nervös geworden sind, haben wir uns im 
+WWW nach einer Möglichkeit umgesehen, den Fortschritt abzuschätzen. 
+Glücklicherweise wurden wir fündig; und das ging sogar, ohne den 
+laufenden Prozeß zu unterbrechen (was unweigerlich zu einer Katastrophe 
+geführt hätte!). Für das Verändern der Größe einer NTFS-Partition 
+verwendet GParted im Hintergrund das Programm ntfsresize, für das 
+Kopieren ntfsclone, beide aus der Programm-Sammlung
+ <a href="http://web.archive.org/web/20080522140207/http://www.linux-ntfs.org/doku.php?id=ntfsprogs">
+  ntfsprogs
+ </a>
+ . 
+Diese Programme selbst haben eine Ausgabe des Fortschritts, die aber in 
+GParted nicht angezeigt wird. Mittels des Tools
+ <a href="http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace">
+  strace
+ </a>
+ kann man sich diese Ausgabe anzeigen lassen. Während GParted also vor 
+sich hin arbeitet, öffnet man in Knoppix ein Terminalfenster. Wie in
+ <a href="http://zipizap.wordpress.com/2012/10/15/xkl-ubuntu-install-resizing-ntfs-partition-takes-too-long-check-ntfsresize-from-console-with-strace/">
+  diesem 
+Blogartikel
+ </a>
+ beschrieben, gibt man (als Superuser) folgenden Befehl 
+ein:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  # strace -p $(pidof "ntfsresize") -e trace=write 2&gt;&amp;1 | grep 'write(1'
+ </div>
+</p>
+<p>
+ Der obige Befehl ist anzuwenden, wenn man den Fortschritt beim 
+Verändern der Partitions-Größe mittels ntfsresize beobachten möchte. 
+Beim Kopieren der NTFS-Partition muß ntfsresize durch ntfsclone ersetzt 
+werden.
+</p>
+<p>
+ Das Verschieben und Vergrößern der NTFS-Partition im letzten Schritt 
+erfolgte nicht mit den ntfsprogs, sondern durch das GParted Binary 
+(gpartedbin) selbst, wie uns der Prozeßmonitor
+ <a href="https://de.wikipedia.org/wiki/Top_%28Unix%29">
+  top
+ </a>
+ verraten 
+hat. In diesem Fall hat GParted auch selbst Fortschrittsinformationen 
+angezeigt.
+</p>
+<p>
+ Das Tool strace kann noch eine Menge mehr und kann beim Debuggen von 
+Fehlern in Prozessen offenbar sehr hilfreich sein. Das werde ich mir 
+noch einmal genauer ansehen ...
+</p>
+
+

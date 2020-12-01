@@ -1,0 +1,138 @@
+<!--
+.. title: avra 1.3.0 kompilieren
+.. slug: 332_avra_1_3_0_kompilieren
+.. date: 2013-02-25 21:24:34
+.. tags: mikrocontroller, atmel, avra, avr
+.. category: elektronik
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ <a href="http://sourceforge.net/projects/avra/" title="avra -- Atmel AVR Assembler">
+  Avra
+ </a>
+ ist ein Open 
+Source Assembler-Programm für die Mikrocontroller der Atmel AVR RISC 
+Familie. Da mich das Thema Mikrocontroller wieder gepackt habe, habe ich 
+den ganzen dazugehörigen Krempel (Evaluations-Board, Programmer, ...) 
+hervorgeholt und die notwendige Software auf meinen Computer wieder 
+eingerichtet. In den kommenden Tagen werde ich hier auch ein kleines 
+Einsteiger-Tutorial posten, welches die absoluten Basics darstellt.
+ <br/>
+ Leider ist die avra Version, die auch aktuelle Linux-Distros, wie bspw.  
+mein Fedora 18 anbieten (Version 1.2.3), schon etwas angestaubt. So 
+unterstützt dieses avra noch nicht den ATtiny13-Controller, mit denen 
+ich in Zukunft aber was machen wollte. Glücklicherweise bietet die avra 
+Projektseite eine aktuellere Version 1.3.0 (die ist aber auch schon 
+wieder von 2010!), die u.a. diesen Controller unterstützt. Diese Version 
+kann man sich (nur) als Quellcode herunterladen, um es auf seinem System 
+der Wahl zu installieren. Das war zumindest bei mir mit kleineren 
+Hindernissen verbunden. Letztlich habe ich es hinbekommen. Wie ich das 
+ging, möchte ich im Folgenden Beschreiben beschreiben.
+</p>
+<!-- TEASER_END -->
+<ol>
+ <li>
+  Zunächst holen wir uns wie gesagt das Archiv mit dem 
+Quellcode und den Build-Utilities von
+  <a href="http://sourceforge.net/projects/avra/files/1.3.0/">
+   hier
+  </a>
+  .
+ </li>
+ <li>
+  Jetzt öffnen wir ein Terminalfensterchen, wechseln in das 
+Verzeichnis der Downloaddatei und entpacken das Archiv mit 'tar -xjvf 
+avra-1.3.0.tar.bz2'.
+ </li>
+ <li>
+  Anschließend steigen wir in das angelegte Verzeichnis ab mit 'cd 
+avra-1.3.0'. Es schadet bestimmt nicht, einen Blick in die Textdateien 
+INSTALL und README zu werfen.
+ </li>
+ <li>
+  Jetzt müssen wir in das Verzeichnis mit den Source-Dateien 
+(Quellcode) wechseln, das ist src/.
+ </li>
+ <li>
+  Wenn wir jetzt nach der Anleitung in der Datei INSTALL 
+vorgehen und ein './configure' eingeben, bricht die Installation mit 
+der Meldung ab, daß die Datei install.sh nicht gefunden werden konnte. 
+Was hier genau falsch ist, weiß ich nicht. Aber
+  <a href="http://www.linuxquestions.org/questions/debian-26/configure-error-cannot-find-install-sh-or-install-sh-in-364870/#post3745100">
+   hier
+  </a>
+  habe ich gefunden, daß man in einem solchen Fall das Problem 
+dadurch beheben kann, daß man Reconfiguration mit dem Befehl 'autoreconf -f -i 
+-Wall,no-obsolete' durchführt. Bei mir sieht die Ausgabe wie 
+folgt aus:
+  <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   $ autoreconf -f -i -Wall,no-obsolete
+   <br/>
+   configure.in:3: installing './install-sh'
+   <br/>
+   configure.in:3: installing './missing'
+   <br/>
+   Makefile.am: installing './INSTALL'
+   <br/>
+   Makefile.am: error: required file './NEWS' not found
+   <br/>
+   Makefile.am: error: required file './README' not found
+   <br/>
+   Makefile.am: error: required file './AUTHORS' not found
+   <br/>
+   Makefile.am: error: required file './ChangeLog' not found
+   <br/>
+   Makefile.am: installing './COPYING' using GNU General Public License v3 file
+   <br/>
+   Makefile.am:     Consider adding the COPYING file to the version control system
+   <br/>
+   Makefile.am:     for your code, to avoid questions about which license your project uses
+   <br/>
+   Makefile.am: installing './depcomp'
+   <br/>
+   autoreconf: automake failed with exit status: 1
+  </div>
+  Offensichtlich fehlen ihm noch ein paar Dateien - also geben wir sie 
+ihm! Im gleichen Verzeichnis führt Ihr nacheinander folgende Befehle 
+aus:
+  <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   $ touch NEWS
+   <br/>
+   $ ln -s ../README README
+   <br/>
+   $ ln -s ../AUTHORS AUTHORS
+   <br/>
+   $ touch ChangeLog
+   <br/>
+  </div>
+  Das legt im Verzeichnis src/ die fehlenden Dateien an, so daß 
+das Programm automake in den folgenden Schritten nicht meckert. Der Rest 
+ist Standard.
+ </li>
+ <li>
+  Führe nun die beiden folgenden Befehle aus:
+  <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   $ make
+   <br/>
+   $ sudo make install
+  </div>
+ </li>
+ <li>
+  Jetzt sollte das Programm avra installiert sein. Leider 
+funktionieren die mit avra mitgelieferten Include-Files nicht. Eine 
+Lösung dazu habe ich aber
+  <a href="link://slug/193_probleme-mit-include-dateien-b">
+   hier
+  </a>
+  in einem gesonderten Artikel beschrieben, auf den ich verweisen 
+möchte.
+ </li>
+</ol>
+<p>
+ Viel Spaß beim Programmieren!
+</p>
+
+

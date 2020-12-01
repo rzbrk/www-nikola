@@ -1,0 +1,41 @@
+<!--
+.. title: Probleme mit Include-Dateien bei avra
+.. slug: 193_probleme-mit-include-dateien-b
+.. date: 2010-08-29 18:55:34
+.. tags: mikrocontroller, atmel, avra, avr_studio, programmieren, error, assembler, _pragma, include, mega
+.. category: elektronik
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Das Programm
+ <a href="http://avra.sourceforge.net/" title="AVRA Assembler Webseite">
+  AVRA
+ </a>
+ ist ein Assembler Compiler für die Mikrocontroller von Atmel unter Linux, welcher kompatibel zum Assembler in
+ <a href="http://www.atmel.com/dyn/products/tools_card.asp?tool_id=2725" title="Atmel AVR Studio">
+  Atmels Entwicklungsumgebung AVR Studio
+ </a>
+ ist. Hin und wieder programmiere ich für verschiedene Zwecke einen Atmel und verwende dann lieber Assembler als C. Unter Linux wollte ich nun AVRAa einsetzen. Leider konnte ich keines meiner Programme kompilieren, da AVRA (Version 1.2.3) die Mikrocontroller-spezifischen Include-Dateien (Bsp: m16def.inc) nicht verarbeiten wollte. Offensichtlich hat AVRA ganz konkret Probleme bspw. mit den Pragma-Direktiven (Codezeilen mit #pragma).
+</p>
+<p>
+</p>
+<!-- TEASER_END -->
+<p>
+</p>
+<p>
+ Die Include-Dateien für alle Atmel-µC liegen bei mir unter Ubuntu im Verzeichnis /usr/share/avra. Schaut man sich diese Dateien genauer an, so sind sie identisch mit den Include-Dateien aus dem Verzeichnisbaum der AVR Studio Installation. Allerdings sind das die Include-Dateien aus dem AVR Assembler
+ <strong>
+  2
+ </strong>
+ -Baum. Schaut man sich dagegen die Include-Dateien in der AVR Studio Installation für den AVR Assembler(1) an, so enthalten diese Dateien bspw. keine Pragma-Direktiven o.ä. Ich habe also testweise mal meine Programme mit diesen Include-Dateien unter AVRA kompiliert - es funktioniert! Also habe ich alle Dateien in /usr/share/avra/ ausgetauscht.
+</p>
+<p>
+ Ich frage mich natürlich schon, warum AVRA mit den "falschen" Include-Dateien ausgeliefert wird. Falls Ihr auch diese Probleme mit AVRA habt, braucht Ihr nicht erst AVR Studio installieren. Ich habe alle Includes (Atmel AVR Studio 4, Version 4.18, Build 684) in eine ZIP-Datei gepackt und diesem Artikel angefügt.
+</p>
+<p>
+</p>
+
+

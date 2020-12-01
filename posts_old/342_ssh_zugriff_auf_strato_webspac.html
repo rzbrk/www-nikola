@@ -1,0 +1,126 @@
+<!--
+.. title: SSH-Zugriff auf Strato Webspace mit Public Key Verfahren
+.. slug: 342_ssh_zugriff_auf_strato_webspac
+.. date: 2013-06-13 19:16:38
+.. tags: strato, ssh, rsync, public_key, ftp
+.. category: buntes
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Mit den PowerWeb Paketen des Hosters Strato verfügt man über einen 
+Shell-Zugang (
+ <a href="http://www.strato.de/webhosting/features.html">
+  hier
+ </a>
+ und
+ <a href="http://www.strato.de/hosting/#href__/hosting/pakete_ueberblick.html">
+  hier
+ </a>
+ ) zu seinem Webspace. Damit ist es u.a. möglich, via rysnc und 
+sftp Dateien auf den Webspace zu kopieren. Falls man das via Skripte 
+erledigen möchte, ist es zweckmäßig, die Aufforderung zur Eingabe des 
+Zugangskennworts unterdrücken zu können und anstelle dessen das
+ <a href="http://de.wikipedia.org/wiki/Public-Key-Verfahren">
+  Public Key 
+Verfahren
+ </a>
+ zu verwenden. Hierbei wird quasi dem Strato-Server einmal 
+vorgegeben, daß der eigene Rechner vertrauenswürdig ist.
+</p>
+<!-- TEASER_END -->
+<p>
+ Um das Public Key Verfahren nuutzen zu können, müssen wir de öffentlichen Schlüssel (Public Key) des eigenen 
+Rechners auf den Webserver kopieren.
+ <a href="http://www.strato-faq.de/2339">
+  Für Windows habe ich hier eine 
+unmöglich komplizierte Anleitung gefunden
+ </a>
+ , die mich als Linux-User 
+mehr als verwirrt hat. Letztlich ist es unter Linux babyleicht, und 
+funktioniert folgendermaßen: Falls noch nicht 
+geschehen, ein RSA-Schlüsselpaar erzeugen (kein Kennwort/Passphrase 
+verwenden!):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ssh-keygen -t rsa
+ </div>
+</p>
+<p>
+ Im Verzeichnis ~/.ssh/ befinden sich nun die Dateien "id_rsa" 
+(privater Schlüssel) und "id_rsa.pub" (öffentlicher Schlüssel). Der 
+private Schlüssel ist geheim und sollte niemals öffentlich gemacht 
+werden, da sonst Dritte Zugang zu Eurem Webserver erhalten können. Der 
+öffentliche Schlüssel ist ein Hash des privaten Schlüssels und kein 
+Geheimnis. Der öffentliche Schlüssel muß nun auf den Webspace kopiert 
+werden. Dazu kopiert zunächst die Datei "id_rsa.pub" mit Eurem 
+öffentlichen Schlüssel in eine weitere Datei mit dem Namen 
+"authorized_keys" (ohne Dateiendung).
+ <br/>
+ Falls Ihr vorher noch nie Public Key mit Eurem Strato 
+Webspace verwendet habt, loggt Euch via ftp auf dem Strato-Server ein 
+(dazu benötigt Ihr Eure Zugangsdaten. www.wunschname.de müßt Ihr 
+natürlich mit Eurer URL ersetzen):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ftp www.wunschname.de@www.wunschname.de
+ </div>
+</p>
+<p>
+ Dann erzeugt Ihr zunächst auf der obersten 
+Ebene Eures Webspaces ein Verzeichnis ".ssh" (Punkt am Anfang nicht 
+vergessen!) und wechselt in das erstellte Verzeichnis.
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ftp&gt; mkdir .ssh
+  <br/>
+  $ ftp&gt; cd .ssh
+ </div>
+</p>
+<p>
+ Ggf. müßt Ihr noch lokal (also auf dem 
+Computer vor Eurer Nase) in das Verzeichnis ~/.ssh/ wechseln; das geht 
+in der ftp-Konsole folgendermaßen:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ftp&gt; lcd ~/.ssh
+ </div>
+</p>
+<p>
+ Jetzt kommt der große Moment, und die Datei "authorized_keys" wird 
+auf den Server kopiert. Anschließend könnt Ihr Euch auch schon 
+ausloggen:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ftp&gt; put authorized_keys
+  <br/>
+  $ ftp&gt; bye
+ </div>
+</p>
+<p>
+ Jetzt loggen wir uns versuchsweise via SSH ein, was nun ohne 
+Kennwort-Eingabe funktionieren sollte:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ssh www.wunschname.de@ssh.strato.de
+ </div>
+</p>
+<p>
+ Bei vielen Linux-Servern kann man 
+öffentliche Schlüssel komfortabel mit dem Befehl "
+ <a href="http://valeo-it.de/blog/2009/06/systemhaus/ssh-key-authentication-uber-console-einrichten/">
+  ssh-copy-id
+ </a>
+ " austauschen. Das hat bei mir aber leider nicht
+funktioniert, weshalb ich den oben beschriebenen Weg nehmen mußte.
+</p>
+
+

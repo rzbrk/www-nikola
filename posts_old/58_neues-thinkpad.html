@@ -1,0 +1,124 @@
+<!--
+.. title: Neues Thinkpad
+.. slug: 58_neues-thinkpad
+.. date: 2009-09-30 11:18:51
+.. tags: linux, windows, thinkpad, ibm, lenovo, rescue_recovery, opensuse, suse, booten, grub, mbr, ersatzteil
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="lenovo_r400" src="/images/lenovo_r400.jpg" width="400"/>
+ <figcaption>
+  Lenove R400
+ </figcaption>
+</figure>
+<p>
+ So, seit knapp zwei Wochen bin ich stolzer Besitzer eines neuen 
+Thinkpads. Mein nunmehr schon 6,5 Jahre altes
+ <a href="http://upload.wikimedia.org/wikipedia/commons/0/0e/IBM_Thinkpad_R51.jpg" title="Wikimedia -- Thinkpad R51">
+  Thinkpad R51
+ </a>
+ konnte somit in den 
+wohlverdienten Ruhestand gehen. Ich bin ja ein gebranntes Kind: Mein 
+erstes Notebook war ein
+ <a href="http://www.gericom.com/" title="Gericom">
+  Gericom
+ </a>
+ , das ich mir so um das Jahr 2000 herum für 
+4999 DM bei "ich bin doch nicht blöd" gekauft habe. Die Kaufentscheidung 
+war aber blöd, denn das Notebook erwies sich als extrem billig 
+verarbeitet: Der LPT war defekt und die Tastatur federte sehr stark. Die 
+Linux-Installation mit der Notebook-Hardware war ein Krampf. Das zweite 
+Notebook war nun das besagte Thinkpad R51, das mich bis zuletzt nicht in 
+Stich gelassen hat! Vor gut einem Jahr ist mir lediglich eine Taste 
+abgebrochen (mir ist etwas auf die Tastatur gefallen, da kann das 
+Thinkpad nichts dafür). Trotz des damals schon IT-biblischen Alters habe 
+ich eine Ersatz-Tastatur bekommen, die sich auch problemlos austauschen 
+ließ. Diese Erfahrungen haben mich dazu bewogen, wieder ein Thinkpad zu 
+nehmen, auch wenn jetzt nicht mehr IBM dahinter steht, sondern
+ <a href="http://www.lenovo.com/de/de/" title="Lenovo">
+  Lenovo
+ </a>
+ . Ich 
+hoffe, an diesem Notebook wieder so lange Freude zu haben. Und es muß ja 
+schon seinen Grund haben, weshalb auch auf der
+ <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Susan_Helms_works_with_three_laptops_in_the_Destiny_laboratory.jpg/640px-Susan_Helms_works_with_three_laptops_in_the_Destiny_laboratory.jpg" title="Susan J. Helms 
+onboard the ISS working with some thinkpads">
+  ISS 
+Thinkpads
+ </a>
+ eingesetzt werden!
+</p>
+<!-- TEASER_END -->
+<p>
+ Das Thinkpad R400 (7439WDB) habe ich als wissenschaftlicher 
+Mitarbeiter über das
+ <a href="https://www.lenovocampus.de/" title="Lenovo Campus">
+  Lenovo Campus-Programm
+ </a>
+ bezogen. Im 
+Rechner werkelt ein Intel Core 2 Duo mit 2 mal 2 GHz Taktfrequenz. Den 
+RAM-Speicher habe ich gleich auf 4 GB aufbohren lassen, da ich 
+gelegentlich mal
+ <a href="computer/34/56-windows-eingesperrt" title="Windows unter Linux in VirtualBox">
+  Windows in der VirtualBox
+ </a>
+ nutze. Okay, bestimmt nicht das schnellste Notebook der Welt, aber 
+für mich völlig ausreichend. Auf dem Notebook habe ich
+ <a href="http://www.opensuse.org/de/" title="openSUSE">
+  openSUSE
+ </a>
+ 11.1, 
+64 Bit installiert. Auf Anhieb wurden alle wichtigen 
+Hardware-Komponenten erkannt und laufen einwandfrei (Firewire, das 
+interne Modem und den SmartCard-Reader habe ich nicht getestet 
+...).
+</p>
+<p>
+ Das aktuelle Thinkpad habe ich ohne Betriebssystem gekauft, da ich 
+schon seit längerer Zeit zuhause grundsätzlich Linux verwende (bis auf 
+gelegentlich mal Windows in der VirtualBox, siehe oben). Das R51 jedoch, 
+welches zuletzt auch nur mit Linux lief, hat auf der Platte eine 
+Partition mit dem IBM
+ <a href="http://www.pc.ibm.com/europe/think/de/rescue_and_recovery.html?europe&amp;cc=europe" title="Rescue &amp; Recovery">
+  Rescue &amp; Recovery
+ </a>
+ , mit dem man den 
+Auslieferungszustand wiederherstellen kann bzw. sollte. Ich 
+erinnere mich an ein dienstlich genutztes R52, wo das auch kein Problem 
+darstellte. Wenn man allerdings Linux und des Bootloader
+ <a href="http://de.wikipedia.org/wiki/Grand_Unified_Bootloader" title="Wikipedia: Grand Unified Boot Loader (GRUB)">
+  Grub
+ </a>
+ auf der 
+Platte hat, kommt man da garnicht mehr so einfach dran. Ich hatte zwar 
+in Grub einen Booteintrag für diese Rettungspartition, allerdings wurde 
+der Bootvorgang recht schnell durch eine Fehlermeldung abgebrochen. Dank 
+Google habe ich herausgefunden, daß dies daran liegt, daß Grub die 
+Partition default-mäßig nicht als FAT32 bootet, was zum Absturz führt. 
+Wenn man dann die Grub-Konfigurationsdatei wie
+ <a href="http://www.thinkwiki.org/wiki/Rescue_and_Recovery" title="IBM/Lenovos Rescue &amp; Recovery Partition nach Linux Installation 
+booten">
+  hier im Abschnitt "MBR written bei Grub"
+ </a>
+ ändert und Grub neu 
+installiert, kann man die Rettungspartition nun endlich erfolgreich 
+booten.
+</p>
+<p>
+ Leider war bei mir die System-Wiederherstellung im ersten Anlauf 
+nicht ganz erfolgreich. Nach jeder Menge Frickelei unter Einsatz einer
+ <a href="http://www.freedos.org/" title="FreeDos: free DOS-compatible 
+operating system for IBM-PC compatible systems">
+  FreeDos
+ </a>
+ -Boot-CD habe 
+ich es hinbekommen, ein bootfähiges Windows auf die Platte zu kriegen. 
+Da fehlen aber die ganzen IBM-Treiber. Ich habe vor, das noch einmal zu 
+machen und blogge dann ggf. meine Erfahrungen.
+</p>
+
+

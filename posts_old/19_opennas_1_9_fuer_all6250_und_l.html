@@ -1,0 +1,39 @@
+<!--
+.. title: OpenNAS 1.9 für ALL6250 und LCS-8311verfügbar
+.. slug: 19_opennas_1_9_fuer_all6250_und_l
+.. date: 2009-06-06 20:26:54
+.. tags: nas, netzwerk, opennas, linux, speicher
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<!-- <p><img src="images/stories/bastelein/nas/opennas.png" alt="openNAS 1.9 ist da!" align="right" border="0" /></p>-->
+<p>
+ Für die Netzwerkfestplatte Allnet ALL6250 und die Longshine LCS-8311 
+gibt es das ultimative Betriebssystem
+ <a href="http://forum.zaphot.net/viewtopic.php?t=1754&amp;sid=0bba0aa1f1cba547333fa79622c09070" title="openNAS 1.9 downloaden">
+  openNAS nun in der Version 1.9
+ </a>
+ . Es 
+gibt einen neuen Kernel (2.4.37.1) und weitere Verbesserungen. Auf 
+meiner ALL6250 habe ich die neue Version bereits installiert - 
+funktioniert fabelhaft! Wenn man bereits eine openNAS-Version 
+installiert hat (ab 1.4), muß man zum Update nur zwei Befehle 
+ausführen:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  ipkg-cl install opennas-all6250-kernel
+  <br/>
+  ipkg-cl install opennas-all6250-squashfs
+ </div>
+</p>
+<p>
+ Anschließend einen "Factory Reset" machen, also mit dem silbernen 
+Taster am Gehäuse  herunterfahren, danach wieder hoch: fertig! Dauert 
+nur wenige Minuten.
+</p>
+
+

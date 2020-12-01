@@ -1,0 +1,173 @@
+<!--
+.. title: Pegelwander -Testschaltung
+.. slug: 6_pegelwander-testschaltung
+.. date: 2009-02-28 17:02:53
+.. tags: nas, netzwerk, opennas, rs232, schnittstelle, elektronik
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Dieser Artikel beschreibt eine Schaltung für einen Pegelwandler zum 
+Einbau in eine
+ <a href="link://slug/5_hurra-die-nas-ist-da">
+  NAS Allnet ALL6250
+ </a>
+ . Diese dient 
+dazu, die NAS über eine serielle Schnittstelle mit einem PC zu 
+verbinden, um die NAS so mit dem Betriebsystem
+ <a href="http://forum.zaphot.net/index.php" title="OpenNAS">
+  OpenNAS
+ </a>
+ zu 
+flashen. Einen Artikel über den Einbau der Schaltung findet Ihr
+ <a href="link://slug/7_pegelwandler-in-nas-einbauen">
+  hier
+ </a>
+ .
+</p>
+<b>
+ Die Testschaltung
+</b>
+<p>
+ Es gibt keine noch-so-einfache Schaltung, bei der nicht doch irgend 
+etwas schief gehen kann. Deshalb lohnt es sich, ein
+ <a href="http://www.pollin.de/shop/shop.php?cf=suche_ergebnis.php#NzM3OTA5OTk=" title="Pollin: Elektronik-Steckbretter">
+  Steckbrett
+ </a>
+ anzuschaffen. 
+Außerdem lassen sich gelötete Schaltung nur sehr schwer verändern. Auf 
+dem Steckbrett hat man ganz schnell einen falsch gepolten Elko gedreht 
+oder Rx und Tx einer seriellen Schnittstelle vertauscht. Hinterher 
+überträgt man die Schaltung auf eine Platine. Die Testschaltung für den 
+NAS-Pegelwandler dient dazu, die richtige Polung der Datenleitungen Rx 
+und Tx der seriellen Schnittstelle herauszufinden.
+</p>
+<!-- TEASER_END -->
+<p>
+ Im Endeffekt habe ich die Schaltung so aufgebaut:
+</p>
+<figure>
+ <img alt="Schema der Pegelwandler-Schaltung" src="/images/pegelwandler_nas.png" width="500"/>
+ <figcaption>
+  Schema der Pegelwandler-Schaltung
+ </figcaption>
+</figure>
+<p>
+ Im
+ <a href="http://forum.opennas.info/viewtopic.php?t=904" title="Pinbelegung J6 auf OpenNAS.info">
+  Forum von OpenNAS.info
+ </a>
+ ist 
+die Pinbelegung des Jumpers mit umgekehrter Reihenfolge von Rx und Tx 
+angegeben. Das ist nicht weiter tragisch, muß man doch schlimmstenfalls 
+nur irgendwo die Kabel Rx und Tx vertauschen. Meine Testanordnung sah 
+dann wie folgt aus:
+</p>
+<figure>
+ <img alt="Bild der Testschaltung" src="/images/pegelwandler_bb.jpg" width="500"/>
+ <figcaption>
+  Bild der Testschaltung
+ </figcaption>
+</figure>
+<p>
+ Alles ist verkabelt und ein letztes Mal gecheckt und bestromt: Dann 
+kommt der große Moment! NAS anschalten. Die Platte läuft an, LEDs 
+blinken, doch das Terminalprogramm zeigt nichts an. Macht nichts: 2. 
+Versuch mit getauschten Rx und Tx - und siehe da, das Terminalprogramm 
+zeigt schon mal was an:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  PPCBoot 2.0.0-A8 (Oct 25 2005 - 16:12:41)
+  <br/>
+  <br/>
+  CPU:   MPC8241 Revision 1.4 at 266.666 MHz: 16 kB I-Cache 16 kB D-Cache
+  <br/>
+  Board: Sandpoint 8241 Unity ##Test not implemented yet##
+  <br/>
+  DRAM:  64 MB
+  <br/>
+  FLASH: Manufacturer code: 0xEC, Device code: 0xA2 :  4 MB
+  <br/>
+  In:    serial
+  <br/>
+  Out:   serial
+  <br/>
+  Err:   serial
+  <br/>
+  EPIC: reset is in process ....done
+  <br/>
+  Net:    RTL8169S driver v1.5-A4  03-15-2005
+  <br/>
+  RTL8169#0
+  <br/>
+  Press space to abort autoboot in 3 second
+  <br/>
+  running post....
+  <br/>
+  ## Booting image at ffc10000 ...
+  <br/>
+  Image Name:   kernel
+  <br/>
+  Image Type:   PowerPC Linux Kernel Image (gzip compressed)
+  <br/>
+  Data Size:    1355506 Bytes =  1.3 MB
+  <br/>
+  Load Address: 00000000
+  <br/>
+  Entry Point:  0000000c
+  <br/>
+  Verifying Checksum ... OK
+  <br/>
+  Uncompressing Kernel Image ... OK
+  <br/>
+  ## Loading RAMDisk Image at fff20000 ...
+  <br/>
+  Image Name:   Mpc8241 ramdisk
+  <br/>
+  Image Type:   PowerPC Linux RAMDisk Image (gzip compressed)
+  <br/>
+  Data Size:    910171 Bytes = 888.8 kB
+  <br/>
+  Load Address: 00000000
+  <br/>
+  Entry Point:  00000000
+  <br/>
+  Verifying Checksum ... OK
+  <br/>
+  Loading Ramdisk to 03e6f000, end 03f4d35b ... OK
+  <br/>
+  Memory BAT mapping: BAT2=64Mb, BAT3=0Mb, residual: 0Mb
+  <br/>
+  Linux version 2.4.21 (hearn@MARS-V) (gcc version 3.2.3) #1 Mon Mar 24 10:43:53 CST 2008
+  <br/>
+  Motorola  PMC8241
+ </div>
+</p>
+<p>
+ ... und so weiter und so fort.
+</p>
+<p>
+ Nur leider werden meine Tastatureingaben nicht an die NAS übertragen. 
+Also noch mal an jedem Kabel und Bauteil gewackelt, gedrückt und 
+gezogen, und der letzte Wackelkontakt ist beseitigt. Alles funktioniert 
+wie gewollt! Toll!
+</p>
+<b>
+ Die Lösung für das Problem mit der Netzwerkverbindung?
+</b>
+<p>
+ Übrigens habe ich wohl auch den Bösewicht identifiziert, der 
+verhindert, daß die NAS eine Netzwerkverbindung mit meinem Router 
+aufbauen kann ... es ist sehr wahrscheinlich der Router selbst. 
+Irgendwie spinnen die RJ45-Netzwerkbuchsen. Auch mit meinen Notebooks 
+kann ich keine Netzwerkverbindung aufbauen, und wenn ja, wird sie nach 
+kurzer Zeit wieder unterbrochen. Da der Router und das Netzteil auch 
+bemerkenswert warm werden, werde ich wohl kurzfristig für Ersatz sorgen 
+müssen.
+</p>
+
+

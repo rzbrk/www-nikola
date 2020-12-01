@@ -1,0 +1,38 @@
+<!--
+.. title: Absichern des WLAN
+.. slug: 85_absichern-des-wlan
+.. date: 2010-01-09 15:59:00
+.. tags: netzwerk, wlan, wep, wpa
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Bislang habe ich mein WLAN mit WEP128 gesichert, was notwendig war, 
+weil ich ein Gerät mit älterer WLAN-Karte hatte, die WPA nicht 
+unterstützte. Vor ein paar Tagen habe ich mir zeigen lassen, wie leicht 
+es ist, ein WLAN mit WEP zu knacken. Daraufhin habe ich jetzt mein WLAN 
+auf WPA2 umgestellt. Auch das läßt sich natürlich grundsätzlich knacken. 
+Hier hilft es, wenn man bei der Passphrase, die man im AP hinterlegt, 
+die volle Länge von 63 Zeichen ausnutzt. Außerdem sollte man nicht 
+erratbare Passphrases, am besten welche aus Zufallszeichen verwenden. 
+Unter Linux bietet sich da das Konsolenprogramm pwgen an:
+</p>
+<figure>
+ <img alt="pwgen in der Konsole" src="/images/pwgen.png" width="500"/>
+ <figcaption>
+  pwgen in der Konsole
+ </figcaption>
+</figure>
+<p>
+ Für Windows-Nutzer und Linux-User mit Konsolen-Allergie gibt es auch
+ <a href="http://www.pctools.com/guides/password/" title="Online Paßwort generieren">
+  Online-Tools
+ </a>
+ zur 
+Erzeugung von Paßwörtern.
+</p>
+
+

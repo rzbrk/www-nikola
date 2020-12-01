@@ -1,0 +1,57 @@
+<!--
+.. title: ISO-Abbilder unter Windows mounten
+.. slug: 80_iso-abbilder-unter-windows-mou
+.. date: 2009-12-23 20:09:39
+.. tags: windows, dvd, iso, cd, abbild, mount, laufwerk
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="virtualcd" height="289" src="/images/virtualcd.jpg" width="400"/>
+ <figcaption>
+  VirtualCD
+ </figcaption>
+</figure>
+<p>
+ ISO-Dateien sind Abbilder einer CD, die man üblicherweise verwendet, 
+um eine CD zu brennen. Hat man ein ISO-Abbild und möchte man auf dessen 
+Inhalt zurückgreifen, so kann man unter Linux das ISO direkt mounten - 
+und spart sich so den Rohling. Besonders praktisch ist diese Technik 
+dann, wenn der betreffende Rechner gar kein optisches Laufwerk 
+besitzt.
+</p>
+<p>
+ Für Windows XP gibt es ein "inoffizielles" Microsoft-Tool (von 
+Microsoft, allerdings wird explizit jeder Support ausgeschlossen), mit 
+dem man ebenfalls ISO-Files mounten kann. Das Tool heißt Windows XP 
+Virtual CD Control Panel und kann
+ <a href="http://download.microsoft.com/download/7/b/6/7b6abd84-7841-4978-96f5-bd58df02efa2/winxpvirtualcdcontrolpanel_21.exe" title="Win XP Virtual CD">
+  hier
+ </a>
+ heruntergeladen werden. Wenn man auf die EXE klickt, wird ein Archiv 
+entpackt. Ich habe den Inhalt einfach in ein Verzeichnis 
+C:\Programme\virtualcd kopiert. Jetzt kopiert man noch die Treiber-Datei 
+VCdRom.sys in das Systemverzeichnis %systemroot%\system32\drivers.
+</p>
+<!-- TEASER_END -->
+<p>
+ Jetzt kann man das Programm starten. Verwendet man es das erste mal, 
+muß man zunächst einmal den Treiber laden. Hierzu klickt man auf den 
+Button "Install Driver" und klickt sich zur Datei VCdRom.sys durch. 
+Anschließend kann man den Treiber durch Drücken des Buttons "Start" 
+aktivieren.
+</p>
+<p>
+ Um jetzt ein ISO zu mounten, muß man zunächst einen 
+Laufwerksbuchstaben "reservieren". Hierzu klickt man auf den Button "Add 
+Drive". Anschließend kann man durch Drücken von "Mount" das passende ISO 
+auswählen. Interessant ist auch die Option "Persistent Mount", wodurch 
+das ISO dauerhaft, also auch nach einem Neustart des Rechners gemountet 
+bleibt. Bei mir wird das Laufwerk aber erst nach einem kompletten 
+Neustart systemweit richtig eingebunden.
+</p>
+
+

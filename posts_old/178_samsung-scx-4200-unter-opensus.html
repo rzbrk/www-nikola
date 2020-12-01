@@ -1,0 +1,43 @@
+<!--
+.. title: Samsung SCX-4200 unter OpenSUSE 11.3
+.. slug: 178_samsung-scx-4200-unter-opensus
+.. date: 2010-08-03 20:06:19
+.. tags: opensuse, drucker, samsung_scx_4200, scanner
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+</p>
+<p style="text-align: center;">
+ <img alt="Samsung SCX-4200" src="http://www.samsung.com/br/system/consumer/product/2007/12/06/scx_4200xaz/large.jpg" width="500"/>
+</p>
+<p>
+ Vor 2 oder 3 Jahren habe ich mir den Drucker Samsung SCX-4200 zugelegt, da dieser als besonders Linux-freundlich angepriesen wurde. Allerdings habe ich von Anfang an Probleme gehabt - so auch jetzt nach der Installation von OpenSUSE 11.3 und anschließender Druckereinrichtung. Merkwürdigerweise war der Treiber nicht mehr auf der
+ <a href="http://www.samsung.de/de/Privatkunden/Buero/DruckerMFP/LaserMFP/scx4200/SCX-4200SEE/detail.aspx?atab=support&amp;aguid=3c6280d5-8701-434a-a664-a28cb5131a74&amp;dl=driver" title="Treiber Samsung SCX-4200">
+  entsprechenden Samsung-Webseite
+ </a>
+ zu finden. Glücklicherweise hatte ich den Treiber noch auf meiner Platte. Das Archiv des Treibers habe ich diesem Beitrag angefügt (Link am Ende des Beitrags).
+</p>
+<p>
+ Nach der Installation des Samsung-Treibers konnte ich zwar Scannen (das war in der Vergangenheit immer das Problem), aber nicht drucken, weil
+ <a href="http://de.wikipedia.org/wiki/Common_Unix_Printing_System" title="Wikipedia -- CUPS">
+  CUPS
+ </a>
+ offenbar ein "print filter" fehlte. Auf
+ <a href="http://webconverger.org/blog/entry/Samsung_SCX-4200/" title="webconverger.org -- Probleme mit Samsung-Drucker">
+  dieser Webseite
+ </a>
+ habe ich eine Anleitung gefunden, wie man das Problem lösen kann. Man kopiert einfach die Filter-Dateien händisch in das Cups-Verzeichnis. Die Filter-Dateien liegen im entpackten Archiv des Samsung-Treibers im Verzeichnis cdroot/Linux/i386/at_root/usr/lib/cups/filter bzw. bei 64Bit-Systemen in cdroot/Linux/x86_64/at_root/usr/lib64/cups/filter. Die kopiert man als root einfach in /usr/lib/cups/filter/ - und fertich! Danach klappte bei mir auch das Drucken.
+</p>
+<p>
+ Der Samsung Unified Linux Driver kann von
+ <a href="http://www.bchemnet.com/suldr/" title="The Samsung Unified Linux Driver Repository">
+  dieser Seite
+ </a>
+ heruntergeladen werden.
+</p>
+
+

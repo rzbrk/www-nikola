@@ -1,0 +1,226 @@
+<!--
+.. title: Traceroute: Wo lang laufen meine TCP-Pakete?
+.. slug: 312_traceroute_wo_lang_laufen_mein
+.. date: 2012-09-23 22:05:15
+.. tags: internet, traceroute, tcp
+.. category: buntes
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Inspiriert vom letzten Chaosradio-Podcast (
+ <a href="http://chaosradio.ccc.de/cr182.html">
+  CR182: Klempner des 
+Internets
+ </a>
+ ) habe ich nach langer Zeit mal wieder mit dem Tool
+ <a href="http://de.wikipedia.org/wiki/Traceroute">
+  traceroute
+ </a>
+ herumgespielt. Mit traceroute kann man erfahren, welchen Weg die 
+TCP-Pakete auf dem Weg von mir zu einem gewünschten Zielserver gehen.  
+Ich war bislang immer von der Vorstellung fasziniert, daß wenn ich in 
+die Adresszeile meines Browsers einen amerikanischen Webserver - z.B.  
+"www.whitehouse.gov" - eingebe, meine Datenpakete mit 
+Mops-Geschwindigkeit durch tausende Kilometer lange Glasfaserkabel, 
+welche tief am Boden des Antlantiks liegen, hindurchjagen. In der 
+Chaosradio-Folge wurde ich allerdings belehrt, daß es sein kann, daß mir 
+statt eines Servers in Amerika (möglicherweise direkt in Washington) 
+irgendeine lumpige Kiste in Europa oder anderswo antwortet. Wie kann das 
+sein?
+</p>
+<!-- TEASER_END -->
+<p>
+ Das Zauberwort in diesem Zusammenhang heißt
+ <a href="https://de.wikipedia.org/wiki/Content_Delivery_Network">
+  Content 
+Delivery Network
+ </a>
+ (CDN). Was für mich etwas entzaubernd wirkte, macht 
+aber im WWW mit seinen Millionen Usern und Traffic-intensiven Angeboten 
+viel Sinn. Wenn jetzt z.B. eine große amerikanische Software-Firma Ihre 
+dortigen Server mit irgendeinem großerem Update-Paket bespielt, welches 
+sich auch viele User in Europa herunterladen wollen, so werden die 
+teuren unterseeischen Glasfaserkabel unnötig mit dem millionenfachem 
+Download eines Downloads belastet. Stattdessen also wird das 
+Downloadpaket auf einer Serverfarm irgendwo in Europa kopiert. Wenn 
+jetzt ein User aus Europa z.B. auf den Downloadlink klickt, werden die 
+hierdurch verursachten Datenpakete automatisch durch den ISP anstelle 
+durch das Seekabel an die Serverfarm irgendwo in Europa geroutet. Der 
+User in Europa bekommt davon überhaupt nichts mit. Im Endeffekt 
+funktioniert das mit den CDNs wie bei Mirror- oder Spiegelserver, nur 
+daß der Spiegelserver durch z.T. dynamische Routing-Metriken automatisch 
+zugewiesen wird.
+</p>
+<p>
+ Einen ersten Hinweis auf CDNs liefert der 
+Linux-Befehl
+ <a href="http://linux.die.net/man/1/host">
+  host
+ </a>
+ .  Host 
+löst einen Servernamen in eine IP-Adresse auf oder umgekehrt (DNS Lookup 
+Tool). Für whitehouse.gov ergibt sich bspw. folgende 
+Ausgabe:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ host www.whitehouse.gov
+  <br/>
+  www.whitehouse.gov is an alias for www.whitehouse.gov.edgesuite.net.
+  <br/>
+  www.whitehouse.gov.edgesuite.net is an alias for www.eop-edge-lb.akadns.net.
+  <br/>
+  www.eop-edge-lb.akadns.net is an alias for a1128.h.akamai.net.
+  <br/>
+  a1128.h.akamai.net has address 80.239.216.25
+  <br/>
+  a1128.h.akamai.net has address 80.239.216.65
+ </div>
+</p>
+<p>
+ <a href="http://de.wikipedia.org/wiki/Akamai">
+  Akamai
+ </a>
+ ist hierbei einer 
+der großen CDN-Player. Den Weg der Pakete zwischen mir und dem Server 
+kann man nun mit dem Tool traceroute herausbekommen. Unter meinem 
+Ubuntu-Linux benötige ich für traceroute root-Rechte. Alternativ kann 
+man mit
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  sudo chmod u+s /usr/sbin/traceroute
+ </div>
+</p>
+<p>
+ das SUID-Bit so setzen, 
+daß fortan auch nicht-privilegierte User traceroute ausführen können. 
+Dann:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $traceroute -I whitehouse.gov
+  <br/>
+  traceroute to whitehouse.gov (23.62.144.110), 30 hops max, 60 byte packets
+  <br/>
+  1  router (192.168.1.1)  1.773 ms  4.403 ms  4.824 ms
+  <br/>
+  2  dslb-084-063-096-001.pools.arcor-ip.net (84.63.96.1)  13.606 ms * *
+  <br/>
+  3  * 145.254.9.209 (145.254.9.209)  19.099 ms  19.766 ms
+  <br/>
+  4  92.79.213.146 (92.79.213.146)  24.942 ms  28.850 ms  29.570 ms
+  <br/>
+  5  amsix-amsN.netarch.akamai.com (195.69.145.208)  30.278 ms  32.154 ms  33.461 ms
+  <br/>
+  6  a23-62-144-110.deploy.akamaitechnologies.com (23.62.144.110)  35.482 ms  34.723 ms  34.258 ms
+ </div>
+</p>
+<p>
+ Der erste Eintrag (Zeile beginnend mit 1) ist mein DSL-Router im lokalen 
+Netz. Dann geht es weiter über meinen Provider Arcor. Schon nach wenigen 
+Stationen endet das Paket bei einem Akamai-Server. Blöd ist nur, daß man 
+nicht mit Sicherheit herausfindet, wo die Server stehen. Es gibt im 
+Internet einige Dienste, wo man anhand der IP-Adresse den Standort eines 
+Rechners/Servers herausfinden kann. Für die Akamei-Server ergeben sich 
+jedenfalls Standorte in den USA. Das könnte aber auch daran liegen, daß 
+Akamai seinen Firmensitz dort hat und dort vielleicht auch die 
+IP-Adressen für ihre weltweit verteilten Serverkisten 
+bekommt.
+</p>
+<p>
+ Ein viel "schöneres" Beispiel ohne Akamai-Gedöns 
+ergibt sich, wenn man die Route zum Webserver der University of Colorado 
+nachvollzieht. Hierzu habe ich ein Perl-Skript als Overlay für 
+traceroute geschrieben. Das Perl-Skript "trace.pl" ruft im wesentlichen 
+traceroute auf. Für jede Zeile mit IP-Adresse wird der Standort des 
+Servers mit Hilfe der Datenbank von
+ <a href="http://www.hostip.info/">
+  hostip.info
+ </a>
+ ermittelt und mit ausgegeben:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ ./trace.pl colorado.edu
+  <br/>
+  traceroute to colorado.edu (128.138.129.98), 30 hops max, 60 byte packets
+  <br/>
+  1  router (192.168.1.1)   1.418 ms  4.078 ms  4.493 ms n/a, n/a
+  <br/>
+  2  dslb-084-063-096-001.pools.arcor-ip.net (84.63.96.1)   13.228 ms * * Koeln, GERMANY
+  <br/>
+  3  * 145.254.9.209 (145.254.9.209)   18.716 ms  19.350 ms Köln, GERMANY
+  <br/>
+  4  92.79.214.98 (92.79.214.98)   31.327 ms  31.956 ms  32.553 ms Unknown City?, Unknown Country?
+  <br/>
+  5  ae53.edge7.Frankfurt1.Level3.net (195.16.162.101)   69.866 ms  70.553 ms  71.139 ms Unknown city, GERMANY
+  <br/>
+  6  vlan60.csw1.Frankfurt1.Level3.net (4.69.154.62)   36.007 ms  36.865 ms  35.951 ms Unknown city, UNITED STATES
+  <br/>
+  7  ae-61-61.ebr1.Frankfurt1.Level3.net (4.69.140.1)   38.739 ms  28.386 ms  26.407 ms TORONTO, ON, CANADA
+  <br/>
+  8  ae-47-47.ebr2.Paris1.Level3.net (4.69.143.142)   36.198 ms *  27.158 ms Unknown city, UNITED STATES
+  <br/>
+  9  ae-44-44.ebr2.Washington1.Level3.net (4.69.137.62)   109.701 ms  107.838 ms  107.461 ms New York, NY, UNITED STATES
+  <br/>
+  10  ae-5-5.ebr2.Washington12.Level3.net (4.69.143.222)   108.223 ms  106.636 ms  107.725 ms Unknown city, UNITED STATES
+  <br/>
+  11  ae-6-6.ebr2.Chicago2.Level3.net (4.69.148.146)   125.247 ms  118.641 ms  119.263 ms Unknown city, UNITED STATES
+  <br/>
+  12  ae-1-100.ebr1.Chicago2.Level3.net (4.69.132.113)   147.412 ms  146.873 ms  149.045 ms Chicago, IL, UNITED STATES
+  <br/>
+  13  ae-3-3.ebr2.Denver1.Level3.net (4.69.132.61)   143.811 ms  143.699 ms  143.686 ms Chicago, IL, UNITED STATES
+  <br/>
+  14  ae-2-52.edge3.Denver1.Level3.net (4.69.147.104)   145.746 ms  146.288 ms  146.529 ms Unknown city, UNITED STATES
+  <br/>
+  15  UNIVERSITY.edge3.Denver1.Level3.net (209.245.23.202)   146.713 ms  146.353 ms  146.537 ms Aurora, CO, UNITED STATES
+  <br/>
+  16  hut-juniper.colorado.edu (128.138.81.249)   146.281 ms  148.069 ms  151.993 ms Boulder, CO, UNITED STATES
+  <br/>
+  17  its-hut.colorado.edu (128.138.81.9)   144.229 ms  144.655 ms  144.572 ms Boulder, CO, UNITED STATES
+  <br/>
+  18  www.colorado.edu (128.138.129.98)   147.279 ms  147.470 ms  147.483 ms Boulder, CO, UNITED STATES
+ </div>
+</p>
+<p>
+ Zuerst passiert das Paket ein Arcor-Rechenzentrum in Köln. Dann gehts weiter 
+nach Frankfurt ins Netz des internationalen Kommunikationsdienstleisters 
+Level3. Frankfurt (DE-CIX) ist einer der großen europäischen
+ <a href="https://de.wikipedia.org/wiki/Internet-Knoten">
+  Knotenpunkte des 
+Internets
+ </a>
+ .  Hier sitzen viele Internetservice-Provider (ISPs) und 
+tauschen sich dort Pakete zwischen Ihren Netzen aus. An den 
+Knotenpunkten wird faktisch aus den ganzen dort vertretenen ISP- und 
+CDN-Netzen das große Internet geknüpft. In den folgenden Zeilen sieht 
+man beim Vergleich der Hostnamen und Lokations-Infos schon, daß letztere 
+nicht so genau sind.  Vor dem Sprung über den Atlantik gibt es nämlich 
+noch eine Zwischenstation in Paris (und Paris liegt nicht in den USA). 
+Am Ende nimmt ein Server in Boulder am Campus der
+ <a href="http://de.wikipedia.org/wiki/University_of_Colorado_Boulder">
+  Uni 
+Colorado
+ </a>
+ die Pakete entgegen.
+</p>
+<p>
+ Das Skript trace.pl ist Free Software und kann am Ende dieses 
+Beitrags heruntergeladen werden und unter den Bedingungen der GPL v3 
+weiterverwendet werden. Statt des IP-Location-Services von hostip.info 
+könnte man noch auf die Datenbanken von
+ <a href="http://software77.net/geo-ip/">
+  http://software77.net/geo-ip/
+ </a>
+ oder
+ <a href="http://www.ipligence.com/">
+  http://www.ipligence.com/
+ </a>
+ zugreifen.
+</p>
+
+

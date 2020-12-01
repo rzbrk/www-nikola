@@ -1,0 +1,64 @@
+<!--
+.. title: Atmel AVR RISC µC unter GNU/Linux programmieren #2
+.. slug: 365_atmel_avr_risc_uc_unter_gnulin
+.. date: 2013-12-06 18:38:20
+.. tags: mikrocontroller, atmel, assembler
+.. category: elektronik
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="Mein Atmel Entwicklungs-Board" src="/images/eval_board.jpg" width="300"/>
+ <figcaption>
+  Mein Atmel Entwicklungs-Board
+ </figcaption>
+</figure>
+<p>
+ Anläßlich der Einladung, einen Vortrag bei einem Treffen der
+ <a href="http://www.trolug.de">
+  Troisdorfer Linux User Group
+ </a>
+ zu halten, habe
+ich meinen Vortrag zur Programmierung von Atmel Mikrocontrollern mit Linux
+(siehe
+ <a href="link://slug/334_mini-howto-atmel-avr-risc-mc-u">
+  hier
+ </a>
+ ) grundlegend überarbeitet.
+</p>
+<!-- TEASER_END -->
+<p>
+ Ich programmiere meine Atmels ja am liebsten mit Assembler. Zum 
+Übersetzen der Quellcodes in Bytecode habe ich bislang
+ <a href="http://avra.sourceforge.net/">
+  avra
+ </a>
+ verwendet. Leider mußte ich 
+feststellen, daß avra etwas buggy ist. Es übersteigt meine bescheidenen 
+C-Kenntnisse, den Bug im Quellcode selbst zu finden und zu beseitigen. 
+Aus diesem Grunde habe ich mich nach einem alternativen Assembler für 
+die Atmel-Familie umgesehen und bin bei
+ <a href="http://www.avr-asm-tutorial.net/gavrasm/index_de.html">
+  gavrasm
+ </a>
+ gelandet, und bislang sehr zufrieden. Entsprechend habe ich die 
+Vortragsfolien überarbeitet.
+</p>
+<p>
+ Der Vortrag, den Quellcodes des Beispielprogramms und das 
+entsprechende Hex-File für den Mega16 könnt Ihr hier als
+ <a href="../files/avr-linux2.zip">
+  Archiv
+ </a>
+ herunterladen. In der nächsten 
+Zeit möchte ich auch die paar Assembler-Programme, darunter eines zum 
+Ansteuern eines LCD-Displays, auf
+ <a href="https://github.com/rzbrk">
+  GitHub
+ </a>
+ hochladen.
+</p>
+
+

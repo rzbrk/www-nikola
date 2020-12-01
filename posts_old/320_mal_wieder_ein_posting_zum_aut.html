@@ -1,0 +1,94 @@
+<!--
+.. title: Mal wieder ein Posting zum Auto-Type-Problem in KeePassX
+.. slug: 320_mal_wieder_ein_posting_zum_aut
+.. date: 2012-11-01 21:47:31
+.. tags: auto_type, xdotool, tastatur
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Seit längerer Zeit verwende ich zur Verwaltung von Zugangsdaten und 
+Kennwörtern das Tool KeePassX. Ein tolles Feature ist die
+ <a href="computer/43/153-auto-type-bei-keepassx">
+  Auto-Type-Funktion
+ </a>
+ .  
+Wenn man sich z.B. auf einer Webseite anmelden möchte, so klickt man in 
+das erste Eingabefeld und drückt eine spezielle Tastenkombination (z.B.  
+STRG+ALT+A). Dann füllt KeePassX die Eingabefelder selbst aus. KeePassX 
+muß hierfür im Hintergrund laufen und das Auto-Type-Feature aktiviert 
+sein.
+ <br/>
+ Leider gibt es bei vielen Nutzern Probleme, 
+wenn man ein nicht amerikanisches Tastatur-Layout oder gar mehrere 
+Tastatur-Layouts verwendet, zwischen denen man umschaltet. So kann es 
+vorkommen, daß KeePassX falsche Zeichen in die Eingabefelder eingibt. 
+Das Problem tritt wohl ausschließlich bei Linux-Usern 
+auf.
+</p>
+<!-- TEASER_END -->
+<p>
+ Nun ist es so, daß KeePassX zur Erzeugung der 
+"künstlichen Tastatureingaben" das Programm
+ <a href="https://github.com/jordansissel/xdotool">
+  xdotool
+ </a>
+ verwendet. 
+Nach
+ <a href="http://code.google.com/p/semicomplete/issues/detail?id=13">
+  diesem Thread
+ </a>
+ zu urteilen, kann es unter bestimmten Umständen sein, 
+daß xdotool nicht in der Lage ist, korrekt das aktuelle Tastatur-Layout 
+zu ermitteln.  Häufig reicht es, in den Einstellungen diejenigen 
+Tastatur-Layouts zu löschen, die nicht benötigt werden (
+ <a href="computer/43-software/390-geloest-auto-type-bug-in-keepassx">
+  siehe 
+hier
+ </a>
+ ).  In dem Thread habe ich aber einen einfacheren Workaround 
+gefunden. Wenn man das Tastatur-Layout mit dem Kommandozeilen-Tool 
+setxkbmap setzt, funktioniert xdotool wieder richtig - und damit auch 
+die Auto-Type-Funktion in KeePassX.
+</p>
+<p>
+ Vor Anwenden des Workarounds produziert xdotool bei mir z.B. folgende 
+Ausgabe:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ xdotool type xyz
+  <br/>
+  xzy
+ </div>
+</p>
+<p>
+ Jetzt wenden wir den Workaround 
+an (deutsches Tastatur-Layout setzen):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ setxkbmap de
+ </div>
+</p>
+<p>
+ Und jetz wieder xdotool (nun mit richtiger 
+Ausgabe):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  xdotool type xyz
+  <br/>
+  xyz
+ </div>
+</p>
+<p>
+ Damit das Tastatur-Layout auf diese Weise bei jedem Neustart des 
+X-Servers gesetzt wird, habe ich die Zeile "/usr/bin/setxkbmap de" in 
+die Datei ~/.xinitrc eingetragen.
+</p>
+
+

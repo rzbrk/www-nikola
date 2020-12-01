@@ -1,0 +1,77 @@
+<!--
+.. title: Musik-Clips von YouTube als Musikdatei herunterladen
+.. slug: 384_musik-clips_von_youttube_als_m
+.. date: 2015-05-01 19:28:15
+.. tags: mp3, kommandozeile, musik, terminal, youtube
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Auf
+ <a href="https://youtube.com">
+  YouTube
+ </a>
+ finden sich eine Vielzahl 
+von Musik Clips, teils urheberrechtswidrig hochgeladen, teils aber auch 
+völlig legal abrufbar. Manche dieser Lieder findet man dann vielleicht so 
+toll, daß man diesen gerne in seiner MP3-Sammlung hätte. Zu diesem Zweck 
+gibt es eine ganze Reihe von Webdiensten, denen ich allerdings nicht so 
+richtig traue oder die teilweise auch Mist produzieren (z.B. wird die Länge 
+des Tracks beim Abspielen falsch angezeigt). Ich bin ja bekanntermaßen ein
+Freund der Linux Kommandozeile, und so hat es mich gefreut, schon vor einiger
+Zeit das Programm
+ <a href="https://rg3.github.io/youtube-dl/">
+  youtube-dl
+ </a>
+ gefunden zu haben. Das möchte ich hier kurz vorstellen.
+</p>
+<!-- TEASER_END -->
+<p>
+ Mit youtube-dl kann man von YouTube das Video und/oder die Tonspur 
+herunterladen. Als Ausgabe stehen mehrere Multimedia-Formate zur Verfügung. 
+Das Programm ist in den Repositories der gängigen Linux-Distributionen 
+enthalten. Wenn man also - wie oben beschrieben - die Tonspur eines 
+YouTube-Videos herunterladen uns als Ogg Vorbis Datei abspeichern möchte, 
+muß man folgenden Befehl auf der Kommandozeile absetzen:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ youtube-dl -x --audio-format "vorbis" &lt;id&gt;
+ </div>
+</p>
+<p>
+ <a href="https://de.wikipedia.org/wiki/Vorbis">
+  Ogg Vorbis
+ </a>
+ ist ein
+patentfreies Audioformat und eine Alternative zu MP3. Viele - aber nicht
+alle - MP3-Player (Software und Hardware) unterstützen dieses Format. Möchte
+man doch lieber MP3-Dateien haben, so ändert man einfach "vorbis" in "mp3"
+ab.
+</p>
+<p>
+ Natürlich muß youtube-dl wissen, welches YouTube-Video verarbeitet werden
+soll. Dazu gibt man die ID des Videos an. Die ID, welche eindeutig ein Video
+bezeichnet, kann man sich aus der URL des Videos holen. Hat man also das
+Video im Browser geöffnet, könnte die Adresse in der Adresszeile des
+Browsers wie folgt lauten:
+</p>
+<p>
+ https://www.youtube.com/watch?v=TYFoQwL5HAw
+</p>
+<p>
+ Dann lautet die ID dieses Videos "TYFoQwL5HAw". Diese
+Zeichenkette setzt man dann in den obigen Befehl anstelle des Platzhalters
+&lt;id&gt; ein.
+</p>
+<p>
+ youtube-dl ist ein sehr, sehr mächtiges Programm mit einer Vielzahl von
+Optionen. Beispielsweise lassen sich nur Teile eines Videos oder auch ganze
+Playlists herunterladen. Ein Blick in die man-Page dieses tollen
+Programms lohnt!
+</p>
+
+

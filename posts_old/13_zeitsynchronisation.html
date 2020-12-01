@@ -1,0 +1,115 @@
+<!--
+.. title: Zeitsynchronisation
+.. slug: 13_zeitsynchronisation
+.. date: 2009-04-21 08:51:32
+.. tags: nas, netzwerk, opennas, ntp, rtc, uhr
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Bei der Einrichtung meiner NAS Allnet ALL6250 ist mir aufgefallen, 
+daß sich die Zeit auf dem Gerät verstellt. Insbesondere nach dem Booten 
+setzt die NAS die Zeit offenbar auf den 01.01.2005 zurück. Die NAS 
+selbst verwendet einen
+ <a href="http://de.wikipedia.org/wiki/Echtzeituhr" title="RTC">
+  RTC
+ </a>
+ -Baustein (
+ <a href="http://www.nxp.com/pip/PCF8563_6.html" title="PCF8563 Echtzeituhr 
+Datasheet">
+  PCF8563 oder kompatibel
+ </a>
+ ) für die "Zeitversorgung". 
+Üblicherweise werden diese Bausteine durch eine Backup-Batterie 
+versorgt, so daß die Zeit weitergezählt wird, auch wenn die NAS 
+ausgeschaltet oder von der Netzspannung getrennt wird. Beim 
+Auseinanderrupfen der NAS, bei der ich auch die Hauptplatine ausgebaut 
+habe, ist mir jedoch eine solche Batterie (die man nach einigen Jahren 
+wechseln muß) nicht aufgefallen. Das könnte der Grund dafür sein, daß 
+die NAS nach dem Booten auf den 01.01.2005 zurückfällt.
+</p>
+<!-- TEASER_END -->
+<p>
+ Darüber hinaus kann man auch feststellen, daß die Zeit auf der NAS 
+ein wenig driftet, d.h. die Länge einer Sekunde auf der NAS 
+unterscheidet sich von der wahren Länge einer Sekunde. In meinem Fall 
+läuft die Uhr der NAS nach. Um das zu verdeutlichen, habe ich die Uhr 
+der NAS zu einem bestimmten Zeitpunkt mittels
+ <a href="http://de.wikipedia.org/wiki/Network_Time_Protocol" title="NTP">
+  NTP
+ </a>
+ synchronisiert. Dann habe ich die Differenz der Zeit 
+auf der NAS zu einem Zeitserver im Internet bestimmt, und das über 
+mehrere Tage. Das Ergebnis seht Ihr hier:
+</p>
+<figure>
+ <img alt="Drift der Zeit auf NAS" src="/images/nas-zeit.png"/>
+ <figcaption>
+  Drift der Zeit auf der NAS.
+ </figcaption>
+</figure>
+<p>
+ In meinem Fall geht die NAS pro Tag (86400 Sekunden) etwa 1.4 
+Sekunden falsch. Das entspricht einer relativen Ganggenauigkeit von 
+10E-5. Bemerkenswerterweise driftet die Uhr exakt linear. Das ist wohl 
+ein Hinweis auf einen systematischen Fehler. Möglicherweise stimmt ja 
+die Ist-Frequenz des
+ <a href="http://de.wikipedia.org/wiki/Quarzoszillator" title="Quarzoszillator">
+  Quarzes
+ </a>
+ an der RTC nicht exakt mit der 
+Nenn-Frequenz überein, so daß in der Folge die RTC "falsch tickt". Aber 
+das ist nur eine Vermutung.
+</p>
+<p>
+ Das erste Problem mit dem Zurückfallen der Systemzeit beim Booten 
+behebe ich dadurch, daß ich in einem Startskript die Uhrzeit per NTP 
+synchronisiere.Standardmäßig verwendet das Betriebssystem OpenNAS das 
+Programm rdate (
+ <a href="http://www.ibr.cs.tu-bs.de/users/thuerman/time/sync.html" title="Zeitsynchronisation">
+  RFC 868
+ </a>
+ ), um über TCP die Zeit zu 
+stellen. Der Nachteil von RFC 868 ist die schlechte Genauigkeit und der 
+Umstand, daß es quasi von NTP verdrängt wird.
+</p>
+<p>
+ Wie man NTP in OpenNAS nachinstalliert und das Startskript 
+/etc/init.d/S32time anpaßt, steht in
+ <a href="http://forum.opennas.info/viewtopic.php?t=1113&amp;postdays=0&amp;postorder=asc&amp;highlight=ntp&amp;start=0" title="NTP in OpenNAS">
+  diesem Thread auf opennas.info
+ </a>
+ . In diesem 
+Skript muß man noch den NTP-Server definieren. Man kann natürlich direkt 
+auf einen
+ <a href="http://www.ptb.de/de/org/4/44/_index.htm" title="PTB 
+Zeitlabor">
+  PTB
+ </a>
+ -Server (z.B. ntp1.ptb.de) oder aber die Server unter
+ <a href="http://www.pool.ntp.org/" title="http://www.pool.ntp.org/">
+  pool.ntp.org
+ </a>
+ benutzen (z.B. 
+0.de.pool.ntp.org).
+</p>
+<p>
+ Das zweite Problem mit der Drift kann man nur 
+durch regelmäßiges Nachstellen lösen. Hierzu legt man am besten einen 
+Cron-Job an. In meiner Cron-Tab /etc/crontab/root habe ich folgende 
+Zeile eingefügt:
+</p>
+<p>
+ &lt;div class="terminal&gt;
+  0    0    *    *    *    /etc/init.d/S32time restart &gt;&gt; /dev/null 2&gt;&amp;1
+</p>
+<p>
+ Jeden Tag um 00:00 Uhr wird also die Zeit neu gestellt. Zu diesem 
+Zeitpunkt führe ich noch andere automatisierte Wartungsarbeiten auf der 
+NAS durch, weshalb die Festplatte der NAS eh hochfährt.
+</p>
+
+

@@ -1,0 +1,75 @@
+<!--
+.. title: hdparm: Festplatte eine Auszeit gönnen
+.. slug: 297_hdparm_festplatte_eine_auszeit
+.. date: 2012-05-11 20:32:13
+.. tags: linux, festplatte, server, luefter, hdparm, standby
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<div>
+ Bei mir zuhause werkelt ein selbstgestrickter Linux-Server, auf dem 
+die anfallenden Familienbilder, -videos und die Musiksammlung für den 
+gemeinsamen Zugriff abgeladen werden. Nun mußte mal der Prozessorlüfter 
+ausgetauscht werden, da ihm die Puste ausgegangen war. Dabei habe ich 
+festgestellt, daß die verbaute Festplatte (das ist überflüssigerweise 
+auch noch eine mit 7200 U/min hochdrehende Platte!) subjektiv ziemlich 
+heiß wird.
+</div>
+<div>
+</div>
+<div>
+ Um zu vermeiden, daß die mir abraucht, 
+habe ich als Sofortmaßnahme veranlaßt, daß die Platte nach einer 
+bestimmten Leerlaufzeit via
+ <a href="https://de.wikipedia.org/wiki/Hdparm">
+  hdparm
+ </a>
+ in den Standby 
+geschickt wird. Sie verbraucht damit weniger Energie und sollte damit 
+auch weniger warm werden.
+ <!-- TEASER_END -->
+ <p>
+  Bei mir hängt die Platte unter /dev/sda.  Der 
+Datei /etc/hdparm.conf fügt man in diesem Fall einfach folgende Zeilen 
+an:
+ </p>
+ <p>
+  <div class="terminal" style="font-family: mono,monospace; background-color: white; border: 3px solid orange; color: black; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+   command_line {
+   <br/>
+   hdparm -S60 /dev/sda
+   <br/>
+   }
+  </div>
+ </p>
+ <div>
+  Der Parameter -S setzt die Zeit, nach der die 
+Festplatte bei Nichtbenutzung in den Standby geschickt wird. Die Zahl 
+ist allerdings nicht direkt als Zeiteinheit zu interpretieren, sondern 
+ein Faktor. Nach
+  <a href="http://linuxundich.de/de/hardware/festplatten-automatisch-im-betrieb-in-den-standby-schalten/">
+   dieser Anleitung
+  </a>
+  gibt der Faktor die Zeit als Vielfaches von 5s an. 
+In diesem Beispiel würde also der Standby nach 60*5s=300s=5min 
+einsetzen. Nun muß der Rechner noch neu gestartet werden.
+  <p>
+   Mein Server hat nur eine Platte mit Partitionen für das System und 
+den Datenbereich. Da vergleichsweise häufig Zugriffe auf die 
+Systempartition erfolgen (viel häufiger als auf die Datenpartition), 
+verhindert das natürlich einen effektiven Standby der Platte.
+   <br/>
+   Irgendwann aber ist sowieso bei mir ein SW-Update des Servers fällig. 
+Zudem ist die Datenpartition mit derzeit &lt; 2 GByte winzig (nacktes Linux 
+ohne X). Irgendwo habe ich noch einen CF-IDE Adapter und eine schnelle 
+CF-Speicherkarte rumfliegen. Ich denke, ich werde die Systempartition 
+auf die CF-Karte umziehen. Dann läuft nur noch die energiesparende 
+CF-Speicherkarte durch und die Platte mit der Datenpartition wird bei 
+Nichtzugriff in den Energiesparmodus versetzt.
+  </p>
+ </div>
+</div>
+

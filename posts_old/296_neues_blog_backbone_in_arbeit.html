@@ -1,0 +1,106 @@
+<!--
+.. title: Neues Blog-Backbone in Arbeit
+.. slug: 296_neues_blog_backbone_in_arbeit
+.. date: 2012-05-03 13:11:34
+.. tags: joomla, webseite, kommentare, java, mysql, datenbank, backup, cms, strato, blog, css, static_html, php, disqus, wysiwyg
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+Dieses Blog ist für mich meine kleine persönliche Spielwiese, um die segensreichen Entwicklungen des Webs auszuprobieren. Ein angenehmes Abfallprodukt dieser Beschäftigung ist, daß ab und zu ein paar Artikel für dieses Blog abfallen. Gelegentlich ist es mir schon passiert, daß ich selbst Dinge in diesem Blog gesucht habe ("dazu hast Du doch mal was geschrieben ..."). In seltenen Fällen ;-) interessieren sich sogar für meine Artikel Leute, die beispielsweise über eine Suchmaschine in dieses Blog gespült werden.
+<br/>
+<div>
+ Aus Mangel an Kenntnis und Alternativen bin ich damals bei Joomla als Content Management System für dieses Blog gelandet. Joomla ist schon toll, aber richtig warm bin ich mit dieser Software nie geworden. In mir reift schon länger die Überzeugung, mich mittelfristig von diesem System zu trennen. Dabei wächst zugleich in mir die Absicht, dies mit einem Paradigmenwechsel zu verbinden und quasi einen Schritt zurück in Richtung Web 1.0 zu machen! Aber der Reihe nach.
+</div>
+<!-- TEASER_END -->
+<div>
+ Folgende Punkte gehen mir derzeit tierisch auf den Keks:
+</div>
+<ul>
+ <li>
+  Das Blog befüttere ich mit neuen Artikeln vorwiegend über den eigebauten WYSIWYG-Editor
+  <a href="http://www.tinymce.com/index.php" shape="rect" target="_blank">
+   TinyMCE
+  </a>
+  . Der Vorteil ist, daß ich das von jedem halbwegs vernünftigen Computer mit Internetanschluß machen kann. Der Nachteil ist, daß es scheinbar so eine Art Time-out gibt: Wenn man für das Verfassen eines Artikels zu lange Zeit benötigt, bekommt man nach dem Submitten lediglich eine Fehlermeldung, und der eben geschriebene Artikel landet im digitalen Nirvana. Das gleiche passiert mit Hick-Ups beim PHP. Mehrfach passiert - extrem ärgerlich! Dann hat TinyMCE die Angewohnheit, mir ins Layout zu fuschen, was tierisch nervig ist. Ich habe auch einige Tools ausprobiert, welche die Artikel über eine Webschnittstelle an Joomla übertragen. Das hat mich aber auch nicht überzeugt und stellt für Webseiten-Hacker ein riesiges Einfallstor dar. Der Workaround ist, die Artikel in einem stinknormalen Editor oder besser noch Evernote vorzuschreiben und dann den fertigen Artikel nur noch in den Joomla-Editor zu kippen, den letzten Feinschliff vorzunehmen und zu submitten. Wenn dann was schiefgeht, muß man nicht von vorne beginnen.
+ </li>
+ <li>
+  Joomla ist schon toll, aber die Musik machen die Plugins und Extensions, die den Funktionsumfang von Joomla um bspw. Flash-Player für YouTube-Videos, Bildergalerien, Social Media-Buttons oder weiß-der-Geier-was erweitern. Nun entwickeln sich Joomla und die Plugins/Extensions nicht parallel. Das von mir genutzte Joomla 1.5 müßte bald auf eine höhere Version gehoben werden. Das ist für das nackte Joomla schon schwierig genug. Aber der Migrationsaufwand steigt erheblich, wenn bestimmte Plugins/Extensions nicht für die neue Joomla-Version verfügbar sind.
+ </li>
+ <li>
+  Hinter Joomla werkeln die Skriptsprache PHP und die Datenbank-Software MySQL, um Euch die dynamischen Seiten jedes Mal individuell zu erstellen. Insgesamt kann man mit der Geschwindigkeit des Blogs ganz zufrieden sein, aber manchmal drücken PHP und MySQL eben schon auf die Leitung. Eine Lösung, die bspw. auf statische Seiten baut, ist halt um Längen schneller.
+ </li>
+ <li>
+  Unbefriedigend ist auch, daß es mir nicht möglich ist, automatisch ein konsistentes Backup des Blogs vorzunehmen. Jede Woche ziehe ich mir ein Image der Dateien von meinem Strato-Webspace auf meinen lokalen Server zuhause. Ein Backup der MySQL-Datenbank kann ich leider nicht automatisieren und mache es sehr unregelmäßig mit Hilfe des Tools MySQL-Dumper. Auf Dauer ist das aber ungenügend und unbefriedigend. Meine Seite wurde ja bereits einmal gehackt, und ich kann von Glück reden, daß dies bislang nicht wieder passiert ist. Damals gingen nur eine Handvoll Artikel verloren, jetzt wären es eine Größenordnung mehr! Ich weiß nicht genau, ob ich das Blog aus den asynchronen Backups von den Dateien und den MySQL-Dumps vernünftig rekonstruieren könnte. Ich habe aber auch keine Lust, irres Geld für einen virtuellen Server auszugeben, nur um dann MySQL-Backups erstellen zu können.
+ </li>
+</ul>
+<div>
+ Als ich Mitte der 90er mit Internet-Selbstdarstellung angefangen habe, habe ich noch jede Seite in liebevoller Kleinarbeit, HTML-Zeile für HTML-Zeile selbst gezimmert. Damals hatte ich aber auch noch nicht mehrere hundert Seiten. Später habe ich für den elterlichen Betrieb ein Programm auf Basis der Sprache perl geschrieben, welches aus Beschreibungsdateien für die einzelnen Seiten (war so 'ne Art XML-Struktur) eine komplette Webpräsenz gestrickt und via ftp auf den Webserver gebeamt hat. Hat für ein paar dutzend Seiten und eine kurze Weile auch gut funktioniert.
+</div>
+<br/>
+<div>
+ Und jetzt der Hammer: Ich plane ernsthaft, auf statische HTML-Seiten zurückzuswitchen! Irre, was? Die ersten Konzepte habe ich bereits im Kopf bzw. auf (digitalem) Papier. Und erste Programmierschritte sind ebenfalls getan. Folgende Featurelist schwebt mir vor:
+</div>
+<ul>
+ <li>
+  Alle Informationen zum Blog, Artikel, Bilder, Attachements, etc. sollen zentral in einer MySQL-Datenbank abgelegt werden. Der entsprechende MySQL-Server kann an einer beliebigen Stelle stehen. Im meinem Fall steht der Server bei mir zuhause und macht automatisch ein Backup der entsprechenden Datenbank. Die "alte" Joomla-Datenbank wird importiert, so daß alle bisherigen Artikel (möglichst vollständig) in den neuen Blog übernommen werden
+ </li>
+ <li>
+  Das Programm zum Editieren und Verwalten der Inhalte der Datenbank wird plattform-unabhängig in JAVA geschrieben. Nebeneffekt: Ich lerne endlich mal eine "anständige" Programmiersprache.
+ </li>
+ <li>
+  Das Programm erzeugt auf Wunsch einen Satz Webseiten für den Upload auf den Webserver. Der HTML-Code der Webseiten soll sauber und barrierefrei sein. Das Design wird sauber in CSS-Dateien ausgelagert.
+ </li>
+ <li>
+  Neben den Webseiten für jeden Artikel werden auch Seiten für die "Timeline" des Blogs erzeugt (Seite 1, Seite 2, ... bzw. "Älterne Beiträge"). Zudem sollen auch Seiten generiert werden, die lediglich Artikel nach bestimmten Kategorien auflisten. Hierbei hilft mir MySQL mit seinem mächtigen SELECT-Befehl.
+ </li>
+ <li>
+  Die Suche auf der Webseite werde ich "outsourcen", in dem ich Suchfelder externer Suchmaschinen (derzeitige Kandidaten ixquick und DuckDuckGo) einbinde.
+ </li>
+ <li>
+  Es wird zunächst keine Kommentarfunktion mehr geben. Bislang wurde das in diesem Blog von den Besuchern aber auch nicht so genutzt. Kommentare werden also zukünftig nur über den Umweg bspw. via Email Eingang in die Blogartikel finden. Ich kann mich damit aber abfinden. Bei Bedarf kann man auch eine Webseite mit statischen HTML-Seiten mit Kommentar-Funktionen versehen, in dem man bspw. Services wie
+  <a href="http://disqus.com/" shape="rect" target="_blank">
+   DISQUS
+  </a>
+  oder
+  <a href="http://ielectrify.com/disqus-alternatives" shape="rect" target="_blank">
+   Alternativen
+  </a>
+  verwenden.
+ </li>
+ <li>
+  Es wird im Programm einen rudimentären Editor geben, kein WYSIWYG! Ich halte das Layout meiner Seiten bewußt simpel, so daß ich die Artikel auch direkt in HTML eintippen kann. Allerdings sollen Umlaute und andere Sonderzeichen automatisch in Ihre "
+  <a href="http://de.selfhtml.org/html/referenz/zeichen.htm" title="SelfHTML -- HTML-Zeichenreferenz">
+   named entities
+  </a>
+  " übersetzt werden. Außerdem soll es sog. "Shortcuts" wie {image}URL,Caption{/image} oder so ähnlich geben. Beim Erstellen der Websites erkennt ein Parser diese Shortcuts und ersetzt sie durch ein Stück HTML-Code, der in der Datenbank hinterlegt ist.
+ </li>
+ <li>
+  Zusammen mit den Webseiten spuckt das Programm auch einen RSS-Feed aus. Auch kein Zauberwerk.
+ </li>
+ <li>
+  Der Blog als solches soll dann frei von PHP, JavaScript, ActiveX, Perl und ähnlichem sein. Dadurch wird das System rattenschnell und nahezu unkompromittierbar. Die Webseiten laufen so auf jedem noch so primitiven Webserver.
+ </li>
+ <li>
+  Da möglicherweise Besucher noch den "alten" Links zu Artikeln aus dem Joomla-System folgen könnten, plane ich, daß das Skript auch eine .htaccess-Datei erstellt, in der eine Reihe von Redirect-Anweisungen stehen, um die Besucher automatisch auf die neuen Seiten umzuleiten.
+ </li>
+</ul>
+<div>
+ Wie gesagt, erste Programmierschritte sind bereits getätigt. JAVA und MySQL reden schon miteinander. Derzeit kämpfe ich mit den Segnungen des objektorientierten Programmierens (OOP) und definiere mir meine "Basis-Klassen" zurecht. Parallel dazu versuche ich JAVA dazu zu bewegen, Fensterchen auf den Bildschirm zu zaubern und mit Funktionen zu versehen.
+</div>
+<br/>
+<div>
+ Mir ist absolut klar, daß ich mit diesem Vorhaben vermutlich das Rad zum 501 Mal neu erfinde.
+ <a href="http://iwantmyname.com/blog/2011/02/list-static-website-generators.html" shape="rect" target="_blank">
+  Diese Seite
+ </a>
+ listet gleich mehr als 30 Programme zum Erstellen von Blogs mit Static HTML Seiten auf. Aber hey: Hobbies sind nie unter betriebswirtschaftlichen Aspekten zu bewerten! Außerdem sind weitere wichtige Ziele, möglichst viel über OOP, JAVA und MySQL zu lernen und eine Menge Spaß zu haben. Und die bisherige Arbeit macht mir sehr viel Spaß und geht einigermaßen gut voran. Ich habe mir kein starres Zeitziel gesetzt, glaube aber, die erste Version im Herbst/Winter dieses Jahres an den Start zu bekommen.
+</div>
+<br/>
+<div>
+ Was haltet Ihr von diesem Vorhaben? Habt Ihr Kritik oder Anregungen? Immer her damit - entweder per Kommentar im Artikel (solange das noch geht ;-)) oder per Mail.
+</div>
+
+

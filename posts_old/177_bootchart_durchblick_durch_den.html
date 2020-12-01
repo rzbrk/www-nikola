@@ -1,0 +1,111 @@
+<!--
+.. title: Bootchart -- Durchblick durch den Linux Boot-Prozeß
+.. slug: 177_bootchart_durchblick_durch_den
+.. date: 2010-08-02 21:19:06
+.. tags: linux, opensuse, grub, boot, bootchart, hal, dmesg, lilo, soluto
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Habe mir auf meinem ThinkPad
+ <a href="http://www.opensuse.org/de/" title="OpenSUSE Linux">
+  OpenSUSE 11.3
+ </a>
+ installiert. Ich 
+bin ja schon seit mehr als 10 Jahren SUSE-Nutzer und eigentlich mit der 
+aktuellen Version ganz zufrieden. Nur leider dauert der Boot-Prozeß nun 
+ewig lange. Bis der Logon-Screen kommt, vergehen etwa 3,5 Minuten - 
+eindeutig zu lange! Das ganze scheint durch einen
+ <a href="https://bugzilla.novell.com/show_bug.cgi?id=577489" title="Bug 577489 - 
+hald-probe-input crashes immediately">
+  Bug im HAL 
+verursacht
+ </a>
+ zu sein. Dieser Fehler beeindruckt das Linux offenbar so 
+sehr, daß es erst einmal etwa 3 Minuten in Schockstarre verfällt. 
+Jedenfalls bekommt man diesen Eindruck, wenn man sich die Ausgabe von 
+dmesg anschaut (Auszug mit Zeitstempeln, Einheiten: Sekunden nach 
+Boot-Anfang):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  [   20.966364] Slow work thread pool: Starting up
+  <br/>
+  [   20.966438] Slow work thread pool: Ready
+  <br/>
+  [   20.966481] FS-Cache: Loaded
+  <br/>
+  [   20.980971] FS-Cache: Netfs 'nfs' registered for caching
+  <br/>
+  [   21.282171] hald-probe-inpu[1724]: segfault at 2 ip 00007f487d947f79 sp 
+00007fff060b69f0 error 4 in libc-2.11.2.so[7f487d8d0000+156000]
+  <br/>
+  [
+  <strong>
+   21.284650
+  </strong>
+  ] hald-probe-inpu[1725]: segfault at 2 ip 
+00007fcd30368f79 sp 00007fff4c81a800 error 4 in 
+libc-2.11.2.so[7fcd302f1000+156000]
+  <br/>
+  [
+  <strong>
+   201.710599
+  </strong>
+  ] BIOS EDD facility v0.16 2004-Jun-25, 1 devices found
+  <br/>
+  [  202.144929] Bluetooth: L2CAP ver 2.14
+  <br/>
+  [  202.144932] Bluetooth: L2CAP socket layer initialized
+ </div>
+</p>
+<!-- TEASER_END -->
+<p>
+ So, jetzt will 
+ich Euch aber nicht weiter mit meinen IT-Problemen nerven, sondern Euch 
+das im Beitragstitel genannte Progrämmchen vorstellen.
+ <a href="http://www.bootchart.org/index.html" title="Bootchart Webseite">
+  Bootchart
+ </a>
+ ist ein Tool, 
+mit dem man genau sehen kann, was beim Booten wann gestartet wird und 
+wie lange es braucht. So kann man auf einem Blick Probleme (so wie bei 
+mir, buhuhu) oder Optimierungs-Potential erkennen. Bootchart ist in den 
+Repositories vieler Linux-Distros dabei und erzeugt nach dem 
+Boot-Vorgang ein Archiv namens bootchart.tgz im Verzeichnis /var/log. 
+Bei mir wird parallel gleich auch eine graphische Aufbereitung mit dem 
+Namen bootchart.png (s. Anlage) erzeugt, die die Informationen in 
+Menschen-lesbarer Form enthält.
+</p>
+<p>
+ Um bootchart auszuführen, ist es am einfachsten, beim Booten dem 
+Linux den Boot-Parameter
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  init=/sbin/bootchartd
+ </div>
+</p>
+<p>
+ mitzugeben. Man kann natürlich auch einen eigenen Eintrag im 
+Boot-Menü von Grub oder Lilo erstellen, wie
+ <a href="http://www.xadux.eu/wiki-headers/3029-bootchart-bootzeiten-analyse.html" title="xadux.eu -- 
+Bootchart in die Grub-Installation integrieren">
+  hier
+ </a>
+ beschrieben.
+</p>
+<p>
+ Für alle Windows-User: Ein vergleichbares
+ <a href="http://stadt-bremerhaven.de/soluto-windows-schneller-booten/" title="Caschys Blog -- 
+Soluto, Windows schneller booten">
+  Tool 
+namens Soluto
+ </a>
+ gibt es auch für das Redmonder Betriebssystem.
+</p>
+
+

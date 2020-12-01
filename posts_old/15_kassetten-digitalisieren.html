@@ -1,0 +1,70 @@
+<!--
+.. title: Kassetten digitalisieren
+.. slug: 15_kassetten-digitalisieren
+.. date: 2009-06-01 18:50:11
+.. tags: 
+.. category: buntes
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ <img align="right" alt="Musik-Kassette" border="0" hspace="10" src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Tdkc60cassette.jpg/210px-Tdkc60cassette.jpg" vspace="10"/>
+ Eigentlich habe ich die Musik-Kassette schon vor Jahren ausgemustert. Auch wenn man keine allzu großen Ansprüche beim Musikgenuß hat, irgendwann nervt das blöde Leiern, die schlechte Qualität und der langfristig unvermeidliche Bandsalat. Das hat sich jedoch mit meinen Kindern geändert. Auch wenn wir eigentlich selbst keine Kassetten kaufen, bekommt man hier und da irgendwelche Dachboden- oder Schubladenfunde aus der Bekanntschaft geschenkt. Und teilweise sind da ja wirklich Schätze aus der eigenen Kindheit drauf ... Also warum die Tapes nicht digitalisieren, damit was der Zahn der Zeit verschohnt nicht Opfer der Kinderhände wird?
+</p>
+<!-- TEASER_END -->
+<br/>
+Den ersten Sündenfall habe ich damit begangen, mir bei eBay ein Tapedeck zu besorgen. Guter Tip: Keine Geräte kaufen, bei denen angegeben ist, "die Funktion konnte leider nicht überprüft werden". JEDER kann das Gerät ans Netz stecken, und mal Play, Vor- und Rückspulen überprüfen - auch ohne Kassette! Denn das erste was bei einem Tapedeck gewöhnlich kaputt geht, ist die Mechanik. Und wenn man nicht gerade versierter Bastler ist und zuhause einen ganzen Karton voller Ersatzkeilriemen hat, sollte man die Finger von defekten Tapedecks lassen.
+<br/>
+<br/>
+<img alt="USB Audio Device von Behringer" src="http://www.ultimatemusic.com.my/products/images/Beh%20DJ&amp;Comp/UCA202_big%5B1%5D.jpg" style="float: right;" width="250"/>
+Weiteres Problem: Wie bekomme ich die die Musi auf mein Notebook? Da habe ich nur einen Mono-Eingang für ein Mikrofon! Eine Art USB Audio Device muß also her! Nun ja, weil ich anfangs nicht so viel ausgeben wollte, habe ich es mal mit einem
+<a href="http://www.amazon.de/s/ref=nb_ss_w?__mk_de_DE=%C5M%C5Z%D5%D1&amp;url=search-alias%3Daps&amp;field-keywords=video+grabber+usb&amp;x=0&amp;y=0" title="Audio Grabber made in China">
+ Video Grabber made in China
+</a>
+probiert, die alle einen Stereo Audio-Eingang haben. Ich habe nicht unendlich lange probiert, aber unter Linux (OpenSuse 11.1 mit Pulse Audio) habe ich es nicht zum Laufen bekommen. Außerdem wurde das China-Ding nach kurzer Zeit ungewöhnlich warm. Da habe ich das Ding wieder zusammengepackt und zurückgeschickt. Zweiter Versuch:
+<a href="http://www.behringer.com/EN/Products/UCA202.aspx" title="USB Audio Device von Behringer">
+ USB Audio Device U-Control UCA202 von Behringer
+</a>
+. Das Gerät bekommt man inkl. Versand schon für etwa 30 Euro, damit ist es jetzt nicht wirklich so viel teurer als die China-Geräte. Und für das Digitalisieren analoger Audioquellen mittlerer Qualität eigentlich die perfekte Wahl. Mit dem Gerät kann man Stereoaufnahmen mit 16 Bit Diskretisierung und 44.1 kHz Samplingfrequenz (CD-Qualität) machen. Andere Geräte (z.B von
+<a href="http://www.roland.com/products/en/UA-1EX/" title="USB Audio Device von Roland">
+ Roland
+</a>
+) schaffen deutlich mehr, aber wozu? 30 Jahre alte Musik-Kassetten sind nicht gerade Qualitätswunder. Bei 24 Bit sind vermutlich eh die Hälfte der Bits mit dem Digitalisieren des Bandrauschens beschäftigt - welch eine Verschwendung! Solche Geräte lohnen sich vielleicht für den semi-professionellen Studiobetrieb.
+<br/>
+<br/>
+<img align="left" alt="Audacity Freeware Audio Tool" border="0" src="http://audacity.sourceforge.net/images/Audacity-logo-r_50pct.jpg"/>
+Wer hier auf der Webseite den ein oder anderen Artikel gelesen hat, weiß, daß ich Linux-Nutzer bin. Für Linux - aber auch für Windows empfehle ich die
+<a href="http://audacity.sourceforge.net/?lang=de" title="Audacity, der freie, betriebssystemunabhängige Audioeditor">
+ Freeware Audio-Software Audacity
+</a>
+. In die Bedienung hat man sich schnell eingefuchst, und für die Audio-Bearbeitung liefert diese Software eine Menge Werkzeuge. Kleiner Wehmutstropfen: Audacity funktioniert unter Linux so erst einmal nicht mit mittlerweile weit verbreiteten
+<a href="http://www.pulseaudio.org/" title="Pulse Audio">
+ Pulse Audio
+</a>
+, einem Soundserver, der alle Audioquellen und -senken verwaltet. Unter Linux läßt sich dieses Problem allerdings umgehen, in dem man Audacity
+<a href="http://wiki.ubuntuusers.de/Audacity" title="Audacity mit padsp starten">
+ mittels padsp startet
+</a>
+, der Audacity OSS-kompatible Audio-Adapter (Open Sound System) vorgaukelt, die mittels /dev/dsp* anzusprechen sind. Unter Windows sollte der Einsatz problemlos sein, habe ich allerdings nicht ausprobiert. So startet man Audacity unter Linux mit padsp:
+<br/>
+<br/>
+<span style="font-family: andale mono,times;">
+ padsp audacity &amp;
+</span>
+<br/>
+<br/>
+Im Audacity-Menü unter Bearbeiten --&gt; Einstellungen müssen nun noch die richtigen Einstellungen zu der verwendeten Soundkarte, der Bitrate und der Samplingfrequenz gemacht werden. Hier ist ggf. ausprobieren angesagt.
+<br/>
+<br/>
+Für die Aufnahme muß man jetzt alles erst einmal verkabeln und anschließend Audacity wie oben beschrieben starten. Play am Tapedeck drücken, anschließend Record bei Audacity. Jetzt kann man erst mal eine Weile nichts mehr tun. Nachdem die eine Seite der Kassette durchgelaufen ist, kann man den Beginn und das Ende der Aufnahme zurechtschneiden. Anschließend empfiehlt es sich, die Aufnahme optimal auszusteuern. Das mache ich in Audacity mit Effekt --&gt; Verstärken. Hier wird praktischerweise schon eine Verstärkung vorgeschlagen, die gewährleistet, daß alle Aufnahmen gleich laut sind. Eine weitere Bearbeitung habe ich bislang bei keiner Aufnahme für nötig erachtet und diese dann über Datei --&gt; Exportieren als MP3 exportiert.
+<p>
+ Gerade bei älteren Kassetten sollte man folgenden Ratschlag beherzigen:
+ <strong>
+  Die Tonköpfe des Tapedecks regelmäßig mit Wattestäbchen und Alkohol/Spiritus reinigen
+ </strong>
+ . Wenn die Wiedergabe der Kassette mal ganz dumpf ist, kann dies an der Kassette, aber auch am Tonkopf liegen. Und offenbar lagern gerade ältere, schlecht gelagerte Kassetten eine Menge Staub und Abrieb auf den Tonköpfen ab. Das Digitalisieren der Kassetten ist ja ansich schon zeitaufwendig. Da kann man sich diese kleine Mühe auch noch machen.
+</p>
+
+

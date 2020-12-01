@@ -1,0 +1,90 @@
+<!--
+.. title: Pegelwandler in NAS einbauen
+.. slug: 7_pegelwandler-in-nas-einbauen
+.. date: 2009-02-28 18:45:35
+.. tags: nas, netzwerk, opennas, rs232, elektronik, schittstelle
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Dieser Artikel beschreibt den Einbau einer
+ <a href="link://slug/6_pegelwander-testschaltung">
+  Pegelwandler-Schaltung
+ </a>
+ in meine {article id="5"}NAS 
+Allnet ALL6250{/article}, um diese später mit dem Betriebssystem OpenNAS 
+flashen zu können. Die Schaltung stellt eine vollwertige serielle 
+Schnittstelle (RS232) mit 12V-Pegeln bereit, die mit einem PC verbunden 
+werden kann.
+</p>
+<figure>
+ <img alt="Pegelwandler NAS" src="/images/dscf1434.jpg" width="500"/>
+ <figcaption>
+  Pegelwandler NAS
+ </figcaption>
+</figure>
+<p>
+ Im obigen Bild ist die Pegelwandler-Schaltung zu sehe, die ich auf 
+einer kleinen Streifenraster-Platine aufgebaut habe. Kleiner gehts nun 
+wirklich nur noch mit SMD! Ein wenig problematisch ist die Bauhöhe der 
+Elkos. Für den Einbau kommt um die Platine noch Schrumpfschlauch drum, 
+da kommt die Platine locker auf eine Höhe von 19 mm. Der Luftspalt 
+zwischen Hauptplatine der NAS und dem Blech zur Aufnahme der Platte ist 
+nicht wesentlich höher. Aber um es vorweg zu nehmen: Wenn man die kleine 
+Platine geschickt platziert, paßt es ganz gut!
+</p>
+<!-- TEASER_END -->
+<p>
+ Vor dem Einschrumpfen und Einbau der Platine habe ich diese natürlich 
+noch mal einem Test unterzogen!
+</p>
+<figure>
+ <img alt="Finaler Test der Schaltung vor dem Einbau" src="/images/dscf1432.jpg" width="500"/>
+ <figcaption>
+  Finaler Test der Schaltung vor dem Einbau
+ </figcaption>
+</figure>
+<p>
+ Das folgende Bild zeigt noch einmal die 
+Platine ohne Schrumpfschlauch. Die serielle Schnittstelle mit 
+PC-tauglichen Spannungspegeln wird über eine 9-polige SUB-D-Steckleiste 
+an der rückseitigen Blende nach außen geführt. Das Geschlecht und die 
+Pinbelegung der Buchse habe ich so gewählt, daß ich zur Verbindung der 
+NAS mit dem Computer ein Nullmodem-Kabel (Rx und Tx im Kabel gekreuzt) 
+verwenden kann.
+</p>
+<figure>
+ <img alt="Pegelwandler NAS" src="/images/dscf1433.jpg" width="500"/>
+ <figcaption>
+  Pegelwandler NAS
+ </figcaption>
+</figure>
+<p>
+ Die eingeschrumpfte Platine habe ich nun im Gehäuse untergebracht und 
+das ganze wieder verschraubt. Das folgende Bild zeigt, daß die SUB-D 
+Buchse viel Platz im Gehäuse hat:
+</p>
+<figure>
+ <img alt="Letzter Blick auf das Innenleben der NAS" src="{img}dscf1438.jpg{/img}" width="500"/>
+ <figcaption>
+  Letzter Blick auf das Innenleben der NAS
+ </figcaption>
+</figure>
+<p>
+ Die fertige NAS:
+</p>
+<figure>
+ <img alt="NAS mit RS232" src="/images/dscf1439.jpg" width="500"/>
+ <figcaption>
+  NAS mit RS232
+ </figcaption>
+</figure>
+<p>
+ Damit sind dann die Hardware-Arbeiten an der NAS abgeschlossen. Jetzt 
+folgt das Flashen der NAS mit OpenNAS.
+</p>
+
+

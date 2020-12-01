@@ -1,0 +1,117 @@
+<!--
+.. title: QR Code mit Kontaktdaten erstellen
+.. slug: 278_qr_code_mit_kontaktdaten_erste
+.. date: 2011-11-11 21:26:11
+.. tags: scanner, qr_code, vcard, qrencode
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure class="center">
+ <img alt="QR Code mit Musterkontakt" src="http://farm7.static.flickr.com/6117/6334935093_e29627b438_o.png"/>
+ <figcaption>
+  QR Code mit Musterkontakt
+ </figcaption>
+</figure>
+<p>
+ Für den komfortablen Austausch von Kontaktdaten eignen sich sog.
+ <a href="http://de.wikipedia.org/wiki/QR_Code" title="Wikipedia -- QR-Codes">
+  QR-Codes
+ </a>
+ (s. Bild). Mit 
+entsprechenden Apps auf Smartphones kann man diese Codes einscannen und 
+als überträgt damit alle relevanten Kontaktdaten auf das andere 
+Smartphone. Eine Liste entsprechender Apps für Android und iOS samt 
+Informationen zu Features und Privatspäre findet Ihr
+ <a href="http://qrscanners.wikidot.com/" title="wikidot.com -- List of QR Code Scanners for Android and iOS">
+  hier
+ </a>
+ . Viele QR Apps erlauben 
+es anschließend, die eingescannten Kontaktdaten in die Telefonkontakte 
+abzuspeichern.
+</p>
+<!-- TEASER_END -->
+<p>
+ Zum Erstelllen der QR Codes gibt es eine ganze Menge kostenlose 
+Webangebote (
+ <a href="http://www.qrcode-generator.de/" title="QR Code Generator - Einfach QR Codes generieren 
+und einbinden">
+  hier
+ </a>
+ oder
+ <a href="http://code.google.com/intl/de-DE/apis/chart/infographics/docs/overview.html" title="Google API zum Erstellen von QR-Codes">
+  hier
+ </a>
+ ). 
+Allerdings habe ich Vorbehalte, meine Adressdaten irgendeiner Webseite 
+anzuvertrauen, weil ich nicht weiß, ob diese abgespeichert oder sonstwie 
+zweckentfremdet wird. Für Linux gibt es zum Erstellen der QR-Codes das 
+Kommandozeilen-Tool qrencode, welches man sich z.B. unter Ubuntu mit 
+folgendem Befehl installiert:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  sudo apt-get install qrencode
+ </div>
+</p>
+<p>
+ qrencode gibt es offenbar
+ <a href="http://code.google.com/p/qrencode-win32/" title="qrencode für Windows">
+  auch für Windows
+ </a>
+ - 
+das habe ich aber nicht ausprobiert.
+</p>
+<p>
+ Zweitens benötigt man für den 
+"Kontakt-QR" noch eine
+ <a href="http://de.wikipedia.org/wiki/Vcard" title="Wikipedia -- vCard">
+  vCard
+ </a>
+ . vCard ist eine 
+unformatierte Text-Datei. Ein Beispiel für eine vCard ist folgender 
+Code:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: white; border: 3px solid orange; color: black; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  BEGIN:VCARD
+  <br/>
+  VERSION:3.0
+  <br/>
+  N:Mustermann;Max
+  <br/>
+  FN:Max Mustermann
+  <br/>
+  ORG:Wikipedia
+  <br/>
+  URL:http://de.wikipedia.org/
+  <br/>
+  EMAIL;TYPE=INTERNET:max.mustermann@example.org
+  <br/>
+  TEL;TYPE=voice,work:+49 1234 56788
+  <br/>
+  TEL;TYPE=voice,cell,pref:+49 170 1234567
+  <br/>
+  ADR;TYPE=intl,work,postal,parcel:;;Musterstraße 1;Musterstadt;;12345;Germany
+  <br/>
+  END:VCARD
+ </div>
+</p>
+<p>
+ Hat man diese Daten 
+bspw. in der Datei mmustermann.vcd abgespeichert, kann man wie folgt den 
+QR-Code
+ <a href="http://outer-rim.gnu4u.org/?p=62" title="You have the Source -- QR Code with vCard information">
+  erstellen
+ </a>
+ (Linux):
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  cat mmustermann.vcd | qrencode -o mmustermann-vcd.png
+ </div>
+</p>
+
+

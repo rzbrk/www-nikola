@@ -1,0 +1,45 @@
+<!--
+.. title: Gebrauchte Speicherkarte #2
+.. slug: 326_gebrauchte-speicherkarte-2
+.. date: 2013-01-16 19:36:21
+.. tags: speicherkarte
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<div>
+ Vor etwas mehr als einem Jahr habe ich hier in diesem Blog darüber
+ <a href="link://slug/284_gefaehrlich_gebrauchte_speiche">
+  berichtet
+ </a>
+ , daß  ich mir in der elektonischen Bucht (eBay) eine gebrauchte Digitalkamera  ersteigert habe, in der sich unerwarteter Weise noch eine Speicherkarte  befand. Die war natürlich formatiert, und vermutlich hat der Vorbesitzer  auch erwartet, daß so die Bilder nicht mehr auf der Speicherkarte  vorhanden sind. Diese Erwartung wurde jedoch so nicht erfüllt.
+</div>
+<!-- TEASER_END -->
+<div>
+ Ein wenig technischer Hintergrund: Auf den üblichen Speicherkarten  kommt in der Regel ein FAT-
+ <a href="http://de.wikipedia.org/wiki/Dateisystem" title="Wikipedia -- Dateisystem">
+  Dateisystem
+ </a>
+ zum Einsatz. Der Speicherplatz  wird in Blöcke unterteilt und Blöcke zu Clustern zusammengefaßt.  Zusätzlich befindet sich am Anfang des Speichers (unter anderem) eine
+ <a href="http://de.wikipedia.org/wiki/Dateizuordnungstabelle" title="Wikipedia -- Dateizuordnungstabelle">
+  Dateizuordnungstabelle
+ </a>
+ (File Allocation Table), ähnlich einem "Inhaltsverzeichnis" des  eigentlichen Datenspeichers. Wenn das Betriebssystem nun eine Datei auf  dem Speicher ablegt, wird ein entsprechender Eintrag in der  Dateizuordnungstabelle angelegt, der Verweise auf die Cluster enthält,  auf die die Daten der Datei abgelegt sind. Will das Betriebssystem die  Datei wieder einlesen, so schaut es sich den entsprechenden Eintrag in  der Dateizuordnungstabelle an, liest die entsprechenden Cluster aus und  erstellt bspw. im Arbeitsspeicher eine "Arbeitskopie" der Datei.
+</div>
+<br/>
+<div>
+ Wenn man nun eine Datei löscht, werden nicht etwa - wie man meinen  könnte - die Cluster, die die Daten der Datei enthalten, gelöscht. Es  wird lediglich der Eintrag für die Datei in der Dateizuordnungstabelle  entfernt. Beim Formatieren eines Datenträgers wird gleich die ganze  Dateizuordnungstabelle gelöscht und neu erstellt. Hierdurch werden die  entsprechenden Cluster freigegeben und können beim Erstellen einer neuen  Datei mit deren Daten überschrieben werden. Jedenfalls kann man  zusammenfassend sagen, daß gelöschte oder formatierte Datenträger die  ursprünglichen Daten quasi als "Zombies" oder "Untote" enthalten. Und  genau so wie in einem schlechten Gruselfilm lassen sich diese  Zombie-Dateien wieder zum "Leben" erwecken. Das ist noch nicht einmal  besonders schwierig und in manchen Fällen sogar ganz hilfreich, z.B.  wenn man eine Datei aus Versehen gelöscht hat. Wie man die Dateien  wieder rekonstruiert, habe ich ja schon in meinen oben zitierten Artikel  aus dem Jahre 2011 geschrieben und werde ich an dieser Stelle nicht  wiederholen. Dort habe ich auch geschrieben, wie man mit einfachen  Hausmitteln oder Programmen aus dem WWW eine Speicherkarte so löscht,  daß ein Nachnutzer (z.B. ein Käufer der Speicherkarte) nicht mehr an die  ursprünglichen Daten herankommt.
+</div>
+<br/>
+<div>
+ Nun habe ich mir für ein älteres Telefon eine Speicherkarte (Memory  Stick) gekauft, und zwar diesmal nicht von privat, sondern von einem  gewerblichen Anbieter auf eBay. Dieser Anbieter kauft und verkauft  gebrauchte Speicherkarten. Ich würde schon erwarten, daß ein  gewerblicher Anbieter das Problem kennt und zum Schutz seiner Kunden die  erhaltenen Speicherkarten sicher löscht. Pustekuchen! Ich konnte  insgesamt 325 Dateien rekonstruieren, darunter überwiegend Photos.  Einige XML-Dateien lassen darauf schließen, daß die Speicherkarte in  einem SonyEricsson-Handy gesteckt hat. Deshalb befand sich in einer  VCF-Datei auch das komplette Telefonbuch des Vorbesitzers mit Namen  (allerdings nur Vor- bzw. Spitznamen) und Telefonnummern.
+</div>
+<br/>
+<div>
+ Damit hier kein falscher Verdacht aufkommt. Alle Kopien der Dateien  sind bereits wieder gelöscht und die Speicherkarte nach diesem Test  "bereinigt". Die Firma, von der ich die Speicherkarte gekauft habe,  bekommt von mir eine entsprechende Mail mit der Bitte, zukünftig die  erhaltenen gebrauchten Speicherkarten sicher zu löschen. Unabhängig kann  ich nur jedem empfehlen, Speicherkarten entweder grundsätzlich nicht  weiterzuverkaufen oder vorher sicher zu bereinigen.
+</div>
+<br/>
+
+

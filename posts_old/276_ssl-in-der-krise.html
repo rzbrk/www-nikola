@@ -1,0 +1,44 @@
+<!--
+.. title: SSL in der Krise
+.. slug: 276_ssl-in-der-krise
+.. date: 2011-11-06 21:20:20
+.. tags: browser, ssl, https, tls, zertifikate, certificate_authority
+.. category: buntes
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ SSL ist massiv in der Krise: Die Nachrichten, nachdem
+ <a href="http://www.dradio.de/dlf/sendungen/computer/1551131/" title="dlf.de -- https: nur eine scheinbar sichere Verbindung">
+  Zertifizierungsstellen gehackt
+ </a>
+ und es Unbefugten gelang, sich selbst Zertifikate auszustellen, häufen sich. Nun meldet
+ <a href="http://www.heise.de/newsticker/meldung/Zertifikatsausgabestopp-nach-Einbruch-auf-einem-KPN-Server-1372279.html" title="heise.de -- Zertifikatsausgabestopp nach Einbruch auf einem KPN-Server">
+  heise
+ </a>
+ , daß es die niederländische Firma KPN Corporate Market getroffen hat. Diese Zertifikate sollen dazu dienen, sicherzustellen, daß sich bspw. hinter der aufgerufenen Webseite meiner Bank https://www.meine-bank.de tatsächlich die Bank verbirgt und nicht ein Krimineller, der nur meine Zugangsdaten abfischen will. Angesichts der Anzahl der Fälle in der Vergangenheit kann man den Zertifikaten offenbar nicht mehr trauen. Und weiter: Nicht nur Kriminelle, sondern auch Schurkenstaaten erschleichen sich Zertifikate, um die verschlüsselten SSL-Verbindungen Ihrer Untertanen abzuhören.
+</p>
+<p>
+ Zudem haben Cryptoexperten Ende September bewiesen (Stichwort:
+ <a href="https://blog.torproject.org/blog/tor-and-beast-ssl-attack" title="torproject.org -- Tor and the BEAST SSL attack">
+  BEAST-Attacke
+ </a>
+ ), daß eine längst bekannte Lücke in den derzeit weit verbreiteten Protokollen SSL3 und TLS 1.0 u.U. dazu genutzt werden kann, eine SSL-Verbindung zu kapern. Das in Bezug auf diese Sicherheitslücke immune TLS 1.1 ist zwar schon veröffentlicht, allerdings "spricht" der Großteil der Serverwelt im Internet noch die unsicheren Protokolle, da auch die wenigsten Browser (selbst in den aktuellen Versionen) das sichere TLS unterstützen -
+ <a href="http://www.google.com/chrome/intl/de/landing_tv.html" title="Chrome Browser Webseite">
+  Chrome
+ </a>
+ macht da wohl die positive Ausnahme.
+</p>
+<p>
+ Das sichere Internet-Surfen via SSL ist also massiv in die Krise gekommen. Doch wie kann man sich kurzfristig behelfen und wie sehen mittel- und langfristig Alternativen und Weiterentwicklungen aus? Ideen hierzu wurden in der
+ <a href="http://chaosradio.ccc.de/cr172.html" title="Chaosradio CR172: SSL. Oder: Einmal aufmachen, bitte.">
+  Ausgabe 172 des Chaosradio
+ </a>
+ besprochen. Die Sendung ist zwar zwei Stunden lang, aber sehr hörenswert.
+</p>
+<p>
+</p>
+
+

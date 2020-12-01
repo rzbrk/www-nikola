@@ -1,0 +1,125 @@
+<!--
+.. title: WLAN-Empfang über geeignete Kanal-Wahl optimieren
+.. slug: 293_wlan_empfang_ueber_geeignete_k
+.. date: 2012-03-12 19:59:00
+.. tags: wlan, router, iwlist, inssider, wifi_analyzer, access_point
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ In vielen Haushalten befinden sich heutzutage eine ganze Reihe 
+internetfähiger Geräte, angefangen vom Computer und Notebook, über 
+Smartphones oder Spielekonsole bis hin zum Internetradio. Diese Geräte 
+verteilen sich über die ganze Wohnung oder das ganze Haus und werden 
+praktischerweise häufig über Wireless LAN mit Internetverbindung 
+"versorgt". Für den heutzutage gängigen WLAN-Standard IEEE 802.11b/g 
+steht ein Frequenzbereich von 2400 bis 2483,5 MHz zur Verfügung. Dieser 
+Frequenzbereich von 83,5 MHz ist wiederum auf verschiedene Kanäle 
+aufgeteilt. Ein WLAN Access Point ist für einen dieser Kanäle 
+konfiguriert und teilt sich die dort zur Verfügung stehende 
+Übertragungsrate mit allen anderen Geräten, die auf exakt den gleichen 
+Kanal eingestellt sind. In Häusern mit mehreren Parteien ist es sehr 
+wahrscheinlich, daß mehrere WLAN Access Point fröhlich nebeneinander her 
+funken. Im schlechtesten Fall sind die Kanaleinstellungen nicht optimal 
+aufeinander abgestimmt. So könnte es sein, daß der Access Point aus der 
+Wohnung drüber genau auf dem gleichen Kanal funkt, wie der eigene.  
+Obwohl der Flaschenhals bei Internetverbindungen i.d.R. die Anbindung 
+zwischen Acces Point und Internet-Provider ist, kann die Ballung auf 
+einen bestimmten Kanal dazu führen, daß in gewissen "Randbereichen" der 
+eigenen Wohnung ein schlechter Empfang zum eigenen Access Point besteht.  
+Daher sollte man die Kanalwahl mit Bedacht vornehmen.
+</p>
+<!-- TEASER_END -->
+<p>
+ Zunächst einmal sollte man sich einen Überblick über die 
+benachbarten Funknetze samt der dort verwendeten Kanäle machen. Unter 
+Windows könnte man hierzu das Open-Source-Tools
+ <a href="http://www.metageek.net/products/inssider/">
+  inSSIDer
+ </a>
+ verwenden:
+</p>
+<figure class="center">
+ <img alt="Screenshot inSSIDer" src="http://www.metageek.net/wp-content/uploads/2012/01/MetaGeek_inSSIDer-v2.1_Screenshot.png" width="500"/>
+ <figcaption>
+  Screenshot inSSIDer
+ </figcaption>
+</figure>
+<p>
+ Für den Kommandozeilen-Freak unter Linux 
+bietet sich hingegen das Tool
+ <a href="http://fedorawiki.de/index.php/Wireless_Tools">
+  iwlist
+ </a>
+ an. Bei mir unter Ubuntu wird das WLAN-Modul 
+mit der Device-ID wlan0 angesprochen. Ein
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  iwlist wlan0 scanning
+ </div>
+</p>
+<p>
+ im Terminal gibt eine Liste der verfügbaren 
+WLAN Access Points samt Informationen über die Kanalwahl, die (E)SSID, 
+MAC sowie die Verschlüsselungs-Methode aus. Ein Beispiel-Output (gekürzt 
+und sensible Informationen maskiert), sieht folgendermaßen aus:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  user@host:~$ iwlist wlan0 scanning
+  <br/>
+  wlan0     Scan completed :
+  <br/>
+  Cell 01 - Address: xx:xx:xx:xx:xx:xx
+  <br/>
+  Channel:13
+  <br/>
+  Frequency:2.472 GHz (Channel 13)
+  <br/>
+  Quality=70/70  Signal level=-35 dBm
+  <br/>
+  Encryption key:on
+  <br/>
+  ESSID:"Testnetz"
+  <br/>
+  Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 6 Mb/s; 9 Mb/s
+  <br/>
+  11 Mb/s; 12 Mb/s; 18 Mb/s
+  <br/>
+  Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+  <br/>
+  Mode:Master
+  <br/>
+  ...
+ </div>
+</p>
+<p>
+ Wer möchte, kann sich auch das kostenfreie Tool
+ <a href="https://play.google.com/store/apps/details?id=com.farproc.wifi.analyzer">
+  Wifi 
+Analyzer
+ </a>
+ auf sein Android-Handy oder -Tablet installieren. Auch hier 
+habe ich mal einen Screenshot erstellt:
+</p>
+<figure class="center">
+ <img alt="Screenshot Wifi Analyzer unter Android" src="http://farm8.staticflickr.com/7198/6976986595_6aa916227a.jpg"/>
+ <figcaption>
+  Screenshot Wifi Analyzer unter Android
+ </figcaption>
+</figure>
+<p>
+ Mit einem dieser Tools analysiert man nun die benachbarten 
+WLAN-Netze, wobei man insbesondere ein Augenmerk auf die Netze mit der 
+größten Signalstärke hat. Den Kanal des eigenen WLAN-Netzes sollte man 
+nun so wählen, daß man möglichst in einen Frequenzbereich landet, im dem 
+sich allenfalls sehr schwache WLAN-Netze tummeln. Wie man den Kanal im 
+eigenen Access Point ändert, entnimmt man am besten der 
+Geräte-Dokumentation.
+</p>
+
+

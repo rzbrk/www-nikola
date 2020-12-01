@@ -1,0 +1,60 @@
+<!--
+.. title: Server Status Info via XMPP/Jabber
+.. slug: 310_server-status-info-via-xmppjab
+.. date: 2012-09-20 20:06:21
+.. tags: linux, jabber, xmpp
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+</p>
+<p style="text-align: center;">
+ <img alt="XMPP Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/XMPP_logo.svg/176px-XMPP_logo.svg.png"/>
+</p>
+<p>
+</p>
+<p>
+ Bei mir zuhause läuft ein kleiner Server zur zentralen Ablage von  Bildern und ähnlichem Krempel sowie für Backups. Seit neustem werkelt da  ein Atom-Prozessor energiesparend vor sich hin. Auf den Server logge ich  mich jetzt nicht gerade täglich ein, möchte mich aber trotzdem in  Sicherheit wähnen, daß alles in Ordnung ist.
+</p>
+<p>
+ Vor einiger Zeit habe ich in diesem Zusammenhang ein tolles Tool namens
+ <a href="http://sendxmpp.platon.sk/">
+  sendxmpp
+ </a>
+ entdeckt. Sendxmpp ist ein Perlskript, um XMPP-Nachrichten zu verschicken. Es ist nicht zu verwechseln mit Chat-Clients wie
+ <a href="http://gajim.org/index.php?lang=de">
+  Gajim
+ </a>
+ oder
+ <a href="http://pidgin.im/">
+  Pidgin
+ </a>
+ , die eine graphische Oberfläche haben und zum Chatten da sind! Das Skript läßt sich hingegen prima in Shell-Skripte oder
+ <a href="http://de.wikipedia.org/wiki/Cron">
+  Cron
+ </a>
+ -Jobs integrieren.
+</p>
+<div>
+ Bei  mir startet Cron einmal täglich ein Skript, welches ein paar  wesentliche Gesundheitsparameter des Systems ermittelt und mir dann via  sendxmpp auf mein Smartphone schickt. Was die wesentlichen  Gesundheitsparameter sind, ist natürlich individuell. Mal angenommen,  Eure Serverpartition sei unter /dev/sdb1 eingehängt, würde Euch die  folgende Code-Zeile die Speicherauslastung via XMPP verschicken:
+</div>
+<div>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ df -h | grep /dev/sdb1 | sed -e "s/\/dev\/sdb1 *//" | sendxmpp -s "Auslastung Serverplatte" receiver@jabber.org
+ </div>
+ <div>
+  <span style="font-family: courier new,courier;">
+   <br/>
+  </span>
+ </div>
+</div>
+<p>
+ Damit  das ganze funktioniert, solltet Ihr vorher natürlich sendxmpp  installieren ;-) und mindestens ein XMPP-Konto registrieren. Letzteres  ist in der Regel kostenlos. Anbieter gibt es eine ganze Menge, darunter  jabber.org, twattle.net, jabber.de, jabber.ccc.de. Außerdem müßt Ihr in  der Konfigurationsdatei ~/.sendxmpprc die Zugangsdaten eines XMPP-Kontos eintragen.
+</p>
+<p>
+</p>
+
+

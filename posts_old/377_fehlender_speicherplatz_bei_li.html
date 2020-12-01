@@ -1,0 +1,115 @@
+<!--
+.. title: Fehlender Speicherplatz bei Linux-Partitionen?
+.. slug: 377_fehlender_speicherplatz_bei_li
+.. date: 2014-03-31 21:24:29
+.. tags: linux, partition, df, speicherplatz
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Informationen über die Speicherplatznutzung auf den Partitionen eines 
+Linux-Systems erhält man mit dem Kommandozeilen-Tool
+ <a href="https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html">
+  df 
+(Disk Free)
+ </a>
+ aus den GNU Core Utils. Bei mir sieht die Ausgabe in etwa so 
+aus:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  jan@think ~&gt; df -H
+  <br/>
+  <table border="0" style="font-family: mono,monospace;">
+   <tr>
+    <td align="left">
+     Dateisystem
+    </td>
+    <td align="right">
+     Größe
+    </td>
+    <td align="right">
+     Benutzt
+    </td>
+    <td align="right">
+     Verf.
+    </td>
+    <td align="right">
+     Verw%
+    </td>
+    <td align="left">
+     Eingehängt auf
+    </td>
+   </tr>
+   <tr>
+    <td align="left">
+     /dev/mapper/fedora_think-root
+    </td>
+    <td align="right">
+     19G
+    </td>
+    <td align="right">
+     8,0G
+    </td>
+    <td align="right">
+     9,6G
+    </td>
+    <td align="right">
+     46%
+    </td>
+    <td align="left">
+     /
+    </td>
+   </tr>
+  </table>
+  ...
+  <!--
+Dateisystem                   Größe Benutzt Verf. Verw% Eingehängt auf<br />
+/dev/mapper/fedora_think-root   19G    8,0G  9,6G   46% /<br />
+devtmpfs                       2,1G       0  2,1G    0% /dev<br />
+tmpfs                          2,1G    1,3M  2,1G    1% /dev/shm<br />
+tmpfs                          2,1G    9,7M  2,1G    1% /run<br />
+tmpfs                          2,1G       0  2,1G    0% /sys/fs/cgroup<br />
+tmpfs                          2,1G    2,4M  2,1G    1% /tmp<br />
+/dev/sda1                      1,1G    131M  816M   14% /boot<br />
+/dev/mapper/fedora_think-home   47G     18G   26G   41% /home<br />
+-->
+ </div>
+</p>
+<p>
+ Na, fällt Euch was auf? Nein? Also, mich hat das schon immer gewundert, 
+nur habe ich mich bislang nicht getraut, zu fragen. Das habe ich jetzt 
+gemacht, und eine aufschlußreiche Antwort erhalten.
+</p>
+<!-- TEASER_END -->
+<p>
+ Erst einmal die Auflösung: Die Summe aus benutztem und freien Speicher 
+ergibt nicht die Gesamtgröße. Stets fehlt anscheinend etwas Speicher.
+</p>
+<p>
+ Der Grund ist simpel und nachvollziehbar. Offenbar reserviert Linux 5% 
+des Speicherplatzes einer Partition. Das soll verhindern, daß ein Benutzer 
+die Festplatte so "vollkotzt", daß nichts mehr geht.
+</p>
+<p>
+ Das läßt sich auch für einzelne Partitionen abschalten, und zwar mit dem
+Tool tune2fs:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ sudo tune2fs -m0 /dev/partition
+ </div>
+</p>
+<p>
+ Danke an die
+ <a href="http://www.trolug.de">
+  TroLUG
+ </a>
+ für die
+Nachhilfe!
+</p>
+
+

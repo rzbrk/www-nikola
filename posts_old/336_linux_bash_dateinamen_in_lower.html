@@ -1,0 +1,37 @@
+<!--
+.. title: Linux Bash: Dateinamen in Lowercase umwandeln
+.. slug: 336_linux_bash_dateinamen_in_lower
+.. date: 2013-04-07 18:40:47
+.. tags: bash, lowercase
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Ich habe gelegentlich das Problem, Dateien von UPPERCASE in lowercase 
+formatieren zu müssen (zumindest die Endung), damit einige Anwendungen 
+den Dateityp korrekt erkennen. Das habe ich bislang per Hand gemacht. 
+Nun habe ich mir ein 5-zeiliges Bash-Skript geschrieben und in 
+/usr/local/bin abgelegt. Das Skript ruft Ihr in dem Verzeichnis auf, wo 
+die Dateien komplett in Lowercase umgewandelt werden sollen. Das Skript 
+habe ich lowercase.sh genannt und hat folgenden 
+Inhalt:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: white; border: 3px solid orange; color: black; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  #!/bin/bash
+  <br/>
+  <br/>
+  for f in `ls`; do
+  <br/>
+  f_lc=`echo $f | awk {'print tolower($_)'}`
+  <br/>
+  mv $f $f_lc
+  <br/>
+  done
+ </div>
+</p>
+
+

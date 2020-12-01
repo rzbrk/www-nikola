@@ -1,0 +1,69 @@
+<!--
+.. title: Nistkasten 2.0
+.. slug: 158_nistkasten-20
+.. date: 2010-05-25 20:10:12
+.. tags: video, usb, kamera, microsoft, bild, webcam, nistkasten, line_extender, logitech
+.. category: basteln
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Jetzt, wo die Blaumeisen ausgezogen sind, ist es an der Zeit, zu überlegen, was man an dem
+ <a href="link://slug/121_zimmer-frei">
+  Nistkasten
+ </a>
+ verbessern könnte. Angesichts der geringen Investitionskosten für den Nistkasten waren die Bilder bestimmt nicht schlecht - jedenfalls wird mir das häufig gesagt. Aber Verbesserungspotential habe ich trotzdem ausgemacht.
+</p>
+<!-- TEASER_END -->
+<p>
+</p>
+<p>
+ Als erstes will ich die Beleuchtung verbessern. Dadurch erhoffe ich mir schärfere Bilder. Aufgrund der schlechten Lichtverhältnisse muß die Webcam derzeit für jedes Einzelbild lange belichten, und dadurch sinkt die Bildwiederholrate bei Videos. Da sich die Vögel z.T. ruckartig bewegen, ergeben sich außerdem bewegungs-unscharfe Bildaufnahmen. Konkret habe ich an eine umschaltbare Beleuchtung gedacht. Tagsüber soll LED-Weißlicht das dunkle Innere erleuchten, nachts und während der Dämmerung soll man auf IR-LEDs umschalten können, um die Vögel nicht zu stören. Aktuell habe ich ja 6 IR-LEDs im Nistkasten. Allerdings werden die über die schwächliche USB-Versorgung mit Energie gespeist, was bei weitem nicht ausreicht.
+</p>
+<p>
+ Daraus ergibt sich auch schon eine weitere Verbesserungsmöglichkeit: Eine Energieversorgung mit mehr Dampf - also jedenfalls nicht wörtlich. Ich wollte anfangs nicht 1000 Kabel in den Kasten führen und dachte, die USB-Power reicht womöglich aus. Allerdings geht eine Menge Power durch den Leitungswiderstand des 25 m langen Patchkabels zwischen Nistkasten und Computer verloren. Der nächste Nistkasten bekommt daher eine eigene Spannungszuführung für die Beleuchtung.
+</p>
+<p>
+ Außerdem möchte ich die Montage der Webcam auf dem Zwischenboden im Nistkasten grundsätzlich durchdenken. Mir ist aufgefallen, daß offenbar die Bildschärfe mit der Zeit schlechter geworden ist (s. Bilder unten). Das kann diverse Gründe haben. Wahrscheinlich ist das Plexiglasfenster unter der Kamera einfach dreckig geworden. Außerdem könnte der thermische Streß (mehrfacher Wechsel zwischen kalt und warm) zu einer Defokussierung geführt haben. Außerdem habe ich beim Fokussieren der Webcam auf den Boden des Nistkastens scharf gestellt. Durch das Nistmaterial befindet sich die Nistmulde mit den Nestlingen aber ca. 10 cm näher an der Webcam. Das werde ich beim nächsten Nistkasten auch berücksichtigen.
+</p>
+<p>
+</p>
+<p style="text-align: center;">
+ <img alt="Bild aus dem Meisenkasten vom 19.03.2010" src="http://farm3.static.flickr.com/2752/4467361479_7c3ccc3890_d.jpg"/>
+</p>
+<p style="text-align: center;">
+ oben: Bild aus dem Meisenkasten vom 19.03.2010, unten ein Bild vom 16.05.2010
+</p>
+<p style="text-align: center;">
+ <img alt="Bild aus dem Meisenkasten vom  16.05.2010" src="http://farm5.static.flickr.com/4044/4615811583_ae290dbd14_d.jpg"/>
+</p>
+<p>
+ <br/>
+ Eigentlich wollte ich auch eine modernere Webcam einsetzen. Die bislang eingesetzte Logitech Quickcam Messenger hat nun auch schon ein paar Jahre auf dem Buckel. Inzwischen gibt es empfindlichere und qualitativ hochwertigere CMOS-Chips, die auch unter Linux laufen. Und es gibt natürlich Webcams mit mehr Auflösung! Zu Testzwecken habe ich mir daher eine
+ <a href="http://www.microsoft.com/presspass/press/2010/mar10/03-16truecolorpr.mspx" title="Microsoft Press - LiveCam HD-5000">
+  Microsoft LifeCam HD-5000
+ </a>
+ besorgt, allerdings handelt es sich hier um ein USB2.0-gerät mit höherer Datenrate. Die habe ich heute an den
+ <a href="http://www.logilink.eu/showproduct/UA0021B.htm" title="Logilink USB Line Extender">
+  USB Line Extender
+ </a>
+ (limitiert auf USB1.1) angeschlossen und gehofft, wenigstens ein QVGA, besser noch ein VGA-Bild übertragen zu können. Leider ist der USB Line Extender der absolute Bottle Neck. Übertragen wurde nur ein Videobild mit 176 mal 144 Pixeln - und das bei einer vergleichsweise miesen Bildwiederholrate. Damit würde ich mich gegenüber der Qualität der jetzigen Kamera verschlechtern. Es gibt zwar auch
+ <a href="http://www.icron.com/products/usb_new/usb-over-cat5-extenders.php" title="Icron -- USB2.0 Line Extender">
+  USB2.0 Line Extender
+ </a>
+ zu kaufen, allerdings kosten die Dinger statt etwa 20 bis 30 mal eben
+ <a href="http://www.partsdata.de/advanced_search_result.php?keywords=2.0%20extender%20usb&amp;c=1" title="partsdata.de -- Preise für USB2.0 Line Extender">
+  400 Euro und mehr
+ </a>
+ , da es sich hierbei nicht mehr um Consumer- sondern um Spezial-Produkte für den Einsatz in Industrie, Forschung und Medizin handelt. Zwischenzeitig habe ich auch daran gedacht, einen Einplatinen-Rechner oder ein geschlachtetes Netbook im Nistkasten unterzubringen und die USB-Daten per TCP/IP zu übertragen (
+ <a href="http://usbip.sourceforge.net/#top" title="USB-IP Project">
+  hier
+ </a>
+ gibt es ein entsprechendes SW-Projekt). Aber das ist natürlich schon ein erheblicher Aufwand, da ich auch das Nistkastengehäuse komplett neu konzipieren muß. Solange mir da kein guter Gedanke kommt, bleibt es wohl bei der Logitech-Kamera.
+</p>
+<p style="text-align: center;">
+</p>
+
+

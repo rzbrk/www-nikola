@@ -1,0 +1,35 @@
+<!--
+.. title: Horror Ubuntu-Update
+.. slug: 251_horror-ubuntu-update
+.. date: 2011-04-30 19:02:04
+.. tags: linux, update, ubuntu, verschluesselung, ecrypt_utils, home
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p style="text-align: center;">
+ <img alt="Ubuntu 11.04" src="http://www.ubuntu.com/sites/www.ubuntu.com/files/active/images/home-main.png" width="500"/>
+</p>
+<p style="text-align: center;">
+</p>
+<p>
+ Ich weiß nicht, was ich falsch mache: Ubuntu-Updates enden meistens in einer Katastrophe. Beim Update von 10.04 auf 10.10 (wegen Firefox 4.0) war es nicht das Update selbst, sondern das Real Flash Player Plugin, daß meinen Rechner regelmäßig zum Einfrieren brachte. Außerdem funktionierte der Stand-by und der Suspend nicht mehr. Das Update von 10.10 auf 11.04 habe ich über Nacht laufen lassen. Am nächsten Morgen tat sich auf dem Bildschirm gar nichts, und es war auch keine Tastatureingabe möglich. Ein Reboot offenbarte lediglich, daß das Update nicht vollständig durchgeführt wurde.
+</p>
+<p>
+ Also habe ich die Kiste komplett neu installiert. Dann der Schock: Nach dem ersten Booten hat Ubuntu meine home-Partition nicht eingebunden. Das war der Punkt, wo ich Panik bekommen habe! Denk nach, denk nach! Ach ja, das home ist ja verschlüsselt! Das ließ sich dann relativ leicht reparieren. Man rettet sich per STRG+ALT+F1 auf eine Konsole und installiert mit einem
+</p>
+<p>
+ apt-get install ecryptfs-utils
+</p>
+<p>
+ die Utilities für verschlüsselte Dateisysteme nach. Dann ein Reboot und bei mir hing der Rechner das home auch gleich ein!
+</p>
+<p>
+ So nach und nach muß ich jetzt händisch alle meine liebgewonnen Programme nachinstallieren sowie Konfigurationsänderungen vornehmen, die durch die Neu-Installation verlorengegangen sind.
+</p>
+<p>
+</p>
+
+

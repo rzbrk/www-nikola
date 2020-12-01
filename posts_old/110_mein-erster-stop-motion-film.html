@@ -1,0 +1,61 @@
+<!--
+.. title: Mein erster Stop Motion Film!
+.. slug: 110_mein-erster-stop-motion-film
+.. date: 2010-02-02 20:22:13
+.. tags: stop_motion, animation, video, linux, ffmpeg
+.. category: buntes
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Wow, mein erster Stop Motion Film:
+</p>
+<p>
+ <div class="video">
+  <iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/17KMw2NTilQ" width="560">
+  </iframe>
+ </div>
+</p>
+<p>
+ (
+ <a href="http://www.youtube.com/watch?v=17KMw2NTilQ&amp;feature=player_embedded" title="Youtube -- Mein erster Stop-Motion Film">
+  Link
+ </a>
+ )
+</p>
+<p>
+ Okay, okay, ziemlich sinnfrei. Auf das Drehbuch habe ich jetzt nicht so viel Wert gelegt ;-)
+</p>
+<p>
+ Ich wollte mir primär die Technik aneignen, und da steckte der Teufel im Detail! Das Rohmaterial sind JPGs, die ich mit einer normalen Digicam von einem Stativ aus gemacht habe. Die habe ich anschließend auf 640 x 480 Pixel verkleinert. Die insgesamt 73 Bilder wollte ich nun in das Kommandozeilen-Programm
+ <a href="http://www.ffmpeg.org/" title="cross-platform solution to record, convert and stream audio and video">
+  ffmpeg
+ </a>
+ füttern. Die Namen der Dateien hatten alle das Format IMG_nnnn.JPG. Anstelle von nnnn befindet sich im Dateinamen eine fortlaufende, vierstellige Nummer. Also habe ich
+ <a href="http://spielwiese.la-evento.com/hokuspokus/index.html#bei1" title="Spielwiese -- ffmpeg Beispiele">
+  analog wie hier beschrieben
+ </a>
+ folgenden Befehl benutzt:
+</p>
+<p>
+ ffmpeg -r 2 -s 640x480 -i "IMG_%04d.JPG" baum.mp4
+</p>
+<p>
+ Funktionierte allerdings aufs Verrecken nicht - warum auch immer. Nach langem Gefrickel ging es, wenn der Dateiname der JPGs nur eine fortlaufende Nummer enthält.
+</p>
+<p>
+ Und warum das jetzt alles? Weil ich richtig Lust habe, auch
+ <a href="internet/37/70-pikapika-geniale-lichtkunst" title="Pikapika">
+  mal
+ </a>
+ <a href="internet/37/162-pikapika" title="Pikapika">
+  sowas
+ </a>
+ zu machen! Jetzt brauche ich eigentlich nur noch eine geeignete, nicht zu helle und kleine Taschenlampe mit passenden Farbfiltern ...
+</p>
+<p>
+</p>
+
+

@@ -1,0 +1,98 @@
+<!--
+.. title: Alte SSH host keys aus der Datei known_hosts entfernen
+.. slug: 218_alte_ssh_host_keys_aus_der_dat
+.. date: 2010-12-13 21:17:04
+.. tags: linux, ssh, server, known_hosts
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Bei mir zuhause arbeite ich häufiger mal über SSH auf einem 
+Linux-Server. Wenn man den Server dann neu aufsetzt und bei der 
+Installation des SSH-Deamons neue Keys generiert werden, hat man beim 
+Einloggen u.U. Probleme. Folgende Meldung könnte dann beim Herstellen 
+der SSH-Verbindung auftreten:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  jan@klappkommode:~$ ssh jan@192.168.1.3
+  <br/>
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  <br/>
+  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+  <br/>
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  <br/>
+  IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+  <br/>
+  Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+  <br/>
+  It is also possible that the RSA host key has just been changed.
+  <br/>
+  The fingerprint for the RSA key sent by the remote host is
+  <br/>
+  **:**:**:**:**:**:**:**:**:**:**:**:**:**:**:**.
+  <br/>
+  Please contact your system administrator.
+  <br/>
+  Add correct host key in /home/jan/.ssh/known_hosts to get rid of this message.
+  <br/>
+  <strong>
+   Offending key in /home/jan/.ssh/known_hosts:2
+  </strong>
+  <br/>
+  RSA host key for 192.168.1.3 has changed and you have requested strict checking.
+  <br/>
+  Host key verification failed.
+ </div>
+</p>
+<!-- TEASER_END -->
+<p>
+ Wenn ich statt der IP-Adresse (hat sich zwischen alter und neuer 
+Installation nicht geändert) den Hostnamen verwende, erhalte ich 
+folgende Meldung:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  jan@klappkommode:~$ ssh jan@halde
+  <br/>
+  Warning: the RSA host key for 'halde' differs from the key for the IP address 
+'192.168.1.3'
+  <br/>
+  <strong>
+   Offending key for IP in /home/jan/.ssh/known_hosts:2
+  </strong>
+  <br/>
+  Matching host key in /home/jan/.ssh/known_hosts:6
+  <br/>
+  Are you sure you want to continue connecting (yes/no)?
+ </div>
+</p>
+<p>
+ Immerhin kann ich mich im zweiten Fall dann nach Eingabe von "yes" 
+immer noch einloggen.
+</p>
+<p>
+ Auf die Dauer nervt das aber - ist aber 
+leicht behoben. Für jeden Host legt der SSH-Client den RSA-Key in der 
+Datei .ssh/known_hosts ab. Ändert sich am Remote-Rechner der RSA-Key 
+bspw. durch eine Neuinstallation, ist der entsprechende Eintrag in der 
+Datei .ssh/known_hosts ungültig. Also muß der Eintrag raus! Das ist beim 
+aktuellen SSH aber nicht so einfach. Früher stand da irgendwo die 
+IP-Adresse, so daß man wußte, welche Zeile zu löschen war. Jetzt muß man 
+sich obige Fehlermeldungen durchlesen, um Hinweise auf die "kranke" (= 
+offending) Zeile zu bekommen. In den oben fett hervorgehobenen Zeilen 
+sieht man, daß sich der SSH-Client an dem Eintrag in der zweiten Zeile 
+stört (letzte Zahl in der Zeile). Also wird auch genau diese 
+gelöscht!
+</p>
+<p>
+ Wenn man sich dann erneut bei SSH auf dem Remote-Server einloggt, 
+wird ein neuer, korrekter Eintrag in der Datei .ssh/known_hosts 
+angelegt.
+</p>
+
+

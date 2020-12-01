@@ -1,0 +1,86 @@
+<!--
+.. title: Linux: Verzeichnis für gemeinsames Arbeiten anlegen
+.. slug: 366_linux_verzeichnis_fuer_gemeins
+.. date: 2013-12-08 16:02:53
+.. tags: linux, verzeichnis, rechte, acl
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Auf einem Linux-Rechner mit mehreren Usern wollte ich ein Verzeichnis zum
+gemeinsamen Arbeiten anlegen. Dieses Verzeichnis soll als Unterverzeichnis
+"Gemeinsame Dateien" in die jeweiligen Home-Verzeichnisse eingebunden
+werden. Legt ein User ein Verzeichnis oder eine Datei an, sollen die anderen
+User ebenfalls automatisch Lese- und Schreibrechte erhalten. Da ich das
+nicht so häufig mache, vergesse ich immer wieder die Befehle. Also habe ich
+das mal hier im Blog als "Merkzettel" hinterlegt.
+</p>
+<!-- TEASER_END -->
+<p>
+ Um ein konkretes Beispiel zu haben, gehen wir von folgender Situation
+aus:
+</p>
+<ul>
+ <li>
+  Wir haben zwei User otto und anna, die sich ein Verzeichnis teilen
+wollen. Sie haben die Home-Verzeichnisse /home/otto bzw. /home/anna.
+ </li>
+ <li>
+  Das gemeinsame Verzeichnis soll auf /home/share angelegt werden und per
+symbolischen Link in den beiden Home-Verzeichnissen als ~/Gemeinsame Dateien
+eingebunden werden.
+ </li>
+ <li>
+  Wir benötigen für das Rechte-Management eine Gruppe. Diese soll share
+heißen.
+ </li>
+</ul>
+<p>
+ Nun arbeiten wir einfach folgende Befehlsliste ab:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  $ sudo su # Wir benötigen root-Rechte
+  <br/>
+  # groupadd share # Lege die Gruppe an
+  <br/>
+  # usermod -a -G share anna # Anna der Gruppe hinzufügen
+  <br/>
+  # usermod -a -G share otto # Otto der Gruppe hinzufügen
+  <br/>
+  # cd /home
+  <br/>
+  # mkdir share # Verzeichnis anlegen
+  <br/>
+  # chgrp -R share share/ # Verzeichnis der Gruppe share zuordnen
+  <br/>
+  # setfacl -R -m group:share:rw-,d:group:share:rw- share/ # Access Control List (ACL)
+  <br/>
+  # chmod g+s share/ # Set the SetGID sticky bit
+  <br/>
+  # ln -s share/ "anna/Gemeinsame Dateien" # Symbolischen Link erstellen
+  <br/>
+  # ln -s share/ "otto/Gemeinsame Dateien" # Symbolischen Link erstellen
+ </div>
+</p>
+<p>
+ Fertig!
+</p>
+<p>
+ Einen sehr einfach und verständlich formulierten Artikel zu Access Control
+Lists (ACL) gibt es
+ <a arktur.schul-netz.de="" doc="" href="" http:="" kap1103.htm"="" ods-v35="">
+  hier
+ </a>
+ .
+Damit neu erstellte Dateien und Verzeichnisse korrekt die Gruppen- und
+User-Rechte erben, benötigt man noch das SetGID sticky bit (Infos
+ <a href="http://superuser.com/questions/277775/ensuring-new-files-in-a-directory-belong-to-the-group">
+  hier
+ </a>
+ ).
+</p>
+

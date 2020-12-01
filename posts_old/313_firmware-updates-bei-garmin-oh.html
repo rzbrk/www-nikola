@@ -1,0 +1,72 @@
+<!--
+.. title: Firmware-Updates bei Garmin ohne WebUpdater
+.. slug: 313_firmware-updates-bei-garmin-oh
+.. date: 2012-09-26 17:39:51
+.. tags: update, gps, garmin, firmware
+.. category: geocaching
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p style="text-align: center;">
+ <img alt="Garmin eTrex Legend (li) und Dakota 20 (re)" src="http://farm7.static.flickr.com/6132/5999481772_2744c4c95d_d.jpg"/>
+</p>
+<br clear="none"/>
+Für ein Update der Software in seinen GPS-Geräten bietet der Hersteller Garmin ein Programm namens
+<a href="http://www.garminservice.de/downloads/geraeteseoftware/" shape="rect" target="_blank">
+ WebUpdater
+</a>
+an. Diese Software wird leider nur für die Betriebssysteme Windows und Mac angeboten. Freunde des Linux-Betriebssystems müssen deshalb jedoch nicht auf Updates verzichten. Alternativ kann man sich die Geräte-Software auch von
+<a href="http://www8.garmin.com/support/blosp.jsp" shape="rect" target="_blank">
+ dieser Garmin-Webseite
+</a>
+als Datei herunterladen. Ggf. muß die Datei noch entpackt werden (selbstextrahierende EXE-Dateien können nach
+<a href="http://gps.maroufi.net/firmwareupdate.shtml" shape="rect" target="_blank">
+ dieser Anleitung
+</a>
+mit dem Tool 7z entpackt werden). Wenn Ihr dann eine Datei mit der Endung GCD zur Verfügung habt, muß diese Datei zunächst in gupdate.gcd umbenannt und in das Verzeichnis /GARMIN des GPS-Geräts (nicht auf die Speicherkarte) kopiert werden. Wenn Ihr dann das Gerät vom PC trennt und startet, wird das Update eingespielt. Danach empfiehlt sich ein erneuter Neustart.
+<br clear="none"/>
+<br clear="none"/>
+Es gibt jedoch noch ein paar Dinge zu erwähnen:
+<br clear="none"/>
+<ul>
+ <li>
+  In den Garmin-Geräten gibt es verschiedene Software. Bei den mir bekannten Garmin-Geräten sind dies zwei: Die GPS-Software sowie die Geräte-Software. Erstere dient der Bestimmung der Position aus den empfangenen GPS-Daten und läuft im "Hintergrund". Zweitere ist für die ganzen Dienste und Anwendungen auf dem Gerät verantwortlich, also die Mensch-Maschine-Schnittstelle, die Kartendarstellung, Geocache-Verwaltung und so weiter. Mit dem hier beschriebenen Verfahren kann lediglich die Geräte-Software aktualisiert werden. Für die Aktualisierung z.B. der GPS-Software wird zwingend der WebUpdater benötigt. Ein Update der GPS-Software kommt allerdings nach meiner Erfahrung nicht so häufig vor.
+ </li>
+ <li>
+  Die Garmin Webseite zum Download der Geräte-Software scheint nicht vollständig zu sein. So habe ich am 26.09.2012 kein Gerät der Dakota-Familie gefunden.
+ </li>
+ <li>
+  Weder über die
+  <a href="http://www8.garmin.com/support/blosp.jsp" shape="rect" target="_blank">
+   Garmin-Seite
+  </a>
+  noch über das
+  <a href="http://forum.geoclub.de/viewtopic.php?f=7&amp;t=40247" shape="rect" target="_blank">
+   grüne Forum
+  </a>
+  bekommt man verläßliche Informationen über Updates bzw. aktuelle Versionen der Geräte-Software. Dann habe ich mich sogar mit einem Fake-Account bei
+  <a href="https://my.garmin.com/mygarmin">
+   myGarmin
+  </a>
+  angemeldet und mein Dakota registriert. Aber noch nicht mal da kann man eine Update-Notification für die Geräte-Software konfigurieren, nur für Kartenupdates: Echt schwach, Garmin!
+ </li>
+ <li>
+  Mit einem bißchen Mühe bekommt man die Download-Adresse des gewünschten Software-Updates heraus. Alle Dateien scheinen grundsätzlich unter
+  <a href="http://www.garmin.com/software/" shape="rect" target="_blank">
+   http://www.garmin.com/software/
+  </a>
+  zu liegen. Leider ist dieses Webserver-Verzeichnis nicht so konfiguriert, daß man den Inhalt (die dort enthaltenen Dateien) auflisten kann. Ein wenig Suchen in Foren und Suchmaschine hat aber ergeben, daß die Links zu den Dakota-Paketen die Form
+  <a href="http://www.garmin.com/software/Dakota_WebUpdater__XYZ.gcd" shape="rect" target="_blank">
+   http://www.garmin.com/software/Dakota_WebUpdater__XYZ.gcd
+  </a>
+  haben. Anstelle von "XYZ" muß man die Versionsnummer ohne Punkt eingeben; für die Versionsnummer 5.50 also "550".
+ </li>
+</ul>
+<div>
+ <br clear="none"/>
+ Ich würde mir wünschen, Garmin würde seine Seite zum Download der Geräte-Software besser pflegen. So könnte auch die wachsende Zahl der Linux-User ihre Garmin-Geräte komfortabler updaten. Neben den aktuellen Versionen sollte auch ein Download früherer Versionen möglich sein. Manchmal schleicht sich ja auch ein Bug ein oder ein heißgeliebtes Feature wird verschlimmbessert. In einem solchen Fall könnte man ein Downgrade der Geräte-Software durchführen.
+</div>
+
+

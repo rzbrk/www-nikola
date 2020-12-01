@@ -1,0 +1,53 @@
+<!--
+.. title: IP-Adresse eines Gerätes im lokalen Netzwerk bestimmen
+.. slug: 337_ip_adresse_eines_geraetes_im_l
+.. date: 2013-04-07 20:32:48
+.. tags: nmap, ip, mac, scan
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<div>
+ Es kann manchmal erforderlich sein, die IP-Adresse eines im lokalen 
+Netzwerk angeschlossenen Geräts (Computer, Smartphone, whatever) 
+herauszufinden. Die zuverlässigste Methode ist, den Portscanner
+ <a href="http://nmap.org/">
+  nmap
+ </a>
+ zu verwenden und einen IP-Scan über 
+den kompletten IP-Bereich zu machen. Den zugehörigen Konsolen-Befehl 
+könnt Ihr folgendem Screenshot entnehmen. nmap hat bei mir im Netz 
+zuverlässig 5 Geräte gefunden, meinen Router (192.168.1.1), meinen 
+Server (192.168.1.3), mein Notebook (192.168.1.201), mein Samsung 
+Smartphone (192.168.1.202) sowie mein neuestes Spielzeug, einen 
+Raspberry Pi Mini-Computer (192.168.1.205).
+</div>
+<p style="text-align: 
+center;">
+ <img alt="nmap IP-Scan" src="http://farm9.staticflickr.com/8264/8629398938_72ddbc866e_d.jpg"/>
+</p>
+<div>
+ Wenn Ihr viele Geräte im Netzwerk habt könnt ihr zur 
+eindeutigen Identifizierung die
+ <a href="http://de.wikipedia.org/wiki/MAC-Adresse">
+  MAC-Adresse
+ </a>
+ verwenden.
+ <br/>
+</div>
+<div>
+ <br/>
+</div>
+<p>
+ Und ja, nmap gibt es 
+tatsächlich
+ <a href="http://nmap.org/download.html">
+  auch für 
+Windows
+ </a>
+ (Microsoft Windows binaries).
+</p>
+
+

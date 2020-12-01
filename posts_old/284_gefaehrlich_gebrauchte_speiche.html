@@ -1,0 +1,111 @@
+<!--
+.. title: Gefährlich: Gebrauchte Speicherkarten verkaufen
+.. slug: 284_gefaehrlich_gebrauchte_speiche
+.. date: 2011-12-09 17:53:39
+.. tags: testdisk, photorec, digitalkamera, dateien, bilder, speicherkarte, eraser, wiederherstellen
+.. category: hardware
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<figure>
+ <img alt="SD Karte" src="http://upload.wikimedia.org/wikipedia/commons/6/6b/Secure_Digital_16Mb_card.jpg"/>
+ <figcaption>
+  SD Karte
+ </figcaption>
+</figure>
+<p>
+ Ich habe mir kürzlich eine gebrauchte Digitalkamera gekauft. 
+Überraschenderweise war in dem Gerät noch eine Speicherkarte drin. Da 
+war mein wissenschaftlicher Ehrgeiz geweckt: Oberflächlich gesehen war 
+die Speicherkarte leer. Allerdings lassen sich Dateien, welche lediglich 
+einfach gelöscht wurden, sehr einfach wieder rekonstruieren. In diesem 
+Artikel beschreibe ich, wie das geht. Die folgende Anleitung 
+funktioniert z.B. auch dann, wenn man die Bilder aus Versehen gelöscht 
+hat ...
+</p>
+<!-- TEASER_END -->
+<p>
+ Unter Ubuntu/Linux gibt es hierzu das Programm
+ <a href="http://www.cgsecurity.org/wiki/PhotoRec" title="photorec 
+Website">
+  photorec
+ </a>
+ , 
+das Bestandteil des Pakets testdisk ist. Es läßt sich wie folgt 
+installieren:
+</p>
+<p>
+ sudo apt-get install testdisk
+</p>
+<p>
+ Anschließend kann man das Programm photorec in einem 
+Terminal als root starten:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  sudo photorec
+ </div>
+</p>
+<p>
+ Im ersten Screen kann man sich einen Datenträger 
+aussuchen. Im zweiten Screen muß man Angaben zum Partitionstyp machen. 
+Bei Speicherkarten sind FAT-Partitionen üblich, und man muß den Typ 
+"Intel" auswählen. Ein paar Screens weiter wählt man das Zielverzeichnis 
+aus, wo photorec die recoverten Bilder ablegen soll. (
+ <a href="http://www.cgsecurity.org/wiki/PhotoRec_Step_By_Step" title="Photorec 
+Step-by-Step">
+  Hier
+ </a>
+ gibt es eine Schritt-für-Schritt-Anleitung in englisch mit 
+Screenshots.)
+</p>
+<p>
+ Ergebnis: Ich konnte über 100 Bilder von der Speicherkarte recovern! 
+Ein einfaches Formatieren hat auch nicht ausgereicht. Auch anschließend 
+konnte ich trotzdem wieder alle Bilder recovern.
+</p>
+<p>
+ Dann habe ich folgendes gemacht. Ich habe auf der "leeren" 
+Speicherkarte eine Datei erzeugt, welche etwa den kompletten 
+Speicherplatz der Karte ausfüllt. Unter Ubuntu/Linux kann man das mit 
+dem Befehl
+ <a href="http://de.wikipedia.org/wiki/Dd_%28Unix%29" title="Wikipedia -- dd (Unix)">
+  dd
+ </a>
+ machen. Für 
+eine 2GB-Karte sieht der Befehl bspw. wie folgt aus:
+</p>
+<p>
+ <div class="terminal" style="font-family: mono,monospace; background-color: black; border: 3px solid green; border-radius: 10px; color: green; margin-top: 10px; margin-left: 50px; margin-right: 50px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+  dd if=/dev/zero of=/media/speicherkarte/datei bs=1k count=1 seek=2M
+ </div>
+</p>
+<p>
+ Zur Sicherheit kann man die Datei anschließend löschen und den Befehl 
+erneut ausführen. Wenn man dann die Speicherkarte formatiert, konnte bei 
+mir photorec keine Bilder mehr recovern.
+</p>
+<p>
+ Also mein Tipp: Keine Speicherkarten verkaufen sondern besser 
+vernichten. Wenn man DOCH eine Speicherkarte mit Bildern verkaufen 
+möchte, sollte man nach dem Löschen aller Dateien wie oben beschrieben 
+eine Dummy-Datei von der Größe des Speicherplatzes der Karte erstellen. 
+Beim Formatieren wird der Speicher auf der Karte lediglich freigegeben, 
+aber die Inhalte nicht gelöscht. Programme wie photorec können den 
+Speicher nach Relikten von Bilddateien durchsuchen und so die Bilder 
+wieder rekonstruieren. Wenn man die Dummy-Datei wie oben beschrieben auf 
+der Karte erstellt, wird der Speicher tatsächlich überschrieben. 
+Anschließend hat photorec keine Chance mehr.
+</p>
+<p>
+ Photorec gibt es auch für Windows. Zum sicheren Löschen 
+können Nutzer des Microsoft-Betriebssystems z.B. das Programm
+ <a href="http://www.heidi.ie/eraser/index.php" title="Eraser -- Advanced security tool for Windows">
+  Eraser
+ </a>
+ verwenden.
+</p>
+
+

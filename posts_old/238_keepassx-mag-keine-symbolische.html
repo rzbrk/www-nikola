@@ -1,0 +1,40 @@
+<!--
+.. title: KeePassX mag keine symbolischen Links
+.. slug: 238_keepassx-mag-keine-symbolische
+.. date: 2011-02-14 20:48:02
+.. tags: dropbox, auto_type, passwoerter, kennwoerter, verschluesselung
+.. category: aktuell
+.. link: 
+.. description: 
+.. type: text
+-->
+
+<p>
+ Seit einiger Zeit setze ich für meine Paßwörter das Programm
+ <a href="http://www.keepassx.org/" title="KeePassX Webseite">
+  KeePassX
+ </a>
+ ein. Dies ist gewissermaßen ein geschützter Container, in den man alle seine Paßwörter ablegen kann. Der Container ist verschlüsselt und mit einem Master-Paßwort gesichert. Ein tolles Feature ist die
+ <a href="link://slug/97_auto-type-bei-keepassx">
+  Auto-Type Funktion
+ </a>
+ . Wird man von einem Programm oder einer Webseite nach den Zugangsdaten gefragt, drückt man eine spezielle Tastenkombination (bei mir STRG+ALT+A) und die Eingabefelder werden automatisch ausgefüllt. Vorher muß man KeePassX nur ein wenig trainieren, damit er dem jeweiligen Programm/der jeweiligen Anwendung die richtigen Zugangsdaten zuordnet.
+</p>
+<p>
+ Mein Paßwort-Datenbank liegt dabei in einer
+ <a href="http://www.youtube.com/watch?v=OFb0NaeRmdg" title="Youtube -- What is DropBox">
+  DropBox
+ </a>
+ , damit ich von überall auf die Paßwörter zugreifen kann. Um auf meinen Rechner die Datenbank schnell zu erreichen, habe ich mir einen symbolischen Link auf meinem Desktop erstellt. Nun muß ich aber lernen, daß
+ <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2965420&amp;group_id=166631&amp;atid=839779" title="KeepassX won't honor links upon save">
+  KeePassX mit Links nicht umgehen kann
+ </a>
+ . Stattdessen wird der Link mit einer Kopie der Datenbank ersetzt. Bei mir hatte das zur Folge, daß die Paßwort-Datenbank nicht mehr aktuell ist. Jetzt habe ich den symbolischen Link (Linux: ln -s
+ <ziel>
+ </ziel>
+ &gt;Link-Name&gt;) auf dem Desktop mit einem Start-Icon für KeePassX ersetzt, in welchem direkt auf die Datenbank in der DropBox verwiesen wird. Jetzt sollte die Datenbank in der DropBox stets auf dem aktuellen Stand sein.
+</p>
+<p>
+</p>
+
+
