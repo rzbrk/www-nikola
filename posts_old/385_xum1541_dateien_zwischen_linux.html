@@ -9,12 +9,12 @@
 .. type: text
 -->
 
-<figure>
- <img alt="Fertiger XUM1541-Adapter" src="/images/xum1541_01.jpg"/>
- <figcaption>
+<div class="figure align-center">
+ <img alt="Fertiger XUM1541-Adapter" src="/images/xum1541_01.thumbnail.jpg"/>
+ <p class="caption">
   Fertiger XUM1541-Adapter zum Anschluß eines Commodore Disketten-Laufwerks über USB
- </figcaption>
-</figure>
+ </p>
+</div>
 <p>
  Es gibt verschiedene Möglichkeiten, Dateien zwischen einem über 30 Jahre alten Commodore 64 (C64) und einem 
 modernen Linux-Computer auszutauschen. Ich möchte in diesem Artikel eine besonders einfache und preisgünstige 
@@ -128,24 +128,24 @@ optisches Feedback über die Aktivität des Teensy. Im zweiten Loch steckt ein T
 (zieht den Reset-Pin beim Drücken gegen Masse). Diesen benötigt man nur für den Fall, daß der Teensy neu 
 programmiert werden soll. Die Verdrahtung ist nicht besonders kompliziert, wie folgendes Schematic zeigt:
 </p>
-<figure>
- <img alt="Schematics für XUM1541" src="/images/xum1541-schem.png"/>
- <figcaption>
+<div class="figure align-center">
+ <img alt="Schematics für XUM1541" src="/images/xum1541-schem.thumbnail.png"/>
+ <p class="caption">
   Schematics für den XUM1541. Bild des DIN-Steckers unter der Lizenz GPL FDL,
   <a href="http://c64-wiki.de/">
    C64-Wiki.de
   </a>
- </figcaption>
-</figure>
+ </p>
+</div>
 <p>
  Das Innenleben des Gehäuses sieht bei mir so aus:
 </p>
-<figure>
+<div class="figure align-center">
  <img alt="Innenansicht des XUM1541-Adapters" src="/images/xum1541_02.jpg"/>
- <figcaption>
+ <p class="caption">
   Innenansicht des XUM1541-Adapters
- </figcaption>
-</figure>
+ </p>
+</div>
 <p>
  <b>
   Programmieren des Teensy
@@ -261,6 +261,15 @@ Laufwerk hin- und herzukopieren.
 gefunden werden konnten. Wenn das Euch auch passiert, könnt Ihr unter modernen Linux-Systemen ldconfig 
 verwenden, um die Bibliotheken zu konfigurieren. Wie das funktioniert, ist leider von Linux zu Linux 
 verschieden ... einfach mal die Suchmaschine Eures Vertrauens konsultieren.
+</p>
+<p>
+ <b>Nachtrag:</b> Eine Leserin dieses Artikels hat mich darauf aufmerksam gemacht, dass für das
+ Kompilieren von OpenCBM ggf. noch der
+ <a href="https://cc65.github.io">
+     Cross Compiler CC65
+ </a>
+ sowie die Bibliothek libncurses(-dev) erforderlich sind. ncurses läßt sich üblicherweise über die
+ Paketverwaltung der Linux-Distribution nachinstallieren. Danke für den Hinweis!
 </p>
 <p>
  Wenn der Teensy nun mit der XUM1541-Firmware läuft, meldet er sich beim System über USB mit einer anderen ID 
