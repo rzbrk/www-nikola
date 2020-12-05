@@ -139,12 +139,12 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/index.html", "Home"),
+#        ("/index.html", "Home"),
 #        ("/archive.html", "Archiv"),
         ("/categories/", "Stöbern"),
         ("https://github.com/rzbrk", "GitHub"),
         ("/rss.xml", "RSS-Feed"),
-        ("/pages/impressum/index.html", "Impressum/Datenschutz"),
+        ("/pages/impressum/index.html", "Impressum"),
     ),
 }
 
