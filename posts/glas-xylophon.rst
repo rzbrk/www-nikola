@@ -15,8 +15,9 @@
 
    </strike>
 
-.. figure:: /images/glasxylo06.thumbnail.png
+.. figure:: /images/glasxylo06.png
    :align: center
+   :width: 700
    :alt: Bild vom Glas-Xylophon
    
    Bild vom Glas-Xylophon
@@ -56,6 +57,9 @@ aufbauen, dann läuft es los. Warum das so ist, verstehe ich nicht. |se| [Update
 2021/12/23: Kein Wunder, wenn man hinter dem ``Serial.begin()`` ein
 ``while(!Serial)`` stehen hat ...].
 
+Der Quellcode für das Glas-Xylophon befindet sich `hier auf meiner Github-Seite
+<https://github.com/rzbrk/glas-xylophon>`_.
+
 .. figure:: /images/glasxylo04.thumbnail.jpg
    :align: center
    :alt: Die Schlägel des Glas-Xylophons sind Metallstäbe mit Holzkugeln als    Köpfe, die von Servos angetrieben werden.
@@ -86,6 +90,13 @@ Datenleitung und dann an einen Pin vom Mikrocontroller angeschlossen. Über die
 `Arduino FastLED Bibliothek
 <https://www.arduino.cc/reference/en/libraries/fastled>`_ ist die Programmierung
 der LEDs ein Kinderspiel.
+
+.. figure:: /images/glasxylo-schem.jpg
+   :align: center
+   :width: 700
+   :alt: Schaltbild zum Glas-Xylophon.
+
+   Schaltbild zum Glas-Xylophon.
 
 Auf meinem Computer habe ich den MIDI Sequencer `Rosegarden
 <https://rosegardenmusic.com/>`_ installiert. MIDI Files bekannter
