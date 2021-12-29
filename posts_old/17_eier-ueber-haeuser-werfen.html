@@ -10,7 +10,7 @@
 -->
 
 <p>
- <img align="left" border="0" height="70" hspace="10" src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/White_chicken_egg_square.jpg/180px-White_chicken_egg_square.jpg" title="So ein Ei soll über ein Gebäude geworfen werden" vspace="10" width="70"/>
+ <img align="left" border="0" height="70" hspace="10" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/White_chicken_egg_square.jpg/180px-White_chicken_egg_square.jpg" title="So ein Ei soll über ein Gebäude geworfen werden" vspace="10" width="70"/>
  Bei mir im Kollegenkreis hat jemand behauptet, es müsse doch ganz einfach sein, ein Ei über unser Dienstgebäude zu schmeißen. Das Thema ist jetzt schon seit Wochen Gesprächsthema in unseren Kaffeerunden. Doch der mutige Kollege ist, was das Thema anbetrifft, ziemlich leise geworden. Immerhin ist das Gebäude etwa 15 m hoch und 20 m tief ...
  <span style="text-decoration: line-through;">
   Die Wette ist auch noch nicht eingelöst.
@@ -22,11 +22,11 @@ Natürlich haben wir gerätselt, ob es überhaupt möglich ist. Mein Ansporn war
 <br/>
 <br/>
 Die Luftreibung kann bei diesem Problem nicht vernachlässigt werden, weshalb ich das Problem nicht analytisch gelöst habe, sondern die Bewegungsgleichung unter Ansatz einer Luftreibung proportional zum Quadrat der Geschwindigkeit unter Verwendung des
-<a href="http://de.wikipedia.org/wiki/Runge-Kutta-Verfahren" title="Runge-Kutta-Verfahren">
+<a href="https://de.wikipedia.org/wiki/Runge-Kutta-Verfahren" title="Runge-Kutta-Verfahren">
  Runge-Kutta-Verfahrens
 </a>
 integriert habe. Diese Routine zur Integration der Bewegungsgleichung liefert dann die Wurfbahn, und eben diese Routine habe ich eingebettet in eine
-<a href="http://de.wikipedia.org/wiki/Monte-Carlo-Simulation" title="Monte-Carlo-Simulation">
+<a href="https://de.wikipedia.org/wiki/Monte-Carlo-Simulation" title="Monte-Carlo-Simulation">
  Monte-Carlo-Simulation
 </a>
 . Hierbei werden die genannten Anfangsparameter in gewissen Grenzen per Zufall vorgegeben. Nach der Integration wird die resultierende Wurfbahn vom Programm daraufhin überprüft, ob sie auch tatsächlich über das Gebäude geht. Wenn ja, werden die Parameter dieser Bahn in einer Liste abgelegt. Das Spiel habe ich das Programm 100000 Mal wiederholen lassen. Danach habe ich die Liste mit den Bahnen über das Gebäude nach der Größe der Abwurfgeschwindigkeit sortieren lassen. Diejenige Bahn mit der kleinsten Abwurfgeschwindigkeit ist eine gute Näherung für die energetisch günstigste Bahn.
@@ -49,7 +49,7 @@ integriert habe. Diese Routine zur Integration der Bewegungsgleichung liefert da
   Perl
  </a>
  geschrieben. Das Ei hat in meiner Simulation einen Durchmesser von 5 cm, ein Gewicht von 60 g und einen
- <a href="http://de.wikipedia.org/wiki/Widerstandsbeiwert" title="Widerstandsbeiwert">
+ <a href="https://de.wikipedia.org/wiki/Widerstandsbeiwert" title="Widerstandsbeiwert">
   aerodynamischen Widerstandbeiwert
  </a>
  von 0.3 (bezogen auf die Querschnittsfläche). Unter diesen Voraussetzungen und den weiter oben genannten Abmessungen muß sich der Werfer etwa 11 m vor das Gebäude stellen und das Ei im 60°-Winkel mit einer Geschwindigkeit von knapp 90 km/h abwerfen. Dann geht das Ei knapp über beide Dachkanten. Im Fuß- oder Handball werden Spitzengeschwindigkeiten von 100 bis 140 km/h erreicht. Also, einfach sollte es nicht sein, aber immerhin möglich.
@@ -60,7 +60,7 @@ integriert habe. Diese Routine zur Integration der Bewegungsgleichung liefert da
   Bananenflanke
  </a>
  ,
- <a href="http://de.wikipedia.org/wiki/Magnus-Effekt" title="Magnus-Effekt">
+ <a href="https://de.wikipedia.org/wiki/Magnus-Effekt" title="Magnus-Effekt">
   Magnus-Effekt
  </a>
  ). Aber diese Effekte zu berücksichtigen bedeutete eine erhebliche Steiegrung der Komplexität der Simulation - dafür habe ich dann doch keine Zeit. Aber interessant wär's schon ...

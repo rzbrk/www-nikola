@@ -53,7 +53,7 @@
 </p>
 <p>
  Noch ein Tipp zur Netzwerkanbindung der VM: Standartmäßig wird die virtuelle Netzwerkkarte per
- <a href="http://de.wikipedia.org/wiki/Network_Address_Translation" title="NAT">
+ <a href="https://de.wikipedia.org/wiki/Network_Address_Translation" title="NAT">
   NAT
  </a>
  an die reale Karte des Wirtsystems "angeschlossen". Die VM befindet sich hierdurch in einem eigenen Netzwerk hinter der Netzwerkkarte des Wirtsystems und hat hierdurch zunächst keinen direkten Zugriff auf andere Komponenten des Heimnetzwerks (z.B. andere Rechner, Netzwerkfreigaben oder -drucker). In den Einstellungen zur VM kann man aber auch einstellen, daß der virtuelle Netzwerkadapter über eine Netzwerkbrücke (Bridged Network) an das Heimnetzwerk angeschlossen werden soll. Die Netzwerkkarte des Wirtsystems wird nun scheinbar geklont, die VM erhält ihre eigene IP im Heimnetzwerk und ist fortan in diesem als eigenständiger Host direkt erreichbar.

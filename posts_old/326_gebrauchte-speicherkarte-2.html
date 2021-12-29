@@ -19,11 +19,11 @@
 <!-- TEASER_END -->
 <div>
  Ein wenig technischer Hintergrund: Auf den üblichen Speicherkarten  kommt in der Regel ein FAT-
- <a href="http://de.wikipedia.org/wiki/Dateisystem" title="Wikipedia -- Dateisystem">
+ <a href="https://de.wikipedia.org/wiki/Dateisystem" title="Wikipedia -- Dateisystem">
   Dateisystem
  </a>
  zum Einsatz. Der Speicherplatz  wird in Blöcke unterteilt und Blöcke zu Clustern zusammengefaßt.  Zusätzlich befindet sich am Anfang des Speichers (unter anderem) eine
- <a href="http://de.wikipedia.org/wiki/Dateizuordnungstabelle" title="Wikipedia -- Dateizuordnungstabelle">
+ <a href="https://de.wikipedia.org/wiki/Dateizuordnungstabelle" title="Wikipedia -- Dateizuordnungstabelle">
   Dateizuordnungstabelle
  </a>
  (File Allocation Table), ähnlich einem "Inhaltsverzeichnis" des  eigentlichen Datenspeichers. Wenn das Betriebssystem nun eine Datei auf  dem Speicher ablegt, wird ein entsprechender Eintrag in der  Dateizuordnungstabelle angelegt, der Verweise auf die Cluster enthält,  auf die die Daten der Datei abgelegt sind. Will das Betriebssystem die  Datei wieder einlesen, so schaut es sich den entsprechenden Eintrag in  der Dateizuordnungstabelle an, liest die entsprechenden Cluster aus und  erstellt bspw. im Arbeitsspeicher eine "Arbeitskopie" der Datei.

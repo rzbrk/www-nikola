@@ -10,17 +10,17 @@
 -->
 
 <p>
- <img align="left" alt="CD DVD brennen" border="0" hspace="10" src="http://upload.wikimedia.org/wikipedia/commons/7/75/Nautilus-cd-burner.png" title="CD DVD brennen" vspace="10"/>
+ <img align="left" alt="CD DVD brennen" border="0" hspace="10" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Nautilus-cd-burner.png" title="CD DVD brennen" vspace="10"/>
  Kürzlich mußte ich unter Windows Daten-DVDs brennen. Das war alles andere als spaßig, da das Brennen einer 4 GByte-DVD eine ganze Stunde in Anspruch genommen hat. Eigentlich hätte es garnicht solange dauern dürfen, denn die Brenngeschwindigkeit war mit 8fach bzw. rund 11 MB/s angegeben. Damit wären die 4 GByte nach Adam Riese eigentlich in rund 6 Minuten auf den Rohling transferiert. Tatsächlich dauerte es aber fast 10 Mal länger - warum? Der Bösewicht war nach kurzem Googlen schnell ausgemacht: Programmed Input-Output oder kurz PIO.
 </p>
 <!-- TEASER_END -->
 <p>
  Bei
- <a href="http://de.wikipedia.org/wiki/Programmed_Input/Output" title="Wikipedia: PIO">
+ <a href="https://de.wikipedia.org/wiki/Programmed_Input/Output" title="Wikipedia: PIO">
   PIO
  </a>
  werden alle Daten zwischen Arbeitsspeicher und Laufwerken eines Computers über den Prozessor geleitet. Das bremst aber den Prozeß stark aus, was sich bspw. wie oben beschrieben beim Brennen in drastisch verlängerten Brennzeiten ausdrückt. Vermeiden kann man das durch Verwendung von Direct Memory Access (
- <a href="http://de.wikipedia.org/wiki/Direct_Memory_Access" title="Wikipedia: DMA">
+ <a href="https://de.wikipedia.org/wiki/Direct_Memory_Access" title="Wikipedia: DMA">
   DMA
  </a>
  ). Hier wird der Prozessor schön aus der Datenschaufelei herausgehalten. Laufwerke moderner Rechner sollten mittlerweile alle DMA unterstützen.
